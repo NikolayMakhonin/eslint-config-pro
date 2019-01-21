@@ -1,0 +1,54 @@
+{
+  "name": "eslint-config-pro",
+  "description": "Almost all ESLint v5 rules for professional developers",
+  "version": "0.0.1",
+  "author": {
+    "name": "Nikolay Makhonin",
+    "url": "https://github.com/NikolayMakhonin/"
+  },
+  "bugs": {
+    "url": "https://github.com/NikolayMakhonin/eslint-config-pro/issues"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0",
+    "eslint-plugin-markdown": "^1.0.0-rc.0",
+    "eslint-plugin-node": "^8.0.0",
+    "mocha": "^5.2.0"
+  },
+  "homepage": "https://github.com/NikolayMakhonin/eslint-config-pro",
+  "keywords": [
+    "JavaScript Style",
+    "check",
+    "checker",
+    "code",
+    "code checker",
+    "code linter",
+    "code standards",
+    "code style",
+    "enforce",
+    "eslint",
+    "eslintconfig",
+    "hint",
+    "jscs",
+    "jshint",
+    "lint",
+    "style",
+    "style checker",
+    "style linter",
+    "verify"
+  ],
+  "license": "CC0-1.0",
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": ">=5.0.0",
+    "eslint-plugin-node": "^8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/NikolayMakhonin/eslint-config-pro.git"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint && mocha ./test"
+  }
+}
