@@ -1,14 +1,14 @@
 'use strict'
 
-const assert = require( 'assert' )
-const config = require( '../' )
+const assert = require('assert')
+const config = require('../')
 
-describe( 'basic', function () {
-	function isObject ( obj ) {
+describe('basic', function () {
+	function isObject(obj) {
 		return typeof obj === 'object' && obj !== null
 	}
 
-	it( 'test basic properties of config', function () {
-		assert.ok( isObject( config.rules ) )
+	it('test basic properties of config', function () {
+		assert.ok(isObject(config.rules))
 	})
 })
