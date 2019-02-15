@@ -134,7 +134,7 @@ module.exports = {
 		curly                   : ['error', 'all'],
 		'default-case'          : 'error',
 		'dot-location'          : ['error', 'property'],
-		'dot-notation'          : ['error', {allowKeywords: false}],
+		'dot-notation'          : ['error', {allowKeywords: false, allowPattern: '^(throws)$'}],
 		eqeqeq                  : ['error', 'always', {'null': 'ignore'}],
 		'guard-for-in'          : 'warn',
 		'no-caller'             : 'error',
@@ -481,7 +481,7 @@ module.exports = {
 				after : true
 			}
 		],
-		'semi-style'                 : ['error', 'last'],
+		'semi-style'                 : ['error', 'first'],
 		'space-before-blocks'        : ['warn', 'always'],
 		'space-before-function-paren': [
 			'warn', {
