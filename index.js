@@ -134,20 +134,25 @@ module.exports = {
 		curly                   : ['error', 'all'],
 		'default-case'          : 'error',
 		'dot-location'          : ['error', 'property'],
-		'dot-notation'          : ['error', {allowKeywords: false, allowPattern: '^(throws)$'}],
-		eqeqeq                  : ['error', 'always', {'null': 'ignore'}],
-		'guard-for-in'          : 'warn',
-		'no-caller'             : 'error',
-		'no-alert'              : 'warn',
-		'no-else-return'        : ['error', {allowElseIf: false}],
-		'no-empty'              : 'warn',
-		'no-empty-function'     : 'warn',
-		'no-eval'               : 'error',
-		'no-extend-native'      : 'error',
-		'no-extra-bind'         : 'error',
-		'no-extra-label'        : 'error',
-		'no-floating-decimal'   : 'error',
-		'no-implicit-coercion'  : [
+		'dot-notation'          : [
+			'error', {
+				allowKeywords: false,
+				allowPattern : '^(throws)$'
+			}
+		],
+		eqeqeq                : ['error', 'always', {'null': 'ignore'}],
+		'guard-for-in'        : 'warn',
+		'no-caller'           : 'error',
+		'no-alert'            : 'warn',
+		'no-else-return'      : ['error', {allowElseIf: false}],
+		'no-empty'            : 'warn',
+		'no-empty-function'   : 'warn',
+		'no-eval'             : 'error',
+		'no-extend-native'    : 'error',
+		'no-extra-bind'       : 'error',
+		'no-extra-label'      : 'error',
+		'no-floating-decimal' : 'error',
+		'no-implicit-coercion': [
 			'error',
 			{
 				allow : ['!!'],
