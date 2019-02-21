@@ -136,8 +136,7 @@ module.exports = {
 		'dot-location'          : ['error', 'property'],
 		'dot-notation'          : [
 			'error', {
-				allowKeywords: false,
-				allowPattern : '^(throws)$'
+				allowKeywords: true
 			}
 		],
 		eqeqeq                : ['error', 'always', {'null': 'ignore'}],
