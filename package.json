@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pro",
   "description": "Almost all ESLint v5 rules for professional developers",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Nikolay Makhonin",
     "url": "https://github.com/NikolayMakhonin/"
@@ -41,7 +41,7 @@
   "main": "index.js",
   "peerDependencies": {
     "eslint": ">=5.0.0",
-    "eslint-plugin-node": "^8.0.0"
+    "eslint-plugin-node": ">=8.0.0"
   },
   "repository": {
     "type": "git",
