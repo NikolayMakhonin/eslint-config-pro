@@ -8,8 +8,8 @@ module.exports = {
 	},
 	overrides: [
 		{
-			files: [ 'test/**/*.js', 'tests/**/*.js' ],
-			env  : { mocha: true }
+			files: ['test/**/*.js', 'tests/**/*.js'],
+			env  : {mocha: true}
 		}
 	]
 }
