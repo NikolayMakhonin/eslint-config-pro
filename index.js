@@ -303,7 +303,7 @@ module.exports = {
 				objects  : 'only-multiline',
 				imports  : 'only-multiline',
 				exports  : 'only-multiline',
-				functions: 'never'
+				functions: 'only-multiline',
 			}
 		],
 		'comma-spacing': [
@@ -322,7 +322,8 @@ module.exports = {
 		'func-names'               : 'off',
 		// 'func-names'               : [ 'error', 'as-needed', { generators: 'as-needed' }],
 		'func-style'               : ['error', 'declaration', {allowArrowFunctions: true}],
-		'function-paren-newline'   : ['error', 'multiline'],
+		'function-paren-newline'   : 'off',
+		// 'function-paren-newline'   : ['error', 'multiline'],
 		'implicit-arrow-linebreak' : ['error', 'beside'],
 		indent                     : [
 			'warn',
@@ -434,25 +435,26 @@ module.exports = {
 		'no-unneeded-ternary'             : 'error',
 		'no-whitespace-before-property'   : 'error',
 		'nonblock-statement-body-position': ['error', 'beside'],
-		'object-curly-newline'            : [
-			'error',
-			{
-				ObjectExpression: {
-					consistent   : true,
-					minProperties: 4
-				},
-				ObjectPattern: {
-					consistent   : true,
-					minProperties: 4
-				},
-				ImportDeclaration: {
-					consistent   : true,
-					minProperties: 4
-				},
-				ExportDeclaration: 'always'
-			}
-		],
-		'object-curly-spacing': [
+		'object-curly-newline'            : 'off',
+		// 'object-curly-newline'            : [
+		// 	'error',
+		// 	{
+		// 		ObjectExpression: {
+		// 			consistent   : true,
+		// 			minProperties: 4
+		// 		},
+		// 		ObjectPattern: {
+		// 			consistent   : true,
+		// 			minProperties: 4
+		// 		},
+		// 		ImportDeclaration: {
+		// 			consistent   : true,
+		// 			minProperties: 4
+		// 		},
+		// 		ExportDeclaration: 'always'
+		// 	}
+		// ],
+		'object-curly-spacing'            : [
 			'warn',
 			'never',
 			{
