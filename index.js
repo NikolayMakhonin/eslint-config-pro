@@ -574,7 +574,7 @@ module.exports = {
 			{enforceForRenamedProperties: false}
 		],
 		'prefer-numeric-literals': 'error',
-		'prefer-rest-params'     : 'error',
+		'prefer-rest-params'     : 'off',
 		'prefer-spread'          : 'error',
 		'prefer-template'        : 'warn',
 		'rest-spread-spacing'    : ['warn', 'never'],
