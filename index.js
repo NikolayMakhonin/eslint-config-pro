@@ -97,7 +97,7 @@ module.exports = {
 		'no-unsafe-finally'              : 'error',
 		'no-unsafe-negation'             : 'error',
 		'no-unused-labels'               : 'error',
-		'no-useless-escape'              : 'error',
+		'no-useless-escape'              : 'warn',
 		'no-useless-return'              : 'off',
 		'no-void'                        : 'off',
 		'padding-line-between-statements': 'off',
@@ -136,7 +136,7 @@ module.exports = {
 		],
 		'no-misleading-character-class': 'error',
 		'no-prototype-builtins'        : 'warn',
-		'no-template-curly-in-string'  : 'warn',
+		'no-template-curly-in-string'  : 'error',
 		'no-unreachable'               : 'warn',
 		'require-atomic-updates'       : 'error',
 		'no-new-func'                  : 'error',
@@ -173,7 +173,6 @@ module.exports = {
 		],
 		'no-implicit-globals': 'error',
 		'no-implied-eval'    : 'error',
-		// 'no-invalid-this'    : 'error',
 		'no-iterator'        : 'error',
 		'no-labels'          : 'error',
 		'no-lone-blocks'     : 'error',
@@ -277,7 +276,7 @@ module.exports = {
 
 		// region Node.js and CommonJS
 
-		'callback-return'      : ['error', ['done', 'cb', 'next', 'resolve', 'reject']],
+		'callback-return'      : ['error', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']],
 		'global-require'       : 'error',
 		'handle-callback-err'  : ['error', '^(err|error)$'],
 		'no-buffer-constructor': 'error',
@@ -345,7 +344,7 @@ module.exports = {
 		'func-call-spacing'        : ['error', 'never'],
 		'func-name-matching'       : ['error', 'always'],
 		'func-names'               : ['warn', 'always', {generators: 'always'}],
-		'func-style'               : ['error', 'declaration', {allowArrowFunctions: true}],
+		'func-style'               : ['warn', 'declaration', {allowArrowFunctions: true}],
 		'function-paren-newline'   : ['error', 'consistent'],
 		'implicit-arrow-linebreak' : ['error', 'beside'],
 		indent                     : [
@@ -437,7 +436,7 @@ module.exports = {
 			},
 		],
 		'no-negated-condition': 'off',
-		'no-nested-ternary'   : 'error',
+		'no-nested-ternary'   : 'warn',
 		'no-new-object'       : 'error',
 		'no-tabs'             : ['warn', {allowIndentationTabs: true}],
 		'no-trailing-spaces'  : [
@@ -594,7 +593,7 @@ module.exports = {
 		],
 		'prefer-arrow-callback': ['off', {allowUnboundThis: true}],
 		'prefer-const'         : [
-			'error',
+			'warn',
 			{
 				destructuring         : 'all',
 				ignoreReadBeforeAssign: true,
@@ -616,7 +615,7 @@ module.exports = {
 		],
 		'prefer-numeric-literals': 'error',
 		'prefer-rest-params'     : 'off',
-		'prefer-spread'          : 'error',
+		'prefer-spread'          : 'off',
 		'prefer-template'        : 'warn',
 		'rest-spread-spacing'    : ['warn', 'never'],
 		'symbol-description'     : 'error',

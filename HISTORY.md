@@ -169,6 +169,74 @@
     * arrow-body-style
     * object-shorthand
 
+  * Reviewed inline rules from modules
+    * 182 - no-process-env
+    * 169 - prefer-template
+    * 166 - no-shadow
+    * 157 - no-sync
+    * 153 - object-property-newline
+    * 118 - global-require
+    * 110 - no-undef
+    * 100 - no-var
+    * 97 - no-new-func
+    * 70 - no-unused-vars
+    * 55 - prefer-destructuring
+    * 50 - no-process-exit
+    * 50 - quote-props
+    * 45 - prefer-rest-params
+    * 37 - vars-on-top
+    * 26 - no-useless-concat
+    * 25 - no-undefined
+    * 24 - no-duplicate-imports
+    * 24 - func-style
+    * 21 - semi
+    * 21 - no-global-assign
+    * 19 - no-extra-parens
+    * 17 - object-curly-newline
+    * 16 - array-bracket-newline
+    * 16 - prefer-spread
+    * 15 - function-paren-newline
+    * 12 - no-control-regex
+    * 12 - callback-return
+    * 12 - no-extend-native
+    * 12 - no-implicit-coercion
+    * 10 - default-case
+    * 8 - prefer-const
+    * 8 - indent
+    * 7 - no-template-curly-in-string
+    * 6 - eslint-env browser
+    * 6 - max-len
+    * 6 - no-await-in-loop
+    * 5 - no-proto
+    * 5 - no-unused-expressions
+    * 4 - no-useless-escape
+    * 4 - no-alert
+    * 4 - no-nested-ternary
+    * 4 - arrow-body-style
+    * 4 - guard-for-in
+    * 4 - no-bitwise
+    * 4 - no-use-before-define
+    * 3 - no-prototype-builtins
+    * 3 - class-methods-use-this
+    * 3 - new-cap
+    * 2 - node/no-deprecated-api
+    * 2 - import/no-unresolved
+    * 2 - no-self-compare
+    * 2 - complexity
+    * 2 - no-array-constructor
+    * 2 - no-invalid-this
+    * 2 - no-new
+    * 2 - no-empty
+    * 2 - computed-property-spacing
+    * 2 -  no-restricted-syntax
+    * 1 - object-shorthand
+    * 1 - strict
+    * 1 - semi-style
+    * 1 - no-empty-function
+    * 1 - one-var
+    * 1 - eqeqeq
+    * 1 - no-loop-func
+
 1.0.1 - 1.0.2 / 2020-05-21
 ===================
 
