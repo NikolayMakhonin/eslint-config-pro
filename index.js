@@ -4,7 +4,8 @@ module.exports = {
 	'extends': ['eslint:recommended'],
 	// plugins  : ['node'],
 	rules    : {		// doc: https://eslint.org/docs/rules/
-	// region eslint:recommended copy
+		// region eslint:recommended copy
+
 		'capitalized-comments'           : 'off',
 		complexity                       : 'off',
 		'constructor-super'              : 'error',
@@ -19,7 +20,17 @@ module.exports = {
 		'lines-around-directive'         : 'off',
 		'max-classes-per-file'           : 'off',
 		'max-depth'                      : 'off',
-		'max-len'                        : 'off',
+		'max-len'                        : ['warn', {
+			'tabWidth': 4,
+			'code': 120,
+			'comments': 123,
+			'ignorePattern': true,
+			'ignoreTrailingComments': true,
+			'ignoreUrls': true,
+			'ignoreStrings': true,
+			'ignoreTemplateLiterals': true,
+			'ignoreRegExpLiterals': true,
+		}],
 		'max-lines'                      : 'off',
 		'max-lines-per-function'         : 'off',
 		'max-nested-callbacks'           : 'off',
@@ -41,6 +52,7 @@ module.exports = {
 		'no-dupe-args'                   : 'error',
 		'no-dupe-class-members'          : 'error',
 		'no-dupe-keys'                   : 'error',
+		'no-dupe-else-if'                : 'error',
 		'no-duplicate-case'              : 'error',
 		'no-empty-character-class'       : 'error',
 		'no-empty-pattern'               : 'error',
@@ -51,6 +63,7 @@ module.exports = {
 		'no-fallthrough'                 : 'error',
 		'no-func-assign'                 : 'error',
 		'no-global-assign'               : 'error',
+		'no-import-assign'               : 'error',
 		'no-inline-comments'             : 'off',
 		'no-inner-declarations'          : 'error',
 		'no-invalid-regexp'              : 'error',
@@ -111,12 +124,14 @@ module.exports = {
 			'error',
 			'all',
 			{
-				returnAssign               : false,
-				nestedBinaryExpressions    : false,
-				enforceForArrowConditionals: false
+				returnAssign                      : false,
+				nestedBinaryExpressions           : false,
+				enforceForArrowConditionals       : false,
+				enforceForNewInMemberExpressions  : false,
+				enforceForFunctionPrototypeMethods: true,
 			}
 		],
-		'no-misleading-character-class': 'warn',
+		'no-misleading-character-class': 'error',
 		'no-prototype-builtins'        : 'warn',
 		'no-template-curly-in-string'  : 'warn',
 		'no-unreachable'               : 'warn',
@@ -171,7 +186,8 @@ module.exports = {
 				exceptions: {
 					VariableDeclarator: true,
 					BinaryExpression  : true,
-					Property          : true
+					Property          : true,
+					ImportDeclaration : false,
 				},
 				ignoreEOLComments: false
 			}
@@ -193,9 +209,9 @@ module.exports = {
 		'no-useless-catch'            : 'error',
 		'no-useless-concat'           : 'error',
 		'no-warning-comments'         : [
-			'error',
+			'warn',
 			{
-				terms   : ['todo', 'fixme'],
+				terms   : ['TODO', 'FIXME'],
 				location: 'anywhere'
 			}
 		],
@@ -205,6 +221,18 @@ module.exports = {
 		'vars-on-top'  : 'error',
 		'wrap-iife'    : ['error', 'inside'],
 		yoda           : ['error', 'never', {exceptRange: true}],
+
+		'no-loss-of-precision'      : 'error',
+		'no-promise-executor-return': 'warn',
+		'no-setter-return'          : 'warn',
+		'no-unreachable-loop'       : 'warn',
+		'no-useless-backreference'  : 'warn',
+		'default-param-last'        : 'error',
+		'grouped-accessor-pairs'    : 'warn',
+		'no-constructor-return'     : 'error',
+		'no-invalid-this'           : 'off',
+		'prefer-named-capture-group': 'off',
+		'prefer-regex-literals'     : [ "error", {"disallowRedundantWrapping": true} ],
 
 		// endregion
 
@@ -319,11 +347,9 @@ module.exports = {
 		'eol-last'                 : ['error', 'always'],
 		'func-call-spacing'        : ['error', 'never'],
 		'func-name-matching'       : ['error', 'always'],
-		'func-names'               : 'off',
-		// 'func-names'               : [ 'error', 'as-needed', { generators: 'as-needed' }],
+		'func-names'               : ['warn', 'always', { generators: 'always' }],
 		'func-style'               : ['error', 'declaration', {allowArrowFunctions: true}],
-		'function-paren-newline'   : 'off',
-		// 'function-paren-newline'   : ['error', 'multiline'],
+		'function-paren-newline'   : ['error', 'consistent'],
 		'implicit-arrow-linebreak' : ['error', 'beside'],
 		indent                     : [
 			'warn',
@@ -389,8 +415,6 @@ module.exports = {
 			}
 		],
 		'new-parens'              : 'error',
-		'newline-per-chained-call': 'off',
-		// 'newline-per-chained-call': [ 'error', { ignoreChainWithDepth: 0 }], // disabled because ignoreChainWithDepth = 0 is not allowed
 		'no-array-constructor'    : 'error',
 		'no-continue'             : 'off',
 		'no-lonely-if'            : 'error',
@@ -435,25 +459,24 @@ module.exports = {
 		'no-unneeded-ternary'             : 'error',
 		'no-whitespace-before-property'   : 'error',
 		'nonblock-statement-body-position': ['error', 'beside'],
-		'object-curly-newline'            : 'off',
-		// 'object-curly-newline'            : [
-		// 	'error',
-		// 	{
-		// 		ObjectExpression: {
-		// 			consistent   : true,
-		// 			minProperties: 4
-		// 		},
-		// 		ObjectPattern: {
-		// 			consistent   : true,
-		// 			minProperties: 4
-		// 		},
-		// 		ImportDeclaration: {
-		// 			consistent   : true,
-		// 			minProperties: 4
-		// 		},
-		// 		ExportDeclaration: 'always'
-		// 	}
-		// ],
+		'object-curly-newline'            : [
+			'warn',
+			{
+				ObjectExpression: {
+					consistent   : true,
+					minProperties: 4
+				},
+				ObjectPattern: {
+					consistent   : true,
+					minProperties: 4
+				},
+				ImportDeclaration: {
+					consistent   : true,
+					minProperties: 4
+				},
+				ExportDeclaration: 'always'
+			}
+		],
 		'object-curly-spacing'            : [
 			'warn',
 			'never',
@@ -515,6 +538,19 @@ module.exports = {
 		],
 		'template-tag-spacing': ['warn', 'always'],
 		'unicode-bom'         : ['error', 'never'],
+
+		'default-case-last': 'warn',
+		'camelcase'        : 'off',
+		'consistent-this'  : 'off',
+		'function-call-argument-newline': ['warn', 'consistent'],
+		'id-denylist'                   : 'off',
+		'newline-per-chained-call'      : ['warn', { 'ignoreChainWithDepth': 1 }],
+		'prefer-exponentiation-operator': 'warn',
+		'space-before-function-parentheses': ['warn', {
+			"anonymous": "never",
+			"named": "never",
+			"asyncArrow": "always"
+		}],
 
 		// endregion
 
@@ -580,7 +616,8 @@ module.exports = {
 		'rest-spread-spacing'    : ['warn', 'never'],
 		'symbol-description'     : 'error',
 		'template-curly-spacing' : ['warn', 'never'],
-		'yield-star-spacing'     : ['warn', 'after']
+		'yield-star-spacing'     : ['warn', 'after'],
+		'no-restricted-exports'  : 'off',
 
 		// endregion
 	}
