@@ -139,6 +139,36 @@
     * keyword-spacing
     * spaced-comment
 
+  * Updated from .eslintrc from real modules
+    * indent
+    * no-tabs
+    * no-process-env
+    * comma-dangle
+    * operator-linebreak
+    * object-curly-newline
+    * function-paren-newline
+    * prefer-destructuring
+    * no-sync
+    * dot-notation
+    * template-curly-spacing
+    * object-curly-spacing
+    * prefer-destructuring
+    * no-sync
+    * no-warning-comments
+    * array-bracket-newline
+    * require-atomic-updates
+    * sort-imports
+    * lines-between-class-members
+    * no-new-wrappers
+    * generator-star-spacing
+    * object-property-newline
+    * @typescript-eslint/ban-ts-comment
+    * @typescript-eslint/no-var-requires
+    * @typescript-eslint/no-this-alias
+    * @typescript-eslint/explicit-module-boundary-types
+    * arrow-body-style
+    * object-shorthand
+
 1.0.1 - 1.0.2 / 2020-05-21
 ===================
 
