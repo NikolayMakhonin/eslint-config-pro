@@ -9,7 +9,7 @@ describe('validate-config', function () {
 
 		const cli = new CLIEngine({
 			useEslintrc: false,
-			configFile : '.eslintrc.js'
+			configFile : '.eslintrc.js',
 		})
 
 		const code = '\'use strict\'\n'
