@@ -4,6 +4,8 @@ const assert = require('assert')
 const eslint = require('eslint')
 
 describe('validate-config', function () {
+	this.timeout(10000)
+
 	it('load config in eslint to validate all rule syntax is correct', function () {
 		const {CLIEngine} = eslint
 
