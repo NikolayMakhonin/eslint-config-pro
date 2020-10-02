@@ -1,5 +1,3 @@
-'use strict'
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const base = require('./.eslintrc.js')
 
@@ -42,13 +40,25 @@ const rules = {
 			objectsInArrays: false,
 		},
 	],
+	'no-extra-semi'     : 'error',
 	'semi-style'        : ['error', 'first'],
-	semi                : ['error', 'never', {beforeStatementContinuationChars: 'never'}],
+	semi                : ['error', 'never', {beforeStatementContinuationChars: 'always'}],
 	'operator-linebreak': [
 		'error', 'before', {
 			overrides: {'=': 'after'},
 		},
 	],
+	'comma-dangle': [
+		'error',
+		{
+			arrays   : 'always-multiline',
+			objects  : 'always-multiline',
+			imports  : 'always-multiline',
+			exports  : 'always-multiline',
+			functions: 'always-multiline',
+		},
+	],
+	quotes: ['error', 'single', {avoidEscape: true}],
 }
 
 const rulesOff = {}

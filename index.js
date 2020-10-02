@@ -684,7 +684,7 @@ const typeScript = {
 
 	'no-unused-vars'                   : 'off',
 	'@typescript-eslint/no-unused-vars': [
-		'error',
+		'warn',
 		{
 			...rules['no-unused-vars'][1],
 		},
@@ -702,8 +702,8 @@ const typeScript = {
 	'no-dupe-class-members'                   : 'off',
 	'@typescript-eslint/no-dupe-class-members': 'error',
 
-	"no-redeclare": "off",
-	"@typescript-eslint/no-redeclare": "off",
+	'no-redeclare'                   : 'off',
+	'@typescript-eslint/no-redeclare': 'off',
 
 	'@typescript-eslint/ban-ts-comment'                : 'off',
 	'@typescript-eslint/no-var-requires'               : 'error',
