@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pro",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": {
     "name": "Nikolay Makhonin",
     "url": "https://github.com/NikolayMakhonin/"
@@ -55,5 +55,8 @@
     "lint": "eslint .",
     "prepublishOnly": "npm test",
     "test": "npm run lint && mocha ./test/node"
-  }
+  },
+  "files": [
+    "index.js"
+  ]
 }

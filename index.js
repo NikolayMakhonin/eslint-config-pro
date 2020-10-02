@@ -482,7 +482,10 @@ const rules = {
 				consistent   : true,
 				minProperties: 6,
 			},
-			ExportDeclaration: 'always',
+			ExportDeclaration: {
+				consistent   : true,
+				minProperties: 6,
+			},
 		},
 	],
 	'object-curly-spacing': [
