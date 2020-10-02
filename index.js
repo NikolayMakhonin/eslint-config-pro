@@ -220,7 +220,7 @@ const rules = {
 	'no-setter-return'          : 'warn',
 	'no-unreachable-loop'       : 'warn',
 	'no-useless-backreference'  : 'warn',
-	'default-param-last'        : 'error',
+	'default-param-last'        : 'off',
 	'grouped-accessor-pairs'    : 'warn',
 	'no-constructor-return'     : 'error',
 	'no-invalid-this'           : 'off',
@@ -342,7 +342,7 @@ const rules = {
 	'func-name-matching'       : ['error', 'always'],
 	'func-names'               : ['warn', 'always', {generators: 'always'}],
 	'func-style'               : ['warn', 'declaration', {allowArrowFunctions: true}],
-	'function-paren-newline'   : ['error', 'consistent'],
+	'function-paren-newline'   : ['off', 'consistent'],
 	'implicit-arrow-linebreak' : ['off', 'beside'],
 	indent                     : [
 		'off',
@@ -387,7 +387,7 @@ const rules = {
 	'keyword-spacing'     : 'warn',
 	'linebreak-style'     : ['error', 'unix'],
 	'lines-around-comment': [
-		'error',
+		'off',
 		{
 			beforeLineComment: false,
 			afterLineComment : false,
@@ -449,7 +449,7 @@ const rules = {
 	'no-negated-condition': 'off',
 	'no-nested-ternary'   : 'off',
 	'no-new-object'       : 'error',
-	'no-tabs'             : ['warn', {allowIndentationTabs: true}],
+	'no-tabs'             : ['off', {allowIndentationTabs: true}],
 	'no-trailing-spaces'  : [
 		'warn',
 		{
@@ -472,15 +472,15 @@ const rules = {
 		{
 			ObjectExpression: {
 				consistent   : true,
-				minProperties: 4,
+				minProperties: 6,
 			},
 			ObjectPattern: {
 				consistent   : true,
-				minProperties: 4,
+				minProperties: 6,
 			},
 			ImportDeclaration: {
 				consistent   : true,
-				minProperties: 4,
+				minProperties: 6,
 			},
 			ExportDeclaration: 'always',
 		},
@@ -563,9 +563,9 @@ const rules = {
 	'default-case-last'             : 'warn',
 	camelcase                       : 'off',
 	'consistent-this'               : 'off',
-	'function-call-argument-newline': ['warn', 'consistent'],
+	'function-call-argument-newline': ['off', 'consistent'],
 	'id-denylist'                   : 'off',
-	'newline-per-chained-call'      : ['warn', {ignoreChainWithDepth: 1}],
+	'newline-per-chained-call'      : ['off', {ignoreChainWithDepth: 2}],
 	'prefer-exponentiation-operator': 'warn',
 
 	// endregion
@@ -682,6 +682,14 @@ const typeScript = {
 		},
 	],
 
+	'no-unused-vars'                   : 'off',
+	'@typescript-eslint/no-unused-vars': [
+		'error',
+		{
+			...rules['no-unused-vars'][1],
+		},
+	],
+
 	'@typescript-eslint/ban-types': [
 		'error', {
 			types: {
@@ -690,6 +698,12 @@ const typeScript = {
 			},
 		},
 	],
+
+	'no-dupe-class-members'                   : 'off',
+	'@typescript-eslint/no-dupe-class-members': 'error',
+
+	"no-redeclare": "off",
+	"@typescript-eslint/no-redeclare": "off",
 
 	'@typescript-eslint/ban-ts-comment'                : 'off',
 	'@typescript-eslint/no-var-requires'               : 'error',
