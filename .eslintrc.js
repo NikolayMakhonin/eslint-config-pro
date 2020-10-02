@@ -4,7 +4,7 @@ module.exports = {
 	'extends': ['./index.js'],
 
 	rules: {
-		strict: 'off',
+		strict                              : 'off',
 		'@typescript-eslint/no-var-requires': 'off',
 	},
 
@@ -13,16 +13,9 @@ module.exports = {
 		es6 : true,
 	},
 
-	parser       : 'babel-eslint',
+	parser: 'babel-eslint',
 
 	plugins: [
 		'@typescript-eslint',
-	],
-
-	overrides: [
-		{
-			files: ['test/**/*.js', 'tests/**/*.js'],
-			env  : {mocha: true},
-		},
 	],
 }

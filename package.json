@@ -54,6 +54,6 @@
   "scripts": {
     "lint": "eslint .",
     "prepublishOnly": "npm test",
-    "test": "npm run lint && mocha ./test"
+    "test": "npm run lint && mocha ./test/node"
   }
 }

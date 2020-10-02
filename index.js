@@ -695,10 +695,10 @@ const typeScript = {
 	'@typescript-eslint/no-var-requires'               : 'error',
 	'@typescript-eslint/no-this-alias'                 : 'off',
 	'@typescript-eslint/explicit-module-boundary-types': 'off',
-	'@typescript-eslint/no-useless-constructor': 'off',
-	'@typescript-eslint/no-inferrable-types': 'off',
-	'@typescript-eslint/no-empty-interface' : 'off',
-	'@typescript-eslint/no-explicit-any': 'off',
+	'@typescript-eslint/no-useless-constructor'        : 'off',
+	'@typescript-eslint/no-inferrable-types'           : 'off',
+	'@typescript-eslint/no-empty-interface'            : 'off',
+	'@typescript-eslint/no-explicit-any'               : 'off',
 }
 
 module.exports = {
