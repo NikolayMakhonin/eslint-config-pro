@@ -213,7 +213,7 @@ const rules = {
 	'require-await': 'error',
 	'vars-on-top'  : 'error',
 	'wrap-iife'    : ['error', 'inside'],
-	yoda           : ['error', 'never', {exceptRange: true}],
+	yoda           : ['off', 'never', {exceptRange: true}],
 
 	'no-loss-of-precision'      : 'error',
 	'no-promise-executor-return': 'warn',
