@@ -118,7 +118,7 @@ const rules = {
 	'no-async-promise-executor': 'error',
 	'no-await-in-loop'         : 'warn',
 	'no-console'               : 'off',
-	'no-control-regex'         : 'warn',
+	'no-control-regex'         : 'off',
 	'no-debugger'              : 'warn',
 	'no-extra-parens'          : [
 		'off',
