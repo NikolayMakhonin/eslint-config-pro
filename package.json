@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pro",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": {
     "name": "Nikolay Makhonin",
     "url": "https://github.com/NikolayMakhonin/"

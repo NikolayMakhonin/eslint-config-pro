@@ -660,6 +660,7 @@ const typeScript = {
 		'error',
 		{
 			...rules['no-shadow'][1],
+			hoist                                     : 'never',
 			ignoreTypeValueShadow                     : false,
 			ignoreFunctionTypeParameterNameValueShadow: true,
 		},
@@ -707,6 +708,9 @@ const typeScript = {
 
 	'no-redeclare'                   : 'off',
 	'@typescript-eslint/no-redeclare': 'off',
+
+	'no-empty-function'                   : 'warn',
+	'@typescript-eslint/no-empty-function': 'warn',
 
 	'@typescript-eslint/ban-ts-comment'                : 'off',
 	'@typescript-eslint/no-var-requires'               : 'error',
