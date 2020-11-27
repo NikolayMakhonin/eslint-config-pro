@@ -1,8 +1,7 @@
-2.1.0 / 2020-11-27
+2.1.0 - 2.1.1 / 2020-11-27
 ===================
 
 * Disable no-undef rule for TypeScript
-* Use TypeScript rules only for `**/*.ts` and `**/*.tsx`
 
 2.0.0 - 2.0.5 / 2020-10-02
 ===================

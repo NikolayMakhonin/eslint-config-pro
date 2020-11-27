@@ -720,8 +720,6 @@ const rulesTypeScript = {
 	'@typescript-eslint/no-inferrable-types'           : 'off',
 	'@typescript-eslint/no-empty-interface'            : 'off',
 	'@typescript-eslint/no-explicit-any'               : 'off',
-
-	'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 }
 
 module.exports = {
@@ -732,12 +730,13 @@ module.exports = {
 	// plugins  : ['node'],
 	rules: {
 		...rulesJavaScript,
+		...rulesTypeScript,
 	},
 	overrides: [
 		{
 			files: ['**/*.ts', '**/*.tsx'],
 			rules: {
-				...rulesTypeScript,
+				'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 			},
 		},
 	],
