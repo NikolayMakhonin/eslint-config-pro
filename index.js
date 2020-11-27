@@ -2,7 +2,7 @@
 
 /* eslint-disable dot-notation */
 // doc: https://eslint.org/docs/rules/
-const rules = {
+const rulesJavaScript = {
 	// region eslint:recommended copy
 
 	'capitalized-comments'  : 'off',
@@ -645,13 +645,13 @@ const rules = {
 }
 
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
-const typeScript = {
+const rulesTypeScript = {
 	'no-extra-parens'                   : 'off',
 	'@typescript-eslint/no-extra-parens': [
 		'off',
 		'all',
 		{
-			...rules['no-extra-parens'][2],
+			...rulesJavaScript['no-extra-parens'][2],
 		},
 	],
 
@@ -659,7 +659,7 @@ const typeScript = {
 	'@typescript-eslint/no-shadow': [
 		'error',
 		{
-			...rules['no-shadow'][1],
+			...rulesJavaScript['no-shadow'][1],
 			hoist                                     : 'never',
 			ignoreTypeValueShadow                     : false,
 			ignoreFunctionTypeParameterNameValueShadow: true,
@@ -669,7 +669,7 @@ const typeScript = {
 	'no-use-before-define'                   : 'off',
 	'@typescript-eslint/no-use-before-define': [
 		'error', {
-			...rules['no-use-before-define'][1],
+			...rulesJavaScript['no-use-before-define'][1],
 			classes             : false,
 			enums               : true,
 			typedefs            : false,
@@ -682,7 +682,7 @@ const typeScript = {
 		'off',
 		'tab',
 		{
-			...rules['indent'][2],
+			...rulesJavaScript['indent'][2],
 		},
 	],
 
@@ -690,7 +690,7 @@ const typeScript = {
 	'@typescript-eslint/no-unused-vars': [
 		'warn',
 		{
-			...rules['no-unused-vars'][1],
+			...rulesJavaScript['no-unused-vars'][1],
 		},
 	],
 
@@ -720,6 +720,8 @@ const typeScript = {
 	'@typescript-eslint/no-inferrable-types'           : 'off',
 	'@typescript-eslint/no-empty-interface'            : 'off',
 	'@typescript-eslint/no-explicit-any'               : 'off',
+
+	'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 }
 
 module.exports = {
@@ -729,7 +731,14 @@ module.exports = {
 	],
 	// plugins  : ['node'],
 	rules: {
-		...rules,
-		...typeScript,
+		...rulesJavaScript,
 	},
+	overrides: [
+		{
+			files: ['**/*.ts', '**/*.tsx'],
+			rules: {
+				...rulesTypeScript,
+			},
+		},
+	],
 }
