@@ -3,4 +3,5 @@ node_modules
 /.idea
 *.bak
 *.cmd
+/tmp
 /package-lock.json

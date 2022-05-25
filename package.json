@@ -15,7 +15,15 @@
     "eslint": "7.4.0",
     "eslint-plugin-node": "^8.0.0",
     "mocha": "^5.2.0",
-    "typescript": "2.0.0"
+    "typescript": "2.0.0",
+    "fs-extra": "^10.1.0",
+    "globby": "^13.1.1",
+    "json5": "^2.2.1",
+    "lodash": "^4.17.21",
+    "multimatch": "^5.0.0",
+    "ts-node": "^10.8.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.182"
   },
   "homepage": "https://github.com/NikolayMakhonin/eslint-config-pro",
   "keywords": [
@@ -54,7 +62,8 @@
   "scripts": {
     "lint": "eslint .",
     "prepublishOnly": "npm test",
-    "test": "npm run lint && mocha ./test/node"
+    "test": "npm run lint && mocha ./test/node",
+    "analysis": "ts-node tools/analysis.ts"
   },
   "files": [
     "index.js"
