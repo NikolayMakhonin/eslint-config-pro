@@ -21,7 +21,7 @@ const rulesJavaScript = {
 	'max-depth'             : 'off',
 	'max-len'               : [
 		'warn', {
-			tabWidth              : 4,
+			tabWidth              : 2,
 			code                  : 120,
 			comments              : 123,
 			ignoreTrailingComments: true,
@@ -116,7 +116,7 @@ const rulesJavaScript = {
 	// region Possible Errors
 
 	'no-async-promise-executor': 'error',
-	'no-await-in-loop'         : 'warn',
+	'no-await-in-loop'         : 'off',
 	'no-console'               : 'off',
 	'no-control-regex'         : 'off',
 	'no-debugger'              : 'warn',
@@ -135,7 +135,7 @@ const rulesJavaScript = {
 	'no-prototype-builtins'        : 'warn',
 	'no-template-curly-in-string'  : 'error',
 	'no-unreachable'               : 'warn',
-	'require-atomic-updates'       : 'off',
+	'require-atomic-updates'       : ['error', { "allowProperties": true }],
 	'no-new-func'                  : 'error',
 
 	// endregion
@@ -153,9 +153,9 @@ const rulesJavaScript = {
 	'guard-for-in'          : 'warn',
 	'no-caller'             : 'error',
 	'no-alert'              : 'warn',
-	'no-else-return'        : ['error', {allowElseIf: false}],
+	'no-else-return'        : ['warn', {allowElseIf: false}],
 	'no-empty'              : 'warn',
-	'no-empty-function'     : 'warn',
+	'no-empty-function'     : 'off',
 	'no-eval'               : 'error',
 	'no-extend-native'      : 'error',
 	'no-extra-bind'         : 'error',
@@ -274,7 +274,7 @@ const rulesJavaScript = {
 	// region Node.js and CommonJS
 
 	'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']],
-	'global-require'       : 'error',
+	'global-require'       : 'off',
 	'handle-callback-err'  : ['error', '^(err|error)$'],
 	'no-buffer-constructor': 'error',
 	'no-mixed-requires'    : [
@@ -287,7 +287,7 @@ const rulesJavaScript = {
 	'no-new-require' : 'error',
 	'no-path-concat' : 'error',
 	'no-process-env' : 'off',
-	'no-process-exit': 'error',
+	'no-process-exit': 'off',
 	'no-sync'        : 'off',
 
 	// endregion
@@ -295,11 +295,8 @@ const rulesJavaScript = {
 	// region Stylistic Issues
 
 	'array-bracket-newline': [
-		'off',
-		{
-			multiline: true,
-			minItems : null,
-		},
+		'warn',
+		'consistent',
 	],
 	'array-bracket-spacing': [
 		'warn',
@@ -315,7 +312,7 @@ const rulesJavaScript = {
 		'consistent',
 	],
 	'block-spacing': ['warn', 'always'],
-	'brace-style'  : ['off', '1tbs', {allowSingleLine: false}],
+	'brace-style'  : ['warn', 'stroustrup', {allowSingleLine: false}],
 	// camelcase      : [ 'error', { ignoreDestructuring: true }],
 	'comma-dangle' : [
 		'error',
@@ -341,12 +338,12 @@ const rulesJavaScript = {
 	'func-call-spacing'        : ['error', 'never'],
 	'func-name-matching'       : ['error', 'always'],
 	'func-names'               : ['warn', 'always', {generators: 'always'}],
-	'func-style'               : ['warn', 'declaration', {allowArrowFunctions: true}],
-	'function-paren-newline'   : ['off', 'consistent'],
+	'func-style'               : ['off', 'declaration', {allowArrowFunctions: true}],
+	'function-paren-newline'   : ['warn', {minItems: 4}],
 	'implicit-arrow-linebreak' : ['off', 'beside'],
 	indent                     : [
-		'off',
-		'tab',
+		'warn',
+		2,
 		{
 			SwitchCase         : 1,
 			VariableDeclarator : 1,
@@ -407,16 +404,16 @@ const rulesJavaScript = {
 			applyDefaultIgnorePatterns: true,
 		},
 	],
-	'lines-between-class-members': ['off', 'always', { exceptAfterSingleLine: true }],
+	'lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
 	'multiline-comment-style'    : ['off', 'separate-lines'],
-	'multiline-ternary'          : ['error', 'always-multiline'],
+	'multiline-ternary'          : ['off', 'always-multiline'],
 	'new-cap'                    : [
 		'error',
 		{
-			newIsCap                : true,
+			newIsCap                : false,
 			capIsNew                : true,
-			properties              : false,
-			newIsCapExceptionPattern: '^type$',
+			properties              : true,
+			// newIsCapExceptionPattern: '^type$',
 		},
 	],
 	'new-parens'          : 'error',
@@ -546,7 +543,29 @@ const rulesJavaScript = {
 			nonwords: false,
 		},
 	],
-	'spaced-comment'      : ['warn', 'always', {exceptions: []}],
+	'spaced-comment'      : [
+		'warn',
+		'always',
+		{
+			"line": {
+				"markers": [
+					"/"
+				],
+				"exceptions": [
+					"/"
+				]
+			},
+			"block": {
+				"markers": [
+					"!"
+				],
+				"exceptions": [
+					"*"
+				],
+				"balanced": true
+			}
+		},
+	],
 	'switch-colon-spacing': [
 		'warn',
 		{
@@ -635,8 +654,7 @@ const rulesJavaScript = {
 	'rest-spread-spacing'    : ['warn', 'never'],
 	'symbol-description'     : 'error',
 
-	// Temporary disable: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
-	'template-curly-spacing': ['off', 'never'],
+	'template-curly-spacing': ['warn', 'never'],
 
 	'yield-star-spacing'   : ['warn', 'after'],
 	'no-restricted-exports': 'off',
@@ -680,7 +698,7 @@ const rulesTypeScript = {
 	indent                     : 'off',
 	'@typescript-eslint/indent': [
 		'off',
-		'tab',
+		2,
 		{
 			...rulesJavaScript['indent'][2],
 		},
@@ -709,11 +727,29 @@ const rulesTypeScript = {
 	'no-redeclare'                   : 'off',
 	'@typescript-eslint/no-redeclare': 'off',
 
-	'no-empty-function'                   : 'warn',
-	'@typescript-eslint/no-empty-function': 'warn',
+	'no-empty-function'                   : 'off',
+	'@typescript-eslint/no-empty-function': 'off',
 
+	"no-extra-semi": "off",
+	"@typescript-eslint/no-extra-semi": ["error"],
+
+	'@typescript-eslint/no-misused-promises': [
+		"error",
+		{
+			"checksConditionals": false,
+			"checksVoidReturn": {
+			},
+			"checksSpreads": true,
+		}
+	],
+
+	'@typescript-eslint/no-non-null-assertion': 'error',
+	'@typescript-eslint/no-object-literal-type-assertion': 'error',
+	'@typescript-eslint/no-unsafe-assignment': 'off',
+	'@typescript-eslint/no-unsafe-member-access': 'off',
+	'@typescript-eslint/no-unsafe-call': 'off',
 	'@typescript-eslint/ban-ts-comment'                : 'off',
-	'@typescript-eslint/no-var-requires'               : 'error',
+	'@typescript-eslint/no-var-requires'               : 'off',
 	'@typescript-eslint/no-this-alias'                 : 'off',
 	'@typescript-eslint/explicit-module-boundary-types': 'off',
 	'@typescript-eslint/no-useless-constructor'        : 'off',
@@ -730,14 +766,129 @@ module.exports = {
 	// plugins  : ['node'],
 	rules: {
 		...rulesJavaScript,
-		...rulesTypeScript,
+	},
+	"env": {
+		"node": true,
+		"es6": true,
+		"browser": true
+	},
+	parserOptions: {
+		"ecmaVersion": 'latest',
+		"sourceType": "module",
+	},
+	"settings": {
+		"html/indent": "+2",
+		"html/report-bad-indent": "error",
+		"html/html-extensions": [
+			".html",
+			".svelte"
+		]
 	},
 	overrides: [
 		{
+			"files": [
+				"*.js", "*.cjs"
+			],
+			"rules": {
+				"global-require": "off"
+			}
+		},
+		{
 			files: ['**/*.ts', '**/*.tsx'],
+			parser: "@typescript-eslint/parser",
+			plugins: [
+				"@typescript-eslint"
+			],
+			parserOptions: {
+				"project": [
+					"./tsconfig.json"
+				],
+				"extraFileExtensions": [
+					".svelte"
+				]
+			},
 			rules: {
+				...rulesTypeScript,
 				'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 			},
+		},
+		{
+			"files": [
+				"*.svelte"
+			],
+			"processor": "svelte3/svelte3",
+			"env": {
+				"browser": true,
+				"node": false
+			},
+			plugins: ["svelte3"],
+			"rules": {
+				// "comma-dangle": [
+				// 	"error",
+				// 	{
+				// 		"arrays": "always-multiline",
+				// 		"objects": "always-multiline",
+				// 		"imports": "always-multiline",
+				// 		"exports": "always-multiline"
+				// 	},
+				// ]
+			},
+			"settings": {
+				"svelte3/typescript": true
+			}
+		},
+		{
+			"files": [
+				"*.html"
+			],
+			"rules": {
+				"semi": [
+					"error",
+					"always"
+				],
+				"semi-style": [
+					"error",
+					"last"
+				],
+				"no-extra-semi": "off",
+				"prefer-rest-params": "off",
+				"no-var": "off",
+				"vars-on-top": "off",
+				"strict": [
+					"error",
+					"global"
+				],
+				"comma-dangle": "off"
+			},
+			"env": {
+				"browser": true,
+				"es6": false,
+				"node": false
+			},
+			plugins: ["html"],
+			"parser": "espree",
+			"parserOptions": {
+				"ecmaVersion": 5,
+				"sourceType": "script"
+			},
+		},
+		{
+			"files": [
+				"**/*.md"
+			],
+			"rules": {
+				"no-undef": "off",
+				"no-unused-vars": "off"
+			}
+		},
+		{
+			"files": [
+				"*.{test,perf,e2e}.*", '**/{test,tests}/**',
+			],
+			"rules": {
+				"func-names": "off",
+				"mocha": true
+			}
 		},
 	],
 }
