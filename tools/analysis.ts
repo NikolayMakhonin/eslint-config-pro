@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import * as fs from 'fs'
 import * as fse from 'fs-extra'
 import * as lodash from 'lodash'
