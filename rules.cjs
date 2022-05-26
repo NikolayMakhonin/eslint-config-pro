@@ -658,7 +658,7 @@ const rulesJavaScript = {
   // region import
   'no-duplicate-imports'     : ['off', {includeExports: false}],
   'import/no-duplicates'     : ['error', {considerQueryString: false}],
-  'import/no-dynamic-require': 'error',
+  'import/no-dynamic-require': 'off',
   'import/no-unresolved'     : 'off',
   // endregion
 
