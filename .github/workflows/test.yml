@@ -25,7 +25,7 @@ jobs:
 
       - name: Install
         run: |
-          npm install
+          npm install --frozen-lockfile
           npm i typescript@2.0.0 -D
 
       - name: Lint
