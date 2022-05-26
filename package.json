@@ -9,23 +9,6 @@
   "bugs": {
     "url": "https://github.com/NikolayMakhonin/eslint-config-pro/issues"
   },
-  "devDependencies": {
-    "@types/fs-extra": "^9.0.13",
-    "@types/lodash": "^4.14.182",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.16.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-svelte3": "^4.0.0",
-    "fs-extra": "^10.1.0",
-    "json5": "^2.2.1",
-    "lodash": "^4.17.21",
-    "mocha": "^5.2.0",
-    "multimatch": "^5.0.0",
-    "ts-node": "^10.8.0",
-    "typescript": "4.7.2"
-  },
   "homepage": "https://github.com/NikolayMakhonin/eslint-config-pro",
   "keywords": [
     "JavaScript Style",
@@ -50,12 +33,9 @@
   ],
   "license": "CC0-1.0",
   "main": "index.cjs",
-  "peerDependencies": {
-    "eslint": ">=7.4.0",
-    "eslint-plugin-node": ">=8.0.0",
-    "typescript": ">=2.0.0",
-    "@typescript-eslint/eslint-plugin": ">=4.1.0"
-  },
+  "files": [
+    "index.cjs"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/NikolayMakhonin/eslint-config-pro.git"
@@ -66,7 +46,26 @@
     "test": "mocha ./test/node",
     "analysis": "ts-node tools/analysis.ts"
   },
-  "files": [
-    "index.cjs"
-  ]
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.182",
+    "eslint": "^8.16.0",
+    "fs-extra": "^10.1.0",
+    "json5": "^2.2.1",
+    "lodash": "^4.17.21",
+    "mocha": "^5.2.0",
+    "multimatch": "^5.0.0",
+    "ts-node": "^10.8.0",
+    "typescript": "4.7.2"
+  },
+  "peerDependencies": {
+    "eslint": ">=7.4.0",
+    "typescript": ">=2.0.0",
+    "eslint-plugin-svelte3": ">=4.0.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint-plugin-node": "^11.1.0"
+  }
 }
