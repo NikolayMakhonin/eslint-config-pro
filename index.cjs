@@ -1,6 +1,7 @@
-/* eslint-disable dot-notation, quote-props, strict */
 'use strict'
+/* eslint-disable dot-notation, quote-props */
 
+// region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
 const rulesJavaScript = {
   // region eslint:recommended copy
@@ -654,7 +655,9 @@ const rulesJavaScript = {
 
   // endregion
 }
+// endregion
 
+// region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript = {
   'no-extra-parens'                   : 'off',
@@ -750,6 +753,7 @@ const rulesTypeScript = {
   '@typescript-eslint/no-empty-interface'              : 'off',
   '@typescript-eslint/no-explicit-any'                 : 'off',
 }
+// endregion
 
 module.exports = {
   extends: [
@@ -778,14 +782,29 @@ module.exports = {
     ],
   },
   overrides: [
+    // region Common JS
     {
-      files: [
-        '*.js', '*.cjs',
-      ],
+      files: ['*.js', '*.cjs'],
       rules: {
         'global-require': 'off',
       },
+      parserOptions: {
+        sourceType: 'script',
+      },
     },
+    // endregion
+    // region Scripts
+    {
+      files        : ['*.js', '*.html'],
+      parserOptions: {
+        sourceType  : 'script',
+        ecmaFeatures: {
+          globalReturn: false,
+        },
+      },
+    },
+    // endregion
+    // region TypeScript
     {
       files  : ['**/*.ts', '**/*.tsx'],
       parser : '@typescript-eslint/parser',
@@ -805,10 +824,10 @@ module.exports = {
         // 'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       },
     },
+    // endregion
+    // region Svelte
     {
-      files: [
-        '*.svelte',
-      ],
+      files    : ['*.svelte'],
       processor: 'svelte3/svelte3',
       env      : {
         es6    : true,
@@ -833,10 +852,10 @@ module.exports = {
         'svelte3/typescript': true,
       },
     },
+    // endregion
+    // region Html
     {
-      files: [
-        '*.html',
-      ],
+      files: ['*.html', '*.htm'],
       rules: {
         'semi'              : ['error', 'always'],
         'semi-style'        : ['error', 'last'],
@@ -859,18 +878,21 @@ module.exports = {
         sourceType : 'script',
       },
     },
+    // endregion
+    // region Markdown
     {
-      files: [
-        '**/*.md',
-      ],
+      files: ['**/*.md'],
       rules: {
         'no-undef'      : 'off',
         'no-unused-vars': 'off',
       },
     },
+    // endregion
+    // region Tests
     {
       files: [
-        '*.{test,perf,e2e}.*', '**/{test,tests}/**',
+        '*.{test,perf,e2e}.*',
+        '**/{test,tests}/**',
       ],
       env: {
         mocha: true,
@@ -900,5 +922,6 @@ module.exports = {
         'lines-between-class-members'      : 'off',
       },
     },
+    // endregion
   ],
 }
