@@ -174,7 +174,7 @@ const rulesJavaScript = {
   'no-implied-eval'    : 'error',
   'no-iterator'        : 'error',
   'no-labels'          : 'error',
-  'no-lone-blocks'     : 'warn',
+  'no-lone-blocks'     : 'off',
   'no-loop-func'       : 'error',
   'no-multi-spaces'    : [
     'warn',
@@ -199,7 +199,7 @@ const rulesJavaScript = {
   'no-self-compare'             : 'off',
   'no-sequences'                : 'error',
   'no-unmodified-loop-condition': 'error',
-  'no-unused-expressions'       : 'warn',
+  'no-unused-expressions'       : ['warn', {'allowShortCircuit': true}],
   'no-useless-call'             : 'error',
   'no-useless-catch'            : 'warn',
   'no-useless-concat'           : 'warn',
@@ -338,7 +338,7 @@ const rulesJavaScript = {
   // 'consistent-this'          : [ 'error', 'self' ],
   'eol-last'                 : ['error', 'always'],
   'func-call-spacing'        : ['error', 'never'],
-  'func-name-matching'       : ['error', 'always'],
+  'func-name-matching'       : ['off', 'always'],
   'func-names'               : ['warn', 'always', {generators: 'always'}],
   'func-style'               : ['off', 'declaration', {allowArrowFunctions: true}],
   'function-paren-newline'   : ['warn', 'multiline-arguments'],
@@ -663,7 +663,7 @@ const rulesJavaScript = {
   // endregion
 
   // region node
-  'no-deprecated-api': ['error', {
+  'node/no-deprecated-api': ['error', {
     ignoreModuleItems: [
       'fs.exists',
     ],
@@ -757,7 +757,7 @@ const rulesTypeScript = {
     },
   ],
   '@typescript-eslint/consistent-type-assertions': [
-    'warn',
+    'off',
     {
       assertionStyle             : 'as',
       objectLiteralTypeAssertions: 'allow-as-parameter',
@@ -798,7 +798,7 @@ const rulesTestsAndEnv = {
     'no-unused-vars'              : 'off',
     'array-bracket-newline'       : 'off',
     'consistent-return'           : ['off', {treatUndefinedAsUnspecified: false}],
-    'func-name-matching'          : ['warn', 'always'],
+    'func-name-matching'          : ['off', 'always'],
     'function-paren-newline'      : 'off',
     'new-cap'                     : 'off',
     'no-debugger'                 : 'off',
@@ -847,9 +847,12 @@ const rulesTests = {
 const rulesSvelte = {
   js: {
     'no-self-assign'         : 'off',
-    'no-unused-expressions'  : ['warn', {'allowShortCircuit': true}],
+    'no-unused-expressions'  : ['off', {'allowShortCircuit': true}],
     'no-multiple-empty-lines': 'off',
+    'prefer-const'           : 'off',
     'brace-style'            : ['warn', 'stroustrup', {allowSingleLine: true}],
+    'no-sequences'           : 'off',
+    'no-return-assign'       : 'off',
     'comma-dangle'           : [
       'error',
       {
