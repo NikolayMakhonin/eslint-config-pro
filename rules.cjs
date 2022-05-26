@@ -173,7 +173,7 @@ const rulesJavaScript = {
   'no-implied-eval'    : 'error',
   'no-iterator'        : 'error',
   'no-labels'          : 'error',
-  'no-lone-blocks'     : 'error',
+  'no-lone-blocks'     : 'warn',
   'no-loop-func'       : 'error',
   'no-multi-spaces'    : [
     'warn',
@@ -241,7 +241,7 @@ const rulesJavaScript = {
   'init-declarations': ['off', 'never', {ignoreForLoopInit: true}],
   'no-label-var'     : 'error',
   'no-shadow'        : [
-    'warn',
+    'off',
     {
       builtinGlobals: false,
       hoist         : 'functions',
@@ -340,7 +340,7 @@ const rulesJavaScript = {
   'func-name-matching'       : ['error', 'always'],
   'func-names'               : ['warn', 'always', {generators: 'always'}],
   'func-style'               : ['off', 'declaration', {allowArrowFunctions: true}],
-  'function-paren-newline'   : ['warn', 'multiline'],
+  'function-paren-newline'   : ['warn', 'multiline-arguments'],
   'implicit-arrow-linebreak' : ['off', 'beside'],
   indent                     : [
     'warn',
@@ -499,7 +499,7 @@ const rulesJavaScript = {
   }],
   'one-var'                     : ['error', 'never'],
   'one-var-declaration-per-line': ['error', 'always'],
-  'operator-assignment'         : ['error', 'always'],
+  'operator-assignment'         : ['off', 'always'],
   'operator-linebreak'          : [
     'error', 'before', {
       overrides: {'=': 'after'},
@@ -671,7 +671,7 @@ const rulesTypeScript = {
 
   'no-shadow'                   : 'off',
   '@typescript-eslint/no-shadow': [
-    'error',
+    'off',
     {
       ...rulesJavaScript['no-shadow'][1],
       hoist                                     : 'never',
@@ -745,6 +745,11 @@ const rulesTypeScript = {
       objectLiteralTypeAssertions: 'allow-as-parameter',
     },
   ],
+
+  // TypeError: Cannot read property '0' of undefined Occurred while linting
+  // https://github.com/typescript-eslint/typescript-eslint/blob/1d55a7511b38d8e2b2eabe59f639e0a865e6c93f/packages/eslint-plugin/src/rules/unbound-method.ts#L272
+  // decl.parameters is undefined
+  '@typescript-eslint/unbound-method': 'off',
 
   '@typescript-eslint/no-non-null-assertion'         : 'error',
   '@typescript-eslint/no-unsafe-assignment'          : 'off',
@@ -823,20 +828,25 @@ const rulesTests = {
 // region rulesSvelte
 const rulesSvelte = {
   js: {
-    'no-self-assign'       : 'off',
-    'no-unused-expressions': ['warn', {'allowShortCircuit': true}],
-    // "comma-dangle": [
-    // 	"error",
-    // 	{
-    // 		"arrays": "always-multiline",
-    // 		"objects": "always-multiline",
-    // 		"imports": "always-multiline",
-    // 		"exports": "always-multiline"
-    // 	},
-    // ]
+    'no-self-assign'         : 'off',
+    'no-unused-expressions'  : ['warn', {'allowShortCircuit': true}],
+    'no-multiple-empty-lines': 'off',
+    'brace-style'            : ['warn', 'stroustrup', {allowSingleLine: true}],
+    'comma-dangle'           : [
+      'error',
+      {
+        arrays   : 'always-multiline',
+        objects  : 'always-multiline',
+        imports  : 'always-multiline',
+        exports  : 'always-multiline',
+        functions: 'only-multiline', // fix this svelte bug: <a {href,} />
+      },
+    ],
   },
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-unused-vars'      : 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
   ignore: {
     'unused-export-let'                : true,
