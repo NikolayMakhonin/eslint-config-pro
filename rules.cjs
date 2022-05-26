@@ -47,7 +47,7 @@ const rulesJavaScript = {
   'no-compare-neg-zero'            : 'error',
   'no-cond-assign'                 : 'error',
   'no-const-assign'                : 'error',
-  'no-constant-condition'          : ['error', {checkLoops: false}],
+  'no-constant-condition'          : ['warn', {checkLoops: false}],
   'no-delete-var'                  : 'error',
   'no-div-regex'                   : 'off',
   'no-dupe-args'                   : 'error',
@@ -758,54 +758,116 @@ const rulesTypeScript = {
   '@typescript-eslint/no-inferrable-types'           : 'off',
   '@typescript-eslint/no-empty-interface'            : 'off',
   '@typescript-eslint/no-explicit-any'               : 'off',
+  '@typescript-eslint/no-unsafe-argument'            : 'off',
+  '@typescript-eslint/restrict-plus-operands'        : 'off',
+  '@typescript-eslint/restrict-template-expressions' : 'off',
+  '@typescript-eslint/no-unsafe-return'              : 'off',
+  '@typescript-eslint/no-floating-promises'          : 'error',
+  '@typescript-eslint/await-thenable'                : 'error',
+}
+// endregion
+
+// region rulesTestsAndEnv
+const rulesTestsAndEnv = {
+  js: {
+    'func-names'                  : 'off',
+    'no-shadow'                   : 'off',
+    'no-unused-vars'              : 'off',
+    'array-bracket-newline'       : 'off',
+    'consistent-return'           : ['off', {treatUndefinedAsUnspecified: false}],
+    'func-name-matching'          : ['warn', 'always'],
+    'function-paren-newline'      : 'off',
+    'new-cap'                     : 'off',
+    'no-debugger'                 : 'off',
+    'no-empty'                    : 'off',
+    'no-eval'                     : 'off',
+    'no-loop-func'                : 'warn',
+    'no-new'                      : 'off',
+    'no-new-func'                 : 'off',
+    'no-throw-literal'            : 'off',
+    'no-useless-call'             : 'off',
+    'no-useless-catch'            : 'off',
+    'prefer-const'                : 'off',
+    'no-useless-concat'           : 'off',
+    'lines-between-class-members' : 'off',
+    'max-len'                     : 'off',
+    'lines-around-comment'        : 'off',
+    'require-await'               : 'warn',
+    'no-unmodified-loop-condition': 'warn',
+    'no-return-await'             : 'off',
+    'no-lonely-if'                : 'off',
+    'no-else-return'              : 'off',
+  },
+  ts: {
+    'no-shadow'                        : 'off',
+    '@typescript-eslint/no-shadow'     : 'off',
+    'no-unused-vars'                   : 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+  },
 }
 // endregion
 
 // region rulesTests
-// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTests = {
-  'func-names'                       : 'off',
-  'no-shadow'                        : 'off',
-  '@typescript-eslint/no-shadow'     : 'off',
-  'no-unused-vars'                   : 'off',
-  '@typescript-eslint/no-unused-vars': 'off',
-  'array-bracket-newline'            : 'off',
-  'consistent-return'                : ['off', {treatUndefinedAsUnspecified: false}],
-  'func-name-matching'               : ['warn', 'always'],
-  'function-paren-newline'           : 'off',
-  'new-cap'                          : 'off',
-  'no-debugger'                      : 'off',
-  'no-empty'                         : 'off',
-  'no-eval'                          : 'off',
-  'no-loop-func'                     : 'warn',
-  'no-new'                           : 'off',
-  'no-new-func'                      : 'off',
-  'no-throw-literal'                 : 'off',
-  'no-useless-call'                  : 'off',
-  'no-useless-catch'                 : 'off',
-  'prefer-const'                     : 'off',
-  'no-useless-concat'                : 'off',
-  'lines-between-class-members'      : 'off',
-  'max-len'                          : 'off',
-  'lines-around-comment'             : 'off',
-  'require-await'                    : 'warn',
-  'no-unmodified-loop-condition'     : 'warn',
-  'no-return-await'                  : 'off',
-  'no-lonely-if'                     : 'off',
-  'no-else-return'                   : 'off',
+  js: {
+    ...rulesTestsAndEnv.js,
+  },
+  ts: {
+    ...rulesTestsAndEnv.ts,
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/await-thenable'      : 'warn',
+  },
+}
+// endregion
+
+// region rulesSvelte
+const rulesSvelte = {
+  js: {
+    'no-self-assign'       : 'off',
+    'no-unused-expressions': ['warn', {'allowShortCircuit': true}],
+    // "comma-dangle": [
+    // 	"error",
+    // 	{
+    // 		"arrays": "always-multiline",
+    // 		"objects": "always-multiline",
+    // 		"imports": "always-multiline",
+    // 		"exports": "always-multiline"
+    // 	},
+    // ]
+  },
+  ts: {
+    '@typescript-eslint/no-floating-promises': 'off',
+  },
+  ignore: {
+    'unused-export-let'                : true,
+    'a11y-missing-attribute'           : true,
+    'a11y-img-redundant-alt'           : true,
+    'a11y-label-has-associated-control': true,
+    'a11y-media-has-caption'           : true,
+    'a11y-missing-content'             : true,
+    'a11y-mouse-events-have-key-events': true,
+  },
 }
 // endregion
 
 // region rulesEnvTools
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesEnvTools = {
-  ...rulesTests,
+  js: {
+    ...rulesTestsAndEnv.js,
+  },
+  ts: {
+    ...rulesTestsAndEnv.ts,
+  },
 }
 // endregion
 
 module.exports = {
-  javaScript: rulesJavaScript,
-  typeScript: rulesTypeScript,
-  tests     : rulesTests,
-  envTools  : rulesEnvTools,
+  common: {
+    js: rulesJavaScript,
+    ts: rulesTypeScript,
+  },
+  tests   : rulesTests,
+  envTools: rulesEnvTools,
+  svelte  : rulesSvelte,
 }

@@ -8,7 +8,7 @@ module.exports = {
   ],
   // plugins  : ['node'],
   rules: {
-    ...rules.javaScript,
+    ...rules.common.js,
   },
   env: {
     es6    : true,
@@ -52,9 +52,10 @@ module.exports = {
     // endregion
     // region TypeScript
     {
-      files  : ['**/*.ts', '**/*.tsx'],
+      files  : ['**/*.ts', '**/*.tsx', '**/*.svelte'],
       extends: [
         'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       parser : '@typescript-eslint/parser',
       plugins: [
@@ -69,7 +70,7 @@ module.exports = {
         ],
       },
       rules: {
-        ...rules.typeScript,
+        ...rules.common.ts,
         // 'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       },
     },
@@ -85,20 +86,14 @@ module.exports = {
       },
       plugins: ['svelte3'],
       rules  : {
-        'no-self-assign'       : 'off',
-        'no-unused-expressions': ['warn', { 'allowShortCircuit': true }],
-        // "comma-dangle": [
-        // 	"error",
-        // 	{
-        // 		"arrays": "always-multiline",
-        // 		"objects": "always-multiline",
-        // 		"imports": "always-multiline",
-        // 		"exports": "always-multiline"
-        // 	},
-        // ]
+        ...rules.svelte.js,
+        ...rules.svelte.ts,
       },
       settings: {
-        'svelte3/typescript': true,
+        'svelte3/typescript'     : true,
+        'svelte3/ignore-warnings': warn => {
+          return rules.svelte.ignore[warn.code]
+        },
       },
     },
     // endregion
@@ -147,18 +142,28 @@ module.exports = {
         mocha: true,
       },
       rules: {
-        ...rules.tests,
+        ...rules.tests.js,
       },
+      overrides: [{
+        files: ['**/*.ts', '**/*.tsx'],
+        rules: {
+          ...rules.tests.ts,
+        },
+      }],
     },
     // endregion
     // region EnvTools
     {
-      files: [
-        './{env,tools}/**',
-      ],
+      files: ['./{env,tools}/**'],
       rules: {
-        ...rules.envTools,
+        ...rules.envTools.js,
       },
+      overrides: [{
+        files: ['**/*.ts', '**/*.tsx'],
+        rules: {
+          ...rules.envTools.ts,
+        },
+      }],
     },
     // endregion
   ],
