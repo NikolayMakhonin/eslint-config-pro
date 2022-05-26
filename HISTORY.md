@@ -1,3 +1,9 @@
+3.0.0 / 2022-05-26
+===================
+
+* Updated rules in accordance with 2 years of experience
+* Added custom rules for svelte, html, tests
+
 2.1.0 - 2.1.1 / 2020-11-27
 ===================
 
