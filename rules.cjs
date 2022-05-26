@@ -605,7 +605,6 @@ const rulesJavaScript = {
     },
   ],
   'no-confusing-arrow'     : ['off', {allowParens: true}],
-  'no-duplicate-imports'   : ['error', {includeExports: false}],
   'no-useless-computed-key': 'error',
   'no-useless-constructor' : 'off',
   'no-useless-rename'      : 'error',
@@ -654,6 +653,24 @@ const rulesJavaScript = {
   'yield-star-spacing'   : ['warn', 'after'],
   'no-restricted-exports': 'off',
 
+  // endregion
+  
+  // region import
+  'no-duplicate-imports'     : ['off', {includeExports: false}],
+  'import/no-duplicates'     : ['error', {considerQueryString: false}],
+  'import/no-dynamic-require': 'error',
+  'import/no-unresolved'     : 'off',
+  // endregion
+
+  // region node
+  'no-deprecated-api': ['error', {
+    ignoreModuleItems: [
+      'fs.exists',
+    ],
+    ignoreGlobalItems: [
+      'new Buffer()',
+    ],
+  }],
   // endregion
 }
 // endregion
@@ -718,13 +735,7 @@ const rulesTypeScript = {
       },
     },
   ],
-
-  'no-duplicate-imports': 'off',
-  'import/no-duplicates': ['error', {considerQueryString: false}],
-
-  'import/no-dynamic-require': 'error',
-  'import/no-unresolved'     : 'off',
-
+  
   'no-dupe-class-members'                   : 'off',
   '@typescript-eslint/no-dupe-class-members': 'error',
 

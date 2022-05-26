@@ -6,8 +6,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
   ],
-  // plugins  : ['node'],
-  rules: {
+  plugins: ['import'],
+  rules  : {
     ...rules.common.js,
   },
   env: {
@@ -30,8 +30,9 @@ module.exports = {
   overrides: [
     // region Common JS
     {
-      files: ['*.js', '*.cjs'],
-      rules: {
+      files  : ['*.js', '*.cjs'],
+      plugins: ['node'],
+      rules  : {
         'global-require': 'off',
       },
       parserOptions: {
