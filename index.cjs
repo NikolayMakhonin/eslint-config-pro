@@ -928,6 +928,13 @@ module.exports = {
         'prefer-const'                     : 'off',
         'no-useless-concat'                : 'off',
         'lines-between-class-members'      : 'off',
+        'max-len'                          : 'off',
+        'lines-around-comment'             : 'off',
+        'require-await': 'warn',
+        'no-unmodified-loop-condition': 'warn',
+        'no-return-await': 'off',
+        'no-lonely-if'                : 'off',
+        'no-else-return'              : 'off',
       },
     },
     // endregion
