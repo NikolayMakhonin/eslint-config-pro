@@ -147,7 +147,7 @@ const rulesJavaScript = {
   'array-callback-return' : 'error',
   'block-scoped-var'      : 'error',
   'class-methods-use-this': 'off',
-  'consistent-return'     : ['error', {treatUndefinedAsUnspecified: false}],
+  'consistent-return'     : ['off', {treatUndefinedAsUnspecified: false}],
   curly                   : ['error', 'all'],
   'default-case'          : 'error',
   eqeqeq                  : ['error', 'always', {'null': 'ignore'}],
@@ -241,7 +241,7 @@ const rulesJavaScript = {
   'init-declarations': ['off', 'never', {ignoreForLoopInit: true}],
   'no-label-var'     : 'error',
   'no-shadow'        : [
-    'error',
+    'warn',
     {
       builtinGlobals: false,
       hoist         : 'functions',
@@ -340,7 +340,7 @@ const rulesJavaScript = {
   'func-name-matching'       : ['error', 'always'],
   'func-names'               : ['warn', 'always', {generators: 'always'}],
   'func-style'               : ['off', 'declaration', {allowArrowFunctions: true}],
-  'function-paren-newline'   : ['warn', {minItems: 4}],
+  'function-paren-newline'   : ['warn', 'multiline'],
   'implicit-arrow-linebreak' : ['off', 'beside'],
   indent                     : [
     'warn',
@@ -738,27 +738,32 @@ const rulesTypeScript = {
       checksSpreads     : true,
     },
   ],
+  '@typescript-eslint/consistent-type-assertions': [
+    'warn',
+    {
+      assertionStyle             : 'as',
+      objectLiteralTypeAssertions: 'allow-as-parameter',
+    },
+  ],
 
-  '@typescript-eslint/no-non-null-assertion'           : 'error',
-  '@typescript-eslint/no-object-literal-type-assertion': ['warn', { 'allow-arguments': true }],
-  '@typescript-eslint/no-unsafe-assignment'            : 'off',
-  '@typescript-eslint/no-unsafe-member-access'         : 'off',
-  '@typescript-eslint/no-unsafe-call'                  : 'off',
-  '@typescript-eslint/ban-ts-comment'                  : 'off',
-  '@typescript-eslint/no-var-requires'                 : 'off',
-  '@typescript-eslint/no-this-alias'                   : 'off',
-  '@typescript-eslint/explicit-module-boundary-types'  : 'off',
-  '@typescript-eslint/no-useless-constructor'          : 'off',
-  '@typescript-eslint/no-inferrable-types'             : 'off',
-  '@typescript-eslint/no-empty-interface'              : 'off',
-  '@typescript-eslint/no-explicit-any'                 : 'off',
+  '@typescript-eslint/no-non-null-assertion'         : 'error',
+  '@typescript-eslint/no-unsafe-assignment'          : 'off',
+  '@typescript-eslint/no-unsafe-member-access'       : 'off',
+  '@typescript-eslint/no-unsafe-call'                : 'off',
+  '@typescript-eslint/ban-ts-comment'                : 'off',
+  '@typescript-eslint/no-var-requires'               : 'warn',
+  '@typescript-eslint/no-this-alias'                 : 'off',
+  '@typescript-eslint/explicit-module-boundary-types': 'off',
+  '@typescript-eslint/no-useless-constructor'        : 'off',
+  '@typescript-eslint/no-inferrable-types'           : 'off',
+  '@typescript-eslint/no-empty-interface'            : 'off',
+  '@typescript-eslint/no-explicit-any'               : 'off',
 }
 // endregion
 
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
   ],
   // plugins  : ['node'],
   rules: {
@@ -807,6 +812,9 @@ module.exports = {
     // region TypeScript
     {
       files  : ['**/*.ts', '**/*.tsx'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+      ],
       parser : '@typescript-eslint/parser',
       plugins: [
         '@typescript-eslint',
@@ -904,7 +912,7 @@ module.exports = {
         'no-unused-vars'                   : 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'array-bracket-newline'            : 'off',
-        'consistent-return'                : ['warn', {treatUndefinedAsUnspecified: false}],
+        'consistent-return'                : ['off', {treatUndefinedAsUnspecified: false}],
         'func-name-matching'               : ['warn', 'always'],
         'function-paren-newline'           : 'off',
         'new-cap'                          : 'off',

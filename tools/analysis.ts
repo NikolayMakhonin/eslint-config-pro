@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import * as fs from 'fs'
 import * as fse from 'fs-extra'
 import * as lodash from 'lodash'
 import * as path from 'path'
 import multimatch from 'multimatch'
-import * as globby from 'globby'
 import json5 from 'json5'
 
 function customMerge(dest, src) {
@@ -38,6 +38,7 @@ async function getPaths(
     await Promise.all(dirs.map(o => getPaths(o, filter, allPaths)))
     return allPaths
   }
+  // noinspection JSVoidFunctionReturnValueUsed
   const paths: string[] = await fse.readdir(dirs)
   let pathsExt = await Promise.all(paths
     .map(async name => {
@@ -48,7 +49,8 @@ async function getPaths(
           path: _path,
           stat: await fse.stat(_path),
         }
-      } catch (err) {
+      }
+      catch (err) {
         console.error(err)
       }
     }))
@@ -119,14 +121,13 @@ async function findPaths({
     const paths = await getPaths(dirs, ({name, path: _path, stat}) => {
       if (stat.isSymbolicLink()) {
         return false
-      } else if (stat.isDirectory()) {
+      } if (stat.isDirectory()) {
         if (excludeDirNamesSet.has(name)) {
           return false
         }
-      } else {
-        if (!multimatch([_path], patterns, {dot: true, nocase: true}).length) {
-          return false
-        }
+      }
+      else if (!multimatch([_path], patterns, {dot: true, nocase: true}).length) {
+        return false
       }
       return true
     })
@@ -156,6 +157,7 @@ async function mergeEsLintConfigs({
     const configs = await Promise.all(paths.map<Promise<PathWithStat & { content: any }>>(async o => {
       try {
         if (/\.([cm]?js)$/.test(o.path)) {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
           const _module = require(o.path)
           return {
             ...o,
@@ -168,7 +170,8 @@ async function mergeEsLintConfigs({
           ...o,
           content: json,
         }
-      } catch (err) {
+      }
+      catch (err) {
         errorPaths.push(o.path)
         console.error(o.path, err)
         return null
@@ -180,19 +183,19 @@ async function mergeEsLintConfigs({
     return configs.filter(o => o?.content)
   })
 
-  await runWithCache('string', './tmp/configPro.json', async () => {
+  await runWithCache('string', './tmp/configPro.json', () => {
     const configsPro = configs.filter(o => o.content.extends?.includes('pro'))
     const configPro = {}
     configsPro
       // .filter(o => !/\b(test|env|temp|old)\b/.test(o.path))
       .filter(o => /\b(tests?)\b/.test(o.path))
       .map(o => o.content)
-      .forEach(o => {
-        o.overrides = o?.overrides?.reduce((a, o) => {
+      .forEach(content => {
+        content.overrides = content?.overrides?.reduce((a, o) => {
           a[o.files?.join(', ') || ''] = o
           return a
         }, {})
-        lodash.mergeWith(configPro, o, customMerge)
+        lodash.mergeWith(configPro, content, customMerge)
       })
     return JSON.stringify(configPro, null, 2)
   })
@@ -216,7 +219,7 @@ async function mergeEsLintInline({
     excludeDirNames,
   })
 
-  const configs = await runWithCache('string', './tmp/rules.txt', async () => {
+  await runWithCache('string', './tmp/rules.txt', async () => {
     const errorPaths: string[] = []
     const rulesMap = new Map<string, { rule: string, path: string }>()
     await Promise.all(paths
@@ -224,8 +227,8 @@ async function mergeEsLintInline({
       .map(async file => {
         try {
           const text = await fse.readFile(file.path, {encoding: 'utf-8'})
-          text.match(/(?<=eslint-disable((-next)?-line)?\s+)([^\r\n]+?)(?=[\r\n]|\*\/)/g)?.forEach(o => {
-            const rules = o
+          text.match(/(?<=eslint-disable((-next)?-line)?\s+)([^\r\n]+?)(?=[\r\n]|\*\/)/g)?.forEach(match => {
+            match
               .split(',')
               .map(o => o.trim())
               .forEach(rule => {
@@ -234,7 +237,8 @@ async function mergeEsLintInline({
                 }
               })
           })
-        } catch (err) {
+        }
+        catch (err) {
           errorPaths.push(file.path)
           console.error(file.path, err)
           return null
@@ -255,14 +259,14 @@ async function mergeEsLintInline({
 Promise.all([
   mergeEsLintConfigs({
     // dirs: ['D:/projects/#temp/eslint'],
-    dirs: ['I:/Work/_GIT/GitHub/NodeJs', 'D:/projects/my', 'D:/projects/work'],
-    patterns: ['**/*eslintrc*', '!**/*.{yml,html}', '!**/eslint-config-pro/**'],
+    dirs           : ['I:/Work/_GIT/GitHub/NodeJs', 'D:/projects/my', 'D:/projects/work'],
+    patterns       : ['**/*eslintrc*', '!**/*.{yml,html}', '!**/eslint-config-pro/**'],
     excludeDirNames: ['node_modules', '.git', 'dist', 'tmp'],
   }),
   mergeEsLintInline({
     // dirs: ['D:/projects/#temp/eslint'],
-    dirs: ['I:/Work/_GIT/GitHub/NodeJs', 'D:/projects/my', 'D:/projects/work'],
-    patterns: ['**/*.{ts,js,cjs,mjs}'],
+    dirs           : ['I:/Work/_GIT/GitHub/NodeJs', 'D:/projects/my', 'D:/projects/work'],
+    patterns       : ['**/*.{ts,js,cjs,mjs}'],
     excludeDirNames: ['node_modules', '.git', 'dist', 'tmp', 'public', 'build', 'static'],
   }),
 ])
