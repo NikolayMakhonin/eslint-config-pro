@@ -62,7 +62,7 @@
   "scripts": {
     "lint": "eslint .",
     "prepublishOnly": "npm test",
-    "test": "npm run lint && mocha ./test/node",
+    "test": "mocha ./test/node",
     "analysis": "ts-node tools/analysis.ts"
   },
   "files": [
