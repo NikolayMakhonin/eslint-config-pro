@@ -654,6 +654,7 @@ const rulesJavaScript = {
 	'rest-spread-spacing'    : ['warn', 'never'],
 	'symbol-description'     : 'error',
 
+	// Temporary disabled: TypeError: Cannot read property 'value' of null (waiting for update babel-eslint)
 	'template-curly-spacing': ['warn', 'never'],
 
 	'yield-star-spacing'   : ['warn', 'after'],
@@ -698,7 +699,7 @@ const rulesTypeScript = {
 
 	indent                     : 'off',
 	'@typescript-eslint/indent': [
-		'off',
+		'warn',
 		2,
 		{
 			...rulesJavaScript['indent'][2],
@@ -745,7 +746,7 @@ const rulesTypeScript = {
 	],
 
 	'@typescript-eslint/no-non-null-assertion': 'error',
-	'@typescript-eslint/no-object-literal-type-assertion': 'error',
+	'@typescript-eslint/no-object-literal-type-assertion': ['warn', { "allow-arguments": true }],
 	'@typescript-eslint/no-unsafe-assignment': 'off',
 	'@typescript-eslint/no-unsafe-member-access': 'off',
 	'@typescript-eslint/no-unsafe-call': 'off',
@@ -769,8 +770,8 @@ module.exports = {
 		...rulesJavaScript,
 	},
 	"env": {
-		"node": true,
 		"es6": true,
+		"node": true,
 		"browser": true
 	},
 	parserOptions: {
@@ -779,7 +780,7 @@ module.exports = {
 	},
 	"settings": {
 		"html/indent": "+2",
-		"html/report-bad-indent": "error",
+		"html/report-bad-indent": "warn",
 		"html/html-extensions": [
 			".html",
 			".svelte"
@@ -819,8 +820,9 @@ module.exports = {
 			],
 			"processor": "svelte3/svelte3",
 			"env": {
-				"browser": true,
-				"node": false
+				"es6": true,
+				"node": false,
+				"browser": true
 			},
 			plugins: ["svelte3"],
 			"rules": {
@@ -864,9 +866,9 @@ module.exports = {
 				"comma-dangle": "off"
 			},
 			"env": {
-				"browser": true,
 				"es6": false,
-				"node": false
+				"node": false,
+				"browser": true
 			},
 			plugins: ["html"],
 			"parser": "espree",
@@ -912,6 +914,8 @@ module.exports = {
 				'no-useless-call': 'off',
 				'no-useless-catch'            : 'off',
 				'prefer-const': 'off',
+				'no-useless-concat'           : 'off',
+				'lines-between-class-members': 'off',
 			}
 		},
 	],
