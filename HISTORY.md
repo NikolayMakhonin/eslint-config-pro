@@ -1,4 +1,4 @@
-3.0.0 / 2022-05-26
+3.0.1 / 2022-05-26
 ===================
 
 * Updated rules in accordance with 2 years of experience
