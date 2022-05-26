@@ -63,9 +63,8 @@ module.exports = {
         '@typescript-eslint',
       ],
       parserOptions: {
-        project: [
-          './tsconfig.json',
-        ],
+        tsconfigRootDir    : process.cwd(),
+        project            : './tsconfig.json',
         extraFileExtensions: [
           '.svelte',
         ],

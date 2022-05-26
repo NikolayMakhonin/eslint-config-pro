@@ -835,11 +835,13 @@ const rulesTestsAndEnv = {
 const rulesTests = {
   js: {
     ...rulesTestsAndEnv.js,
+    'require-await': 'off',
   },
   ts: {
     ...rulesTestsAndEnv.ts,
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/await-thenable'      : 'warn',
+    '@typescript-eslint/require-await': 'off',
   },
 }
 // endregion
