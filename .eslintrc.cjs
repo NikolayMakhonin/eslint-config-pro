@@ -1,19 +1,19 @@
 'use strict'
 
 module.exports = {
-	'extends': ['./index.js'],
+	'extends': ['./index.cjs'],
 
 	rules: {
-		strict                              : 'off',
-		'@typescript-eslint/no-var-requires': 'off',
+		// strict                              : 'off',
+		// '@typescript-eslint/no-var-requires': 'off',
 	},
 
-	env: {
-		node: true,
-		es6 : true,
-	},
+	// env: {
+	// 	node: true,
+	// 	es6 : true,
+	// },
 
-	parser: 'babel-eslint',
+	// parser: 'babel-eslint',
 
 	// parser       : '@typescript-eslint/parser',
 	// parserOptions: {
@@ -27,7 +27,7 @@ module.exports = {
 	// 	// },
 	// },
 
-	plugins: [
-		'@typescript-eslint',
-	],
+	// plugins: [
+	// 	'@typescript-eslint',
+	// ],
 }
