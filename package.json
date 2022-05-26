@@ -41,6 +41,9 @@
     "type": "git",
     "url": "git://github.com/NikolayMakhonin/eslint-config-pro.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint .",
     "prepublishOnly": "npm test",
