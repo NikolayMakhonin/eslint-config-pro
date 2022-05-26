@@ -750,7 +750,7 @@ const rulesTypeScript = {
   '@typescript-eslint/no-extra-semi': ['warn'],
 
   '@typescript-eslint/no-misused-promises': [
-    'error',
+    'off',
     {
       checksConditionals: false,
       checksVoidReturn  : { },
@@ -841,7 +841,7 @@ const rulesTests = {
     ...rulesTestsAndEnv.ts,
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/await-thenable'      : 'warn',
-    '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/require-await'       : 'off',
   },
 }
 // endregion
