@@ -44,10 +44,11 @@
   "scripts": {
     "lint": "eslint .",
     "prepublishOnly": "npm test",
-    "test": "mocha ./test/node",
+    "test": "mocha ./test/**.test.**",
     "analysis": "ts-node tools/analysis.ts"
   },
   "devDependencies": {
+    "@types/eslint": "^8.4.2",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",

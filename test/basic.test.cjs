@@ -1,7 +1,7 @@
 'use strict'
 
 const assert = require('assert')
-const config = require('../index')
+const config = require('../index.cjs')
 
 describe('basic', function () {
   function isObject(obj) {

@@ -2,6 +2,6 @@
 
 module.exports = {
   rules: {
-    ...require('../rules').envTools,
+    ...require('../rules.cjs').envTools,
   },
 }
