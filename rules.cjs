@@ -61,7 +61,7 @@ const rulesJavaScript = {
   'no-eq-null'                     : 'off',
   'no-ex-assign'                   : 'error',
   'no-extra-boolean-cast'          : 'error',
-  // 'no-extra-semi'                  : 'error',
+  // 'no-extra-semi'                  : 'warn',
   'no-fallthrough'                 : 'error',
   'no-func-assign'                 : 'error',
   'no-global-assign'               : 'error',
@@ -517,9 +517,9 @@ const rulesJavaScript = {
       unnecessary: true,
     },
   ],
-  quotes         : ['warn', 'single', {avoidEscape: true}],
-  'no-extra-semi': 'error',
-  semi           : ['error', 'never', {beforeStatementContinuationChars: 'always'}],
+  quotes         : ['warn', 'single', {avoidEscape: true, allowTemplateLiterals: true}],
+  'no-extra-semi': 'warn',
+  semi           : ['warn', 'never', {beforeStatementContinuationChars: 'always'}],
   'semi-spacing' : [
     'warn',
     {
@@ -527,7 +527,7 @@ const rulesJavaScript = {
       after : true,
     },
   ],
-  'semi-style'                 : ['error', 'first'],
+  'semi-style'                 : ['warn', 'first'],
   'space-before-blocks'        : ['warn', 'always'],
   'space-before-function-paren': [
     'warn', {
@@ -669,6 +669,7 @@ const rulesJavaScript = {
     ],
     ignoreGlobalItems: [
       'new Buffer()',
+      'process.binding',
     ],
   }],
   // endregion
@@ -746,7 +747,7 @@ const rulesTypeScript = {
   '@typescript-eslint/no-empty-function': 'off',
 
   'no-extra-semi'                   : 'off',
-  '@typescript-eslint/no-extra-semi': ['error'],
+  '@typescript-eslint/no-extra-semi': ['warn'],
 
   '@typescript-eslint/no-misused-promises': [
     'error',

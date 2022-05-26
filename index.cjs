@@ -30,7 +30,7 @@ module.exports = {
   overrides: [
     // region Common JS
     {
-      files  : ['*.js', '*.cjs'],
+      files  : ['**/*.js', '**/*.cjs'],
       plugins: ['node'],
       rules  : {
         'global-require': 'off',
@@ -42,7 +42,7 @@ module.exports = {
     // endregion
     // region Scripts
     {
-      files        : ['*.js', '*.html'],
+      files        : ['**/*.html'],
       parserOptions: {
         sourceType  : 'script',
         ecmaFeatures: {
@@ -78,7 +78,7 @@ module.exports = {
     // endregion
     // region Svelte
     {
-      files    : ['*.svelte'],
+      files    : ['**/*.svelte'],
       processor: 'svelte3/svelte3',
       env      : {
         es6    : true,
@@ -100,7 +100,7 @@ module.exports = {
     // endregion
     // region Html
     {
-      files: ['*.html', '*.htm'],
+      files: ['**/*.html', '**/*.htm'],
       rules: {
         'semi'              : ['error', 'always'],
         'semi-style'        : ['error', 'last'],
@@ -136,7 +136,7 @@ module.exports = {
     // region Tests
     {
       files: [
-        '*.{test,perf,e2e}.*',
+        '**/*.{test,perf,e2e}.*',
         '**/{test,tests}/**',
       ],
       env: {
@@ -155,7 +155,7 @@ module.exports = {
     // endregion
     // region EnvTools
     {
-      files: ['./{env,tools}/**'],
+      files: ['./{env,tools}/**', './**/.*', '**/*.config.*'],
       rules: {
         ...rules.envTools.js,
       },
