@@ -719,6 +719,12 @@ const rulesTypeScript = {
     },
   ],
 
+  'no-duplicate-imports': 'off',
+  'import/no-duplicates': ['error', {considerQueryString: false}],
+
+  'import/no-dynamic-require': 'error',
+  'import/no-unresolved'     : 'off',
+
   'no-dupe-class-members'                   : 'off',
   '@typescript-eslint/no-dupe-class-members': 'error',
 
