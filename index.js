@@ -89,7 +89,7 @@ const rulesJavaScript = {
 	'no-sparse-arrays'               : 'error',
 	'no-ternary'                     : 'off',
 	'no-this-before-super'           : 'error',
-	'no-throw-literal'               : 'off',
+	'no-throw-literal'               : 'error',
 	'no-unexpected-multiline'        : 'error',
 	'no-unsafe-finally'              : 'error',
 	'no-unsafe-negation'             : 'error',
@@ -102,7 +102,7 @@ const rulesJavaScript = {
 	'prefer-reflect'                 : 'off',
 	'require-jsdoc'                  : 'off',
 	'require-unicode-regexp'         : 'off',
-	'require-yield'                  : 'error',
+	'require-yield'                  : 'warn',
 	'sort-imports'                   : 'off',
 	'sort-keys'                      : 'off',
 	'sort-vars'                      : 'off',
@@ -132,7 +132,7 @@ const rulesJavaScript = {
 		},
 	],
 	'no-misleading-character-class': 'error',
-	'no-prototype-builtins'        : 'warn',
+	'no-prototype-builtins'        : 'error',
 	'no-template-curly-in-string'  : 'error',
 	'no-unreachable'               : 'warn',
 	'require-atomic-updates'       : ['error', { "allowProperties": true }],
@@ -194,13 +194,13 @@ const rulesJavaScript = {
 	'no-return-assign'            : ['error', 'except-parens'],
 	'no-return-await'             : 'error',
 	'no-script-url'               : 'error',
-	'no-self-compare'             : 'error',
+	'no-self-compare'             : 'off',
 	'no-sequences'                : 'error',
 	'no-unmodified-loop-condition': 'error',
 	'no-unused-expressions'       : 'warn',
 	'no-useless-call'             : 'error',
-	'no-useless-catch'            : 'error',
-	'no-useless-concat'           : 'error',
+	'no-useless-catch'            : 'warn',
+	'no-useless-concat'           : 'warn',
 	'no-warning-comments'         : [
 		'warn',
 		{
@@ -507,7 +507,7 @@ const rulesJavaScript = {
 	'padded-blocks'       : ['off', 'never'],
 	'prefer-object-spread': 'error',
 	'quote-props'         : [
-		'error',
+		'warn',
 		'as-needed',
 		{
 			keywords   : true,
@@ -515,7 +515,7 @@ const rulesJavaScript = {
 			unnecessary: true,
 		},
 	],
-	quotes         : ['error', 'single', {avoidEscape: true}],
+	quotes         : ['warn', 'single', {avoidEscape: true}],
 	'no-extra-semi': 'error',
 	semi           : ['error', 'never', {beforeStatementContinuationChars: 'always'}],
 	'semi-spacing' : [
@@ -686,7 +686,8 @@ const rulesTypeScript = {
 
 	'no-use-before-define'                   : 'off',
 	'@typescript-eslint/no-use-before-define': [
-		'error', {
+		'error',
+		{
 			...rulesJavaScript['no-use-before-define'][1],
 			classes             : false,
 			enums               : true,
@@ -809,7 +810,7 @@ module.exports = {
 			},
 			rules: {
 				...rulesTypeScript,
-				'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
+				// 'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 			},
 		},
 		{
@@ -823,6 +824,8 @@ module.exports = {
 			},
 			plugins: ["svelte3"],
 			"rules": {
+				'no-self-assign': 'off',
+				'no-unused-expressions': ['warn', { "allowShortCircuit": true }],
 				// "comma-dangle": [
 				// 	"error",
 				// 	{
@@ -885,9 +888,30 @@ module.exports = {
 			"files": [
 				"*.{test,perf,e2e}.*", '**/{test,tests}/**',
 			],
+			"env": {
+				"mocha": true
+			},
 			"rules": {
 				"func-names": "off",
-				"mocha": true
+				'no-shadow': 'off',
+				'@typescript-eslint/no-shadow': 'off',
+				'no-unused-vars': 'off',
+				'@typescript-eslint/no-unused-vars': 'off',
+				'array-bracket-newline': 'off',
+				'consistent-return'     : ['warn', {treatUndefinedAsUnspecified: false}],
+				'func-name-matching'       : ['warn', 'always'],
+				'function-paren-newline': 'off',
+				'new-cap': 'off',
+				'no-debugger': 'off',
+				'no-empty': 'off',
+				'no-eval': 'off',
+				'no-loop-func': 'warn',
+				'no-new': 'off',
+				'no-new-func': 'off',
+				'no-throw-literal': 'off',
+				'no-useless-call': 'off',
+				'no-useless-catch'            : 'off',
+				'prefer-const': 'off',
 			}
 		},
 	],

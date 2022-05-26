@@ -184,7 +184,8 @@ async function mergeEsLintConfigs({
     const configsPro = configs.filter(o => o.content.extends?.includes('pro'))
     const configPro = {}
     configsPro
-      .filter(o => !/\b(test|env|temp|old)\b/.test(o.path))
+      // .filter(o => !/\b(test|env|temp|old)\b/.test(o.path))
+      .filter(o => /\b(tests?)\b/.test(o.path))
       .map(o => o.content)
       .forEach(o => {
         o.overrides = o?.overrides?.reduce((a, o) => {
@@ -217,27 +218,37 @@ async function mergeEsLintInline({
 
   const configs = await runWithCache('string', './tmp/rules.txt', async () => {
     const errorPaths: string[] = []
-    const rules = await Promise.all(paths.map(async o => {
-      try {
-        const text = await fse.readFile(o.path, {encoding: 'utf-8'})
-        const result = text.match(/(?<=eslint-disable((-next)?-line)?\s+)([^\r\n]+?)(?=[\r\n]|\*\/)/g)?.flatMap(o => {
-          return o
-            .split(',')
-            .map(o => o.trim())
-            .filter(o => o)
-        })
-        if (result === []) {}
-        return result
-      } catch (err) {
-        errorPaths.push(o.path)
-        console.error(o.path, err)
-        return null
-      }
-    }))
+    const rulesMap = new Map<string, { rule: string, path: string }>()
+    await Promise.all(paths
+      .filter(o => /\b(tests?)\b/.test(o.path))
+      .map(async file => {
+        try {
+          const text = await fse.readFile(file.path, {encoding: 'utf-8'})
+          text.match(/(?<=eslint-disable((-next)?-line)?\s+)([^\r\n]+?)(?=[\r\n]|\*\/)/g)?.forEach(o => {
+            const rules = o
+              .split(',')
+              .map(o => o.trim())
+              .forEach(rule => {
+                if (rule) {
+                  rulesMap.set(rule, { rule, path: file.path})
+                }
+              })
+          })
+        } catch (err) {
+          errorPaths.push(file.path)
+          console.error(file.path, err)
+          return null
+        }
+      }))
     if (errorPaths.length) {
       console.error('errorPaths: ', errorPaths)
     }
-    return Array.from(new Set(rules.filter(o => o).flatMap(o => o))).sort().join('\n')
+    return Array.from(rulesMap.values())
+      .sort((o1, o2) => {
+        return o1.rule > o2.rule ? 1 : -1
+      })
+      .map(o => `${o.rule} // ${o.path}`)
+      .join('\n')
   })
 }
 
