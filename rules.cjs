@@ -25,6 +25,7 @@ const rulesJavaScript = {
       tabWidth              : 2,
       code                  : 120,
       comments              : 123,
+      ignoreComments        : true,
       ignoreTrailingComments: true,
       ignoreUrls            : true,
       ignoreStrings         : true,
@@ -256,9 +257,9 @@ const rulesJavaScript = {
     'warn',
     {
       vars              : 'all',
-      args              : 'after-used',
-      ignoreRestSiblings: true,
-      caughtErrors      : 'all',
+      args              : 'none',
+      ignoreRestSiblings: false,
+      caughtErrors      : 'none',
     },
   ],
   'no-use-before-define': [
