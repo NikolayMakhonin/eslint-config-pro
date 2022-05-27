@@ -22,9 +22,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # from: https://github.com/pnpm/action-setup
       - name: Install pnpm
         id: pnpm-install
         uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 7
+          run_install: false
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -39,7 +43,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install
+      - name: Install dependencies
         run: |
           pnpm i npx -g
           pnpm install --frozen-lockfile
