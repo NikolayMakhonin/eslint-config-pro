@@ -173,7 +173,7 @@ module.exports = {
     // endregion
     // region EnvTools
     {
-      files: ['./{env,tools}/**', './**/.*', '**/*.config.*'],
+      files: ['./{env,tools,deploy}/**', './*', './**/.*', '**/*.config.*'],
       rules: {
         ...rules.envTools.js,
       },
