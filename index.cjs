@@ -28,15 +28,34 @@ module.exports = {
     ],
   },
   overrides: [
-    // region Common JS
+    // region *.cjs
     {
-      files  : ['**/*.js', '**/*.cjs'],
+      files  : ['**/*.cjs'],
       plugins: ['node'],
       rules  : {
         'global-require': 'off',
       },
       parserOptions: {
         sourceType: 'script',
+      },
+    },
+    // endregion
+    // region *.js
+    {
+      files  : ['**/*.js'],
+      plugins: ['node'],
+      rules  : {
+        'global-require': 'off',
+        'strict'        : 'off',
+      },
+    },
+    // endregion
+    // region *.mjs
+    {
+      files  : ['**/*.mjs'],
+      plugins: ['node'],
+      rules  : {
+        'global-require': 'error',
       },
     },
     // endregion
