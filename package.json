@@ -55,7 +55,7 @@
     "build": "rimraf dist && pnpm run build:js && pnpm run build:types",
     "test:mocha": "mocha ./src/**/*.test.*",
     "test:mocha:watch": "mocha --watch ./src/**/*.test.*",
-    "test:mocha:ci": "rimraf tmp/coverage/mocha && mocha ./{src,dist}/**/*.test.*",
+    "test:mocha:ci": "mocha ./{src,dist}/**/*.test.*",
     "analysis": "ts-node tools/analysis.ts"
   },
   "devDependencies": {
