@@ -50,7 +50,7 @@
     "lint": "eslint ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
     "lint:wizard": "npx eslint-nibble --cache --multi ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
     "build:js": "rollup -c && cpy \"**/assets/**\" \"../dist/\" --parents --cwd=src",
-    "build:types": "tsc --outDir dist/node --declaration",
+    "build:types": "tsc --outDir dist --declaration",
     "build": "rimraf dist && pnpm run build:js && pnpm run build:types",
     "test:mocha": "mocha ./src/**/*.test.*",
     "test:mocha:watch": "mocha --watch ./src/**/*.test.*",
