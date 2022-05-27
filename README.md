@@ -4,6 +4,10 @@
 
 Almost all ESLint v5 rules for professional developers
 
+# License
+
+[Unlimited Free](LICENSE)
+
 [npm-image]: https://img.shields.io/npm/v/eslint-config-pro.svg
 [npm-url]: https://npmjs.org/package/eslint-config-pro
 [downloads-image]: https://img.shields.io/npm/dm/eslint-config-pro.svg
