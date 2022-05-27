@@ -1,11 +1,9 @@
+/* eslint-disable dot-notation, quote-props */
 import * as features from './features'
 import * as patterns from './patterns'
+import {rules} from './rules'
 
-/* eslint-disable dot-notation, quote-props */
-const rules = require('./rules')
-const {moduleExists} = require('./helpers')
-
-module.exports = {
+export const config = {
   extends: [
     'eslint:recommended',
   ],
@@ -167,7 +165,7 @@ module.exports = {
     // region Tests
     {
       files: patterns.tests,
-      env: {
+      env  : {
         mocha: true,
       },
       rules: {

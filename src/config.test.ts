@@ -1,7 +1,5 @@
-'use strict'
-
-const config = require('./config')
-const {ESLint} = require('eslint')
+import {config} from './config'
+import {ESLint} from 'eslint'
 
 describe('basic', function () {
   function isObject(obj) {

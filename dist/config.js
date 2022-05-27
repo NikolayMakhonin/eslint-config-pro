@@ -1,18 +1,19 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var features = require('./features.js');
 var patterns = require('./patterns.js');
+var rules = require('./rules.js');
 require('./helpers.js');
 
 /* eslint-disable dot-notation, quote-props */
-const rules = require('./rules');
-require('./helpers');
-module.exports = {
+const config = {
     extends: [
         'eslint:recommended',
     ],
     plugins: ['import'],
-    rules: Object.assign({}, rules.common.js),
+    rules: Object.assign({}, rules.rules.common.js),
     env: {
         es6: true,
         node: true,
@@ -92,7 +93,7 @@ module.exports = {
                     features.svelte && '.svelte',
                 ].filter(o => o),
             },
-            rules: Object.assign({}, rules.common.ts),
+            rules: Object.assign({}, rules.rules.common.ts),
         },
         // endregion
         // region Svelte
@@ -105,11 +106,11 @@ module.exports = {
                 browser: true,
             },
             plugins: ['svelte3'],
-            rules: Object.assign(Object.assign({}, rules.svelte.js), rules.svelte.ts),
+            rules: Object.assign(Object.assign({}, rules.rules.svelte.js), rules.rules.svelte.ts),
             settings: {
                 'svelte3/typescript': true,
                 'svelte3/ignore-warnings': warn => {
-                    return rules.svelte.ignore[warn.code];
+                    return rules.rules.svelte.ignore[warn.code];
                 },
             },
         },
@@ -164,22 +165,24 @@ module.exports = {
             env: {
                 mocha: true,
             },
-            rules: Object.assign({}, rules.tests.js),
+            rules: Object.assign({}, rules.rules.tests.js),
             overrides: [{
                     files: patterns.typeScript,
-                    rules: Object.assign({}, rules.tests.ts),
+                    rules: Object.assign({}, rules.rules.tests.ts),
                 }],
         },
         // endregion
         // region EnvTools
         {
             files: patterns.envTools,
-            rules: Object.assign({}, rules.envTools.js),
+            rules: Object.assign({}, rules.rules.envTools.js),
             overrides: [{
                     files: patterns.typeScript,
-                    rules: Object.assign({}, rules.envTools.ts),
+                    rules: Object.assign({}, rules.rules.envTools.ts),
                 }],
         },
         // endregion
     ].filter(o => { var _a; return (_a = o === null || o === void 0 ? void 0 : o.files) === null || _a === void 0 ? void 0 : _a.length; }),
 };
+
+exports.config = config;

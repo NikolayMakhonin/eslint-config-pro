@@ -2,8 +2,8 @@
   "name": "eslint-config-pro",
   "version": "3.0.1",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
-  "main": "dist/node/index.cjs",
-  "types": "dist/node/index.d.ts",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
   "engines": {
 
   },

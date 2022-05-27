@@ -1,7 +1,6 @@
-'use strict'
 /* eslint-disable dot-notation, quote-props */
 
-type Rules =  Record<string, string | [level: string, ...options: any]>
+type Rules = Record<string, string | [level: string, ...options: any]>
 
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
@@ -898,7 +897,7 @@ const rulesEnvTools = {
 }
 // endregion
 
-module.exports = {
+export const rules = {
   common: {
     js: rulesJavaScript,
     ts: rulesTypeScript,

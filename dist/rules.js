@@ -1,5 +1,8 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
+/* eslint-disable dot-notation, quote-props */
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
 const rulesJavaScript = {
@@ -816,7 +819,7 @@ const rulesEnvTools = {
     ts: Object.assign({}, rulesTestsAndEnv.ts),
 };
 // endregion
-module.exports = {
+const rules = {
     common: {
         js: rulesJavaScript,
         ts: rulesTypeScript,
@@ -825,3 +828,5 @@ module.exports = {
     envTools: rulesEnvTools,
     svelte: rulesSvelte,
 };
+
+exports.rules = rules;
