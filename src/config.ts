@@ -1,7 +1,7 @@
 'use strict'
 /* eslint-disable dot-notation, quote-props */
-const rules = require('./rules.cjs')
-const {moduleExists} = require('./helpers.cjs')
+const rules = require('./rules')
+const {moduleExists} = require('./helpers')
 
 const features = {
   svelte: moduleExists('eslint-plugin-svelte3'),

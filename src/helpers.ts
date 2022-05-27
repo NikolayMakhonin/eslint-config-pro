@@ -1,6 +1,6 @@
 'use strict'
 
-function moduleExists(name) {
+export function moduleExists(name) {
   try {
     require.resolve(name)
     return true
@@ -8,8 +8,4 @@ function moduleExists(name) {
   catch {
     return false
   }
-}
-
-module.exports = {
-  moduleExists,
 }

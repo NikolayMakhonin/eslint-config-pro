@@ -1,9 +1,11 @@
 'use strict'
 /* eslint-disable dot-notation, quote-props */
 
+type Rules =  Record<string, string | [level: string, ...options: any]>
+
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
-const rulesJavaScript = {
+const rulesJavaScript: Rules = {
   // region eslint:recommended copy
 
   'capitalized-comments'  : 'off',
@@ -678,7 +680,7 @@ const rulesJavaScript = {
 
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
-const rulesTypeScript = {
+const rulesTypeScript: Rules = {
   'no-extra-parens'                   : 'off',
   '@typescript-eslint/no-extra-parens': [
     'off',
@@ -821,13 +823,13 @@ const rulesTestsAndEnv = {
     'no-return-await'             : 'off',
     'no-lonely-if'                : 'off',
     'no-else-return'              : 'off',
-  },
+  } as Rules,
   ts: {
     'no-shadow'                        : 'off',
     '@typescript-eslint/no-shadow'     : 'off',
     'no-unused-vars'                   : 'off',
     '@typescript-eslint/no-unused-vars': 'off',
-  },
+  } as Rules,
 }
 // endregion
 
@@ -836,13 +838,13 @@ const rulesTests = {
   js: {
     ...rulesTestsAndEnv.js,
     'require-await': 'off',
-  },
+  } as Rules,
   ts: {
     ...rulesTestsAndEnv.ts,
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/await-thenable'      : 'warn',
     '@typescript-eslint/require-await'       : 'off',
-  },
+  } as Rules,
 }
 // endregion
 
@@ -866,12 +868,12 @@ const rulesSvelte = {
         functions: 'only-multiline', // fix this svelte bug: <a {href,} />
       },
     ],
-  },
+  } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-unused-vars'      : 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-  },
+  } as Rules,
   ignore: {
     'unused-export-let'                : true,
     'a11y-missing-attribute'           : true,
@@ -880,7 +882,7 @@ const rulesSvelte = {
     'a11y-media-has-caption'           : true,
     'a11y-missing-content'             : true,
     'a11y-mouse-events-have-key-events': true,
-  },
+  } as Record<string, boolean>,
 }
 // endregion
 
@@ -889,10 +891,10 @@ const rulesSvelte = {
 const rulesEnvTools = {
   js: {
     ...rulesTestsAndEnv.js,
-  },
+  } as Rules,
   ts: {
     ...rulesTestsAndEnv.ts,
-  },
+  } as Rules,
 }
 // endregion
 
