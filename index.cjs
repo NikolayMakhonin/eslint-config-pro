@@ -1,6 +1,12 @@
 'use strict'
 /* eslint-disable dot-notation, quote-props */
 const rules = require('./rules.cjs')
+const {moduleExists} = require('./helpers.cjs')
+
+const features = {
+  svelte: moduleExists('eslint-plugin-svelte3'),
+  html  : moduleExists('eslint-plugin-html'),
+}
 
 module.exports = {
   extends: [
@@ -61,7 +67,9 @@ module.exports = {
     // endregion
     // region Scripts
     {
-      files        : ['**/*.html'],
+      files: [
+        features.html && '**/*.{html,htm}',
+      ].filter(o => o),
       parserOptions: {
         sourceType  : 'script',
         ecmaFeatures: {
@@ -72,7 +80,10 @@ module.exports = {
     // endregion
     // region TypeScript
     {
-      files  : ['**/*.ts', '**/*.tsx', '**/*.svelte'],
+      files: [
+        '**/*.{ts,tsx}',
+        features.svelte && '**/*.svelte',
+      ].filter(o => o),
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
@@ -85,8 +96,8 @@ module.exports = {
         tsconfigRootDir    : process.cwd(),
         project            : './tsconfig.json',
         extraFileExtensions: [
-          '.svelte',
-        ],
+          features.svelte && '.svelte',
+        ].filter(o => o),
       },
       rules: {
         ...rules.common.ts,
@@ -95,7 +106,7 @@ module.exports = {
     },
     // endregion
     // region Svelte
-    {
+    features.svelte && {
       files    : ['**/*.svelte'],
       processor: 'svelte3/svelte3',
       env      : {
@@ -117,8 +128,8 @@ module.exports = {
     },
     // endregion
     // region Html
-    {
-      files: ['**/*.html', '**/*.htm'],
+    features.html && {
+      files: ['**/*.{html,htm}'],
       rules: {
         'semi'              : ['error', 'always'],
         'semi-style'        : ['error', 'last'],
@@ -164,7 +175,7 @@ module.exports = {
         ...rules.tests.js,
       },
       overrides: [{
-        files: ['**/*.ts', '**/*.tsx'],
+        files: ['**/*.{ts,tsx}'],
         rules: {
           ...rules.tests.ts,
         },
@@ -178,12 +189,12 @@ module.exports = {
         ...rules.envTools.js,
       },
       overrides: [{
-        files: ['**/*.ts', '**/*.tsx'],
+        files: ['**/*.{ts,tsx}'],
         rules: {
           ...rules.envTools.ts,
         },
       }],
     },
     // endregion
-  ],
+  ].filter(o => o?.files?.length),
 }
