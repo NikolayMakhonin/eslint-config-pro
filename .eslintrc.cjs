@@ -1,5 +1,7 @@
 'use strict'
 
-module.exports = {
-  'extends': ['./dist/config.js'],
-}
+module.exports = require('./dist/config.js')
+
+// module.exports = {
+//   'extends': ['./dist/config.js'],
+// }
