@@ -1,7 +1,15 @@
-'use strict'
+import {config} from './config'
+import {ESLint} from 'eslint'
 
-const assert = require('assert')
-const {ESLint} = require('eslint')
+describe('basic', function () {
+  function isObject(obj) {
+    return typeof obj === 'object' && obj !== null
+  }
+
+  it('test basic properties of config', function () {
+    assert.ok(isObject(config.rules))
+  })
+})
 
 describe('validate-config', function () {
   this.timeout(10000)

@@ -1,8 +1,9 @@
-'use strict'
 /* eslint-disable dot-notation, quote-props */
-const rules = require('./rules.cjs')
+import * as features from './features'
+import * as patterns from './patterns'
+import {rules} from './rules'
 
-module.exports = {
+export const config = {
   extends: [
     'eslint:recommended',
   ],
@@ -19,18 +20,15 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType : 'module',
   },
-  settings: {
-    'html/indent'           : '+2',
-    'html/report-bad-indent': 'warn',
-    'html/html-extensions'  : [
-      '.html',
-      '.svelte',
-    ],
-  },
+  ignorePatterns: [
+    '!**/.*',
+    ...!features.svelte ? patterns.svelte : [],
+    ...!features.html ? patterns.html : [],
+  ],
   overrides: [
-    // region Common JS
+    // region *.cjs
     {
-      files  : ['**/*.js', '**/*.cjs'],
+      files  : patterns.cjs,
       plugins: ['node'],
       rules  : {
         'global-require': 'off',
@@ -40,9 +38,30 @@ module.exports = {
       },
     },
     // endregion
+    // region *.js
+    {
+      files  : patterns.js,
+      plugins: ['node'],
+      rules  : {
+        'global-require': 'off',
+        'strict'        : 'off',
+      },
+    },
+    // endregion
+    // region *.mjs
+    {
+      files  : patterns.mjs,
+      plugins: ['node'],
+      rules  : {
+        'global-require': 'error',
+      },
+    },
+    // endregion
     // region Scripts
     {
-      files        : ['**/*.html'],
+      files: [
+        ...features.html ? patterns.html : [],
+      ],
       parserOptions: {
         sourceType  : 'script',
         ecmaFeatures: {
@@ -53,7 +72,10 @@ module.exports = {
     // endregion
     // region TypeScript
     {
-      files  : ['**/*.ts', '**/*.tsx', '**/*.svelte'],
+      files: [
+        ...patterns.typeScript,
+        ...features.svelte ? patterns.svelte : [],
+      ],
       extends: [
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
@@ -66,8 +88,8 @@ module.exports = {
         tsconfigRootDir    : process.cwd(),
         project            : './tsconfig.json',
         extraFileExtensions: [
-          '.svelte',
-        ],
+          features.svelte && '.svelte',
+        ].filter(o => o),
       },
       rules: {
         ...rules.common.ts,
@@ -76,8 +98,8 @@ module.exports = {
     },
     // endregion
     // region Svelte
-    {
-      files    : ['**/*.svelte'],
+    features.svelte && {
+      files    : patterns.svelte,
       processor: 'svelte3/svelte3',
       env      : {
         es6    : true,
@@ -98,8 +120,8 @@ module.exports = {
     },
     // endregion
     // region Html
-    {
-      files: ['**/*.html', '**/*.htm'],
+    features.html && {
+      files: patterns.html,
       rules: {
         'semi'              : ['error', 'always'],
         'semi-style'        : ['error', 'last'],
@@ -115,8 +137,17 @@ module.exports = {
         node   : false,
         browser: true,
       },
-      plugins      : ['html'],
-      parser       : 'espree',
+      plugins : ['html'],
+      parser  : 'espree',
+      settings: {
+        'html/indent'           : '+2',
+        'html/report-bad-indent': 'warn',
+        'html/html-extensions'  : [
+          '.htm',
+          '.html',
+          features.svelte && '.svelte',
+        ].filter(o => o),
+      },
       parserOptions: {
         ecmaVersion: 5,
         sourceType : 'script',
@@ -125,7 +156,7 @@ module.exports = {
     // endregion
     // region Markdown
     // {
-    //   files: ['**/*.md'],
+    //   files: patterns.md,
     //   rules: {
     //     'no-undef'      : 'off',
     //     'no-unused-vars': 'off',
@@ -134,18 +165,15 @@ module.exports = {
     // endregion
     // region Tests
     {
-      files: [
-        '**/*.{test,perf,e2e}.*',
-        '**/{test,tests}/**',
-      ],
-      env: {
+      files: patterns.tests,
+      env  : {
         mocha: true,
       },
       rules: {
         ...rules.tests.js,
       },
       overrides: [{
-        files: ['**/*.ts', '**/*.tsx'],
+        files: patterns.typeScript,
         rules: {
           ...rules.tests.ts,
         },
@@ -154,17 +182,17 @@ module.exports = {
     // endregion
     // region EnvTools
     {
-      files: ['./{env,tools}/**', './**/.*', '**/*.config.*'],
+      files: patterns.envTools,
       rules: {
         ...rules.envTools.js,
       },
       overrides: [{
-        files: ['**/*.ts', '**/*.tsx'],
+        files: patterns.typeScript,
         rules: {
           ...rules.envTools.ts,
         },
       }],
     },
     // endregion
-  ],
+  ].filter(o => o?.files?.length),
 }
