@@ -24,6 +24,7 @@ const config = {
         sourceType: 'module',
     },
     ignorePatterns: [
+        '!**/.*',
         ...!features.svelte ? patterns.svelte : [],
         ...!features.html ? patterns.html : [],
     ],
