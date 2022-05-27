@@ -45,11 +45,10 @@
     "access": "public"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "prepublishOnly": "pnpm run audit && pnpm run lint && pnpm build && pnpm run test:mocha:ci",
     "audit": "pnpm audit --prod",
     "lint": "eslint ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
-    "lint:wizard": "eslint-nibble --cache --multi ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
+    "lint:wizard": "npx eslint-nibble --cache --multi ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
     "build:js": "rollup -c && cpy \"**/assets/**\" \"../dist/\" --parents --cwd=src",
     "build:types": "tsc --outDir dist/node --declaration",
     "build": "rimraf dist && pnpm run build:js && pnpm run build:types",
