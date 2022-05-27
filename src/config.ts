@@ -33,6 +33,10 @@ module.exports = {
       '.svelte',
     ],
   },
+  ignorePatterns: [
+    !features.svelte && '**/*.svelte',
+    !features.html && '**/*.{html,htm}',
+  ].filter(o => o),
   overrides: [
     // region *.cjs
     {
