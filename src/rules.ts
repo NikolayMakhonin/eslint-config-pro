@@ -1,4 +1,4 @@
-/* eslint-disable dot-notation, quote-props */
+/* eslint-disable dot-notation, quote-props, @typescript-eslint/dot-notation */
 
 import {tsRuleNames} from './tsRuleNames'
 

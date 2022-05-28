@@ -170,6 +170,10 @@ export const config = {
       env  : {
         mocha: true,
       },
+      globals: {
+        assert: true,
+        expect: true,
+      },
       rules: {
         ...rules.tests.js,
       },

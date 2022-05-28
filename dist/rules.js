@@ -2,7 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-/* eslint-disable dot-notation, quote-props */
+var tsRuleNames = require('./tsRuleNames.js');
+
+/* eslint-disable dot-notation, quote-props, @typescript-eslint/dot-notation */
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
 const rulesJavaScript = {
@@ -644,6 +646,7 @@ const rulesJavaScript = {
         }],
     // endregion
 };
+// endregion
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript = {
@@ -729,6 +732,10 @@ const rulesTypeScript = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/await-thenable': 'error',
+    '@typescript-eslint/no-magic-numbers': 'off',
+    '@typescript-eslint/no-restricted-imports': 'off',
+    'no-throw-literal': 'off',
+    '@typescript-eslint/no-throw-literal': 'error',
 };
 // endregion
 // region rulesTestsAndEnv
@@ -824,14 +831,30 @@ const rulesEnvTools = {
     ts: Object.assign({}, rulesTestsAndEnv.ts),
 };
 // endregion
+function jsRulesToTs(jsRules) {
+    const tsRules = {};
+    for (const jsKey in jsRules) {
+        if (Object.prototype.hasOwnProperty.call(jsRules, jsKey)
+            && tsRuleNames.tsRuleNames.has(jsKey)) {
+            const tsKey = '@typescript-eslint/' + jsKey;
+            tsRules[jsKey] = 'off';
+            tsRules[tsKey] = jsRules[jsKey];
+        }
+    }
+    return tsRules;
+}
+function correctTsRules(rules) {
+    rules.ts = Object.assign(Object.assign({}, jsRulesToTs(rules.js)), rules.ts);
+    return rules;
+}
 const rules = {
-    common: {
+    common: correctTsRules({
         js: rulesJavaScript,
         ts: rulesTypeScript,
-    },
-    tests: rulesTests,
-    envTools: rulesEnvTools,
-    svelte: rulesSvelte,
+    }),
+    tests: correctTsRules(rulesTests),
+    envTools: correctTsRules(rulesEnvTools),
+    svelte: correctTsRules(rulesSvelte),
 };
 
 exports.rules = rules;

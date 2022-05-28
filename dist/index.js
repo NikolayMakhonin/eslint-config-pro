@@ -5,5 +5,6 @@ require('./features.js');
 require('./helpers.js');
 require('./patterns.js');
 require('./rules.js');
+require('./tsRuleNames.js');
 
 module.exports = config.config;

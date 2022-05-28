@@ -41,6 +41,7 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -62,6 +63,7 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -83,6 +85,7 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -103,6 +106,7 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -132,6 +136,7 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -165,6 +170,7 @@ export declare const config: {
         parserOptions?: undefined;
         extends?: undefined;
         parser?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -204,6 +210,7 @@ export declare const config: {
         };
         extends?: undefined;
         processor?: undefined;
+        globals?: undefined;
         overrides?: undefined;
     } | {
         files: string[];
@@ -212,6 +219,10 @@ export declare const config: {
             es6?: undefined;
             node?: undefined;
             browser?: undefined;
+        };
+        globals: {
+            assert: boolean;
+            expect: boolean;
         };
         rules: {
             [x: string]: string | [level: string, ...options: any[]];
@@ -264,5 +275,6 @@ export declare const config: {
         processor?: undefined;
         env?: undefined;
         settings?: undefined;
+        globals?: undefined;
     })[];
 };

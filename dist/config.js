@@ -6,6 +6,7 @@ var features = require('./features.js');
 var patterns = require('./patterns.js');
 var rules = require('./rules.js');
 require('./helpers.js');
+require('./tsRuleNames.js');
 
 /* eslint-disable dot-notation, quote-props */
 const config = {
@@ -165,6 +166,10 @@ const config = {
             files: patterns.tests,
             env: {
                 mocha: true,
+            },
+            globals: {
+                assert: true,
+                expect: true,
             },
             rules: Object.assign({}, rules.rules.tests.js),
             overrides: [{
