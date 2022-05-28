@@ -910,7 +910,7 @@ const rulesEnvTools = {
 }
 // endregion
 
-function jsRulesToTs(jsRules) {
+export function jsRulesToTs(jsRules) {
   const tsRules = {}
   for (const jsKey in jsRules) {
     if (
@@ -933,12 +933,19 @@ function correctTsRules<TRules extends {js: Rules, ts: Rules}>(rules: TRules): T
   return rules
 }
 
-export const rules = {
-  common: correctTsRules({
+export const rulesOrig = {
+  common: {
     js: rulesJavaScript,
     ts: rulesTypeScript,
-  }),
-  tests   : correctTsRules(rulesTests),
-  envTools: correctTsRules(rulesEnvTools),
-  svelte  : correctTsRules(rulesSvelte),
+  },
+  tests   : rulesTests,
+  envTools: rulesEnvTools,
+  svelte  : rulesSvelte,
+}
+
+export const rules = {
+  common  : correctTsRules(rulesOrig.common),
+  tests   : correctTsRules(rulesOrig.tests),
+  envTools: correctTsRules(rulesOrig.envTools),
+  svelte  : correctTsRules(rulesOrig.svelte),
 }

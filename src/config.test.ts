@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 import {config} from './config'
 import {ESLint} from 'eslint'
-import {Rules, rules} from './rules'
+import {jsRulesToTs, Rules, rules, rulesOrig} from './rules'
 import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
 import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -71,23 +71,31 @@ describe('validate rules', function () {
       assert.ok(jsKey in jsTsRules)
       if (tsKeyIsValid(tsKey)) {
         const tsRule = tsRules[tsKey]
+        const jsTsRule = jsTsRules[tsKey]
         const jsRuleInTs = tsRules[jsKey]
+        const jsInJsTsRule = jsTsRules[jsKey]
         assert.ok(tsRule, `TS: ${tsKey} should be specified`)
-        if (tsRule || jsRuleInTs) {
-          if (getRuleLevel(tsRule) !== 'off') {
-            assert.ok(jsRuleInTs, `TS: ${jsKey} should be specified`)
-            assert.strictEqual(
-              Array.isArray(jsRuleInTs) ? jsRuleInTs[0] : jsRuleInTs,
-              'off',
-              `TS: ${jsKey} should be off`,
+        assert.ok(jsTsRule, `TS: ${tsKey} should be specified`)
+        assert.strictEqual(
+          Array.isArray(jsInJsTsRule) ? jsInJsTsRule[0] : jsInJsTsRule,
+          'off',
+          `JS+TS: ${jsKey} should be off`,
+        )
+        assert.strictEqual(tsRule, jsTsRule)
+        if (getRuleLevel(tsRule) !== 'off') {
+          assert.ok(jsRuleInTs, `TS: ${jsKey} should be specified`)
+          assert.ok(jsInJsTsRule, `TS: ${jsKey} should be specified`)
+          assert.strictEqual(
+            Array.isArray(jsRuleInTs) ? jsRuleInTs[0] : jsRuleInTs,
+            'off',
+            `TS: ${jsKey} should be off`,
+          )
+          if (!options.ignoreRuleEquals[jsKey]) {
+            assert.deepStrictEqual(
+              Array.isArray(jsRule) ? jsRule.slice(1) : jsRule,
+              Array.isArray(tsRule) ? tsRule.slice(1) : tsRule,
+              `TS: js['${jsKey}'] and ts['${tsKey}'] should be equals`,
             )
-            if (!options.ignoreRuleEquals[jsKey]) {
-              assert.deepStrictEqual(
-                Array.isArray(jsRule) ? jsRule.slice(1) : jsRule,
-                Array.isArray(tsRule) ? tsRule.slice(1) : tsRule,
-                `TS: js['${jsKey}'] and ts['${tsKey}'] should be equals`,
-              )
-            }
           }
         }
       }
@@ -111,7 +119,7 @@ describe('validate rules', function () {
     }
   }
 
-  it('base', function () {
+  it('rules', function () {
     // console.log(JSON.stringify(Object.keys(tsPluginRules), null, 2))
     checkTypescriptRules([
       rules.common,
@@ -149,5 +157,26 @@ describe('validate rules', function () {
       rules.tests,
       rules.envTools,
     ])
+  })
+
+  function checkRulesOrig(rulesOrig) {
+    const tsRules = jsRulesToTs(rulesOrig.js)
+    for (const key in rulesOrig.ts) {
+      assert.ok(rulesOrig.ts[key])
+      if (key.startsWith('@typescript-eslint/')) {
+        const jsKey = key.replace(/^@typescript-eslint\//, '')
+        assert.ok(tsRules[jsKey])
+        assert.notDeepStrictEqual(rulesOrig.ts[key], tsRules[jsKey], `TS: ${key} should be deleted`)
+        assert.notStrictEqual(
+          getRuleLevel(rulesOrig.ts[key]) === 'off',
+          getRuleLevel(tsRules[jsKey]) === 'off',
+          `TS: ${key} should be deleted`,
+        )
+      }
+    }
+  }
+
+  it('rulesOrig', function () {
+    checkRulesOrig(rulesOrig.common)
   })
 })
