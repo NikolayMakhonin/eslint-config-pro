@@ -1,6 +1,6 @@
 /* eslint-disable dot-notation, quote-props */
 
-type Rules = Record<string, string | [level: string, ...options: any]>
+export type Rules = Record<string, string | [level: string, ...options: any]>
 
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
@@ -677,6 +677,10 @@ const rulesJavaScript: Rules = {
 }
 // endregion
 
+function convertJsToTs() {
+
+}
+
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript: Rules = {
@@ -748,7 +752,7 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-empty-function': 'off',
 
   'no-extra-semi'                   : 'off',
-  '@typescript-eslint/no-extra-semi': ['warn'],
+  '@typescript-eslint/no-extra-semi': 'warn',
 
   '@typescript-eslint/no-misused-promises': [
     'off',
@@ -765,6 +769,9 @@ const rulesTypeScript: Rules = {
       objectLiteralTypeAssertions: 'allow-as-parameter',
     },
   ],
+
+  'require-await'                   : 'off',
+  '@typescript-eslint/require-await': 'error',
 
   // TypeError: Cannot read property '0' of undefined Occurred while linting
   // https://github.com/typescript-eslint/typescript-eslint/blob/1d55a7511b38d8e2b2eabe59f639e0a865e6c93f/packages/eslint-plugin/src/rules/unbound-method.ts#L272
@@ -828,6 +835,10 @@ const rulesTestsAndEnv = {
     '@typescript-eslint/no-shadow'     : 'off',
     'no-unused-vars'                   : 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    'require-await'                    : 'off',
+    '@typescript-eslint/require-await' : 'warn',
+    'no-loop-func'                     : 'off',
+    '@typescript-eslint/no-loop-func'  : 'warn',
   } as Rules,
 }
 // endregion

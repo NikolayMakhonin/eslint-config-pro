@@ -94,7 +94,7 @@ const config = {
                     features.svelte && '.svelte',
                 ].filter(o => o),
             },
-            rules: Object.assign({}, rules.rules.common.ts),
+            rules: Object.assign(Object.assign({}, rules.rules.common.js), rules.rules.common.ts),
         },
         // endregion
         // region Svelte
