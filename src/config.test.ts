@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 import {config} from './config'
 import {ESLint} from 'eslint'
-import {jsRulesToTs, Rules, rules, rulesOrig} from './rules'
+import {Rules, rules, rulesOrig} from './rules'
 import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
 import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -160,23 +160,28 @@ describe('validate rules', function () {
   })
 
   function checkRulesOrig(rulesOrig) {
-    const tsRules = jsRulesToTs(rulesOrig.js)
     for (const key in rulesOrig.ts) {
       assert.ok(rulesOrig.ts[key])
       if (key.startsWith('@typescript-eslint/')) {
         const jsKey = key.replace(/^@typescript-eslint\//, '')
-        assert.ok(tsRules[jsKey])
-        assert.notDeepStrictEqual(rulesOrig.ts[key], tsRules[jsKey], `TS: ${key} should be deleted`)
-        assert.notStrictEqual(
-          getRuleLevel(rulesOrig.ts[key]) === 'off',
-          getRuleLevel(tsRules[jsKey]) === 'off',
-          `TS: ${key} should be deleted`,
-        )
+        assert.ok(!rulesOrig.ts[jsKey], `TS: ${jsKey} should be deleted`)
+        if (jsKeyIsValid(jsKey)) {
+          assert.ok(rulesOrig.js[jsKey], `JS: ${jsKey} should be specified`)
+          assert.notDeepStrictEqual(rulesOrig.ts[key], rulesOrig.js[jsKey], `TS: ${key} should be deleted`)
+        }
+        // assert.notStrictEqual(
+        //   getRuleLevel(rulesOrig.ts[key]) === 'off',
+        //   getRuleLevel(tsRules[jsKey]) === 'off',
+        //   `TS: ${key} should be deleted`,
+        // )
       }
     }
   }
 
   it('rulesOrig', function () {
     checkRulesOrig(rulesOrig.common)
+    checkRulesOrig(rulesOrig.tests)
+    checkRulesOrig(rulesOrig.svelte)
+    checkRulesOrig(rulesOrig.envTools)
   })
 })

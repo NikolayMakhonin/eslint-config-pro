@@ -650,32 +650,13 @@ const rulesJavaScript = {
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript = {
-    'no-extra-parens': 'off',
-    '@typescript-eslint/no-extra-parens': [
-        'off',
-        'all',
-        Object.assign({}, rulesJavaScript['no-extra-parens'][2]),
-    ],
-    'no-shadow': 'off',
     '@typescript-eslint/no-shadow': [
         'off',
         Object.assign(Object.assign({}, rulesJavaScript['no-shadow'][1]), { hoist: 'never', ignoreTypeValueShadow: false, ignoreFunctionTypeParameterNameValueShadow: true }),
     ],
-    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
         'error',
         Object.assign(Object.assign({}, rulesJavaScript['no-use-before-define'][1]), { classes: false, enums: true, typedefs: false, ignoreTypeReferences: true }),
-    ],
-    indent: 'off',
-    '@typescript-eslint/indent': [
-        'warn',
-        2,
-        Object.assign({}, rulesJavaScript['indent'][2]),
-    ],
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': [
-        'warn',
-        Object.assign({}, rulesJavaScript['no-unused-vars'][1]),
     ],
     '@typescript-eslint/ban-types': [
         'error', {
@@ -685,14 +666,6 @@ const rulesTypeScript = {
             },
         },
     ],
-    'no-dupe-class-members': 'off',
-    '@typescript-eslint/no-dupe-class-members': 'error',
-    'no-redeclare': 'off',
-    '@typescript-eslint/no-redeclare': 'off',
-    'no-empty-function': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    'no-extra-semi': 'off',
-    '@typescript-eslint/no-extra-semi': 'warn',
     '@typescript-eslint/no-misused-promises': [
         'off',
         {
@@ -708,8 +681,6 @@ const rulesTypeScript = {
             objectLiteralTypeAssertions: 'allow-as-parameter',
         },
     ],
-    'require-await': 'off',
-    '@typescript-eslint/require-await': 'error',
     // TypeError: Cannot read property '0' of undefined Occurred while linting
     // https://github.com/typescript-eslint/typescript-eslint/blob/1d55a7511b38d8e2b2eabe59f639e0a865e6c93f/packages/eslint-plugin/src/rules/unbound-method.ts#L272
     // decl.parameters is undefined
@@ -722,7 +693,6 @@ const rulesTypeScript = {
     '@typescript-eslint/no-var-requires': 'warn',
     '@typescript-eslint/no-this-alias': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-useless-constructor': 'off',
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -732,10 +702,6 @@ const rulesTypeScript = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/await-thenable': 'error',
-    '@typescript-eslint/no-magic-numbers': 'off',
-    '@typescript-eslint/no-restricted-imports': 'off',
-    'no-throw-literal': 'off',
-    '@typescript-eslint/no-throw-literal': 'error',
 };
 // endregion
 // region rulesTestsAndEnv
@@ -769,22 +735,13 @@ const rulesTestsAndEnv = {
         'no-lonely-if': 'off',
         'no-else-return': 'off',
     },
-    ts: {
-        'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': 'off',
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
-        'require-await': 'off',
-        '@typescript-eslint/require-await': 'warn',
-        'no-loop-func': 'off',
-        '@typescript-eslint/no-loop-func': 'warn',
-    },
+    ts: {},
 };
 // endregion
 // region rulesTests
 const rulesTests = {
     js: Object.assign(Object.assign({}, rulesTestsAndEnv.js), { 'require-await': 'off' }),
-    ts: Object.assign(Object.assign({}, rulesTestsAndEnv.ts), { '@typescript-eslint/no-floating-promises': 'off', '@typescript-eslint/await-thenable': 'warn', '@typescript-eslint/require-await': 'off' }),
+    ts: Object.assign(Object.assign({}, rulesTestsAndEnv.ts), { '@typescript-eslint/no-floating-promises': 'off', '@typescript-eslint/await-thenable': 'warn' }),
 };
 // endregion
 // region rulesSvelte
@@ -793,10 +750,12 @@ const rulesSvelte = {
         'no-self-assign': 'off',
         'no-unused-expressions': ['off', { 'allowShortCircuit': true }],
         'no-multiple-empty-lines': 'off',
+        'no-unused-vars': 'off',
         'prefer-const': 'off',
         'brace-style': ['warn', 'stroustrup', { allowSingleLine: true }],
         'no-sequences': 'off',
         'no-return-assign': 'off',
+        'no-use-before-define': 'off',
         'comma-dangle': [
             'error',
             {
@@ -810,8 +769,6 @@ const rulesSvelte = {
     },
     ts: {
         '@typescript-eslint/no-floating-promises': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
-        '@typescript-eslint/no-use-before-define': 'off',
     },
     ignore: {
         'unused-export-let': true,
@@ -844,17 +801,24 @@ function jsRulesToTs(jsRules) {
     return tsRules;
 }
 function correctTsRules(rules) {
-    rules.ts = Object.assign(Object.assign({}, jsRulesToTs(rules.js)), rules.ts);
-    return rules;
+    return Object.assign(Object.assign({}, rules), { ts: Object.assign(Object.assign({}, jsRulesToTs(rules.js)), rules.ts) });
 }
-const rules = {
-    common: correctTsRules({
+const rulesOrig = {
+    common: {
         js: rulesJavaScript,
         ts: rulesTypeScript,
-    }),
-    tests: correctTsRules(rulesTests),
-    envTools: correctTsRules(rulesEnvTools),
-    svelte: correctTsRules(rulesSvelte),
+    },
+    tests: rulesTests,
+    envTools: rulesEnvTools,
+    svelte: rulesSvelte,
+};
+const rules = {
+    common: correctTsRules(rulesOrig.common),
+    tests: correctTsRules(rulesOrig.tests),
+    envTools: correctTsRules(rulesOrig.envTools),
+    svelte: correctTsRules(rulesOrig.svelte),
 };
 
+exports.jsRulesToTs = jsRulesToTs;
 exports.rules = rules;
+exports.rulesOrig = rulesOrig;

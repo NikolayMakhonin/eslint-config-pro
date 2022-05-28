@@ -682,16 +682,6 @@ const rulesJavaScript: Rules = {
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript: Rules = {
-  'no-extra-parens'                   : 'off',
-  '@typescript-eslint/no-extra-parens': [
-    'off',
-    'all',
-    {
-      ...rulesJavaScript['no-extra-parens'][2],
-    },
-  ],
-
-  'no-shadow'                   : 'off',
   '@typescript-eslint/no-shadow': [
     'off',
     {
@@ -702,7 +692,6 @@ const rulesTypeScript: Rules = {
     },
   ],
 
-  'no-use-before-define'                   : 'off',
   '@typescript-eslint/no-use-before-define': [
     'error',
     {
@@ -714,23 +703,6 @@ const rulesTypeScript: Rules = {
     },
   ],
 
-  indent                     : 'off',
-  '@typescript-eslint/indent': [
-    'warn',
-    2,
-    {
-      ...rulesJavaScript['indent'][2],
-    },
-  ],
-
-  'no-unused-vars'                   : 'off',
-  '@typescript-eslint/no-unused-vars': [
-    'warn',
-    {
-      ...rulesJavaScript['no-unused-vars'][1],
-    },
-  ],
-
   '@typescript-eslint/ban-types': [
     'error', {
       types: {
@@ -739,18 +711,6 @@ const rulesTypeScript: Rules = {
       },
     },
   ],
-  
-  'no-dupe-class-members'                   : 'off',
-  '@typescript-eslint/no-dupe-class-members': 'error',
-
-  'no-redeclare'                   : 'off',
-  '@typescript-eslint/no-redeclare': 'off',
-
-  'no-empty-function'                   : 'off',
-  '@typescript-eslint/no-empty-function': 'off',
-
-  'no-extra-semi'                   : 'off',
-  '@typescript-eslint/no-extra-semi': 'warn',
 
   '@typescript-eslint/no-misused-promises': [
     'off',
@@ -768,9 +728,6 @@ const rulesTypeScript: Rules = {
     },
   ],
 
-  'require-await'                   : 'off',
-  '@typescript-eslint/require-await': 'error',
-
   // TypeError: Cannot read property '0' of undefined Occurred while linting
   // https://github.com/typescript-eslint/typescript-eslint/blob/1d55a7511b38d8e2b2eabe59f639e0a865e6c93f/packages/eslint-plugin/src/rules/unbound-method.ts#L272
   // decl.parameters is undefined
@@ -784,7 +741,6 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-var-requires'               : 'warn',
   '@typescript-eslint/no-this-alias'                 : 'off',
   '@typescript-eslint/explicit-module-boundary-types': 'off',
-  '@typescript-eslint/no-useless-constructor'        : 'off',
   '@typescript-eslint/no-inferrable-types'           : 'off',
   '@typescript-eslint/no-empty-interface'            : 'off',
   '@typescript-eslint/no-explicit-any'               : 'off',
@@ -794,10 +750,6 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-unsafe-return'              : 'off',
   '@typescript-eslint/no-floating-promises'          : 'error',
   '@typescript-eslint/await-thenable'                : 'error',
-  '@typescript-eslint/no-magic-numbers'              : 'off',
-  '@typescript-eslint/no-restricted-imports'         : 'off',
-  'no-throw-literal'                                 : 'off',
-  '@typescript-eslint/no-throw-literal'              : 'error',
 }
 // endregion
 
@@ -833,14 +785,7 @@ const rulesTestsAndEnv = {
     'no-else-return'              : 'off',
   } as Rules,
   ts: {
-    'no-shadow'                        : 'off',
-    '@typescript-eslint/no-shadow'     : 'off',
-    'no-unused-vars'                   : 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    'require-await'                    : 'off',
-    '@typescript-eslint/require-await' : 'warn',
-    'no-loop-func'                     : 'off',
-    '@typescript-eslint/no-loop-func'  : 'warn',
+
   } as Rules,
 }
 // endregion
@@ -855,7 +800,6 @@ const rulesTests = {
     ...rulesTestsAndEnv.ts,
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/await-thenable'      : 'warn',
-    '@typescript-eslint/require-await'       : 'off',
   } as Rules,
 }
 // endregion
@@ -866,10 +810,12 @@ const rulesSvelte = {
     'no-self-assign'         : 'off',
     'no-unused-expressions'  : ['off', {'allowShortCircuit': true}],
     'no-multiple-empty-lines': 'off',
+    'no-unused-vars'         : 'off',
     'prefer-const'           : 'off',
     'brace-style'            : ['warn', 'stroustrup', {allowSingleLine: true}],
     'no-sequences'           : 'off',
     'no-return-assign'       : 'off',
+    'no-use-before-define'   : 'off',
     'comma-dangle'           : [
       'error',
       {
@@ -883,8 +829,6 @@ const rulesSvelte = {
   } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/no-unused-vars'      : 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
   } as Rules,
   ignore: {
     'unused-export-let'                : true,
@@ -926,11 +870,13 @@ export function jsRulesToTs(jsRules) {
 }
 
 function correctTsRules<TRules extends {js: Rules, ts: Rules}>(rules: TRules): TRules {
-  rules.ts = {
-    ...jsRulesToTs(rules.js),
-    ...rules.ts,
+  return {
+    ...rules,
+    ts: {
+      ...jsRulesToTs(rules.js),
+      ...rules.ts,
+    },
   }
-  return rules
 }
 
 export const rulesOrig = {
