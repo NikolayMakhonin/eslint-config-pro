@@ -3,6 +3,7 @@ import {config} from './config'
 import {ESLint} from 'eslint'
 import {Rules, rules, rulesOrig} from './rules'
 import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
+import globby from 'globby'
 import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const esPluginRules = require(path.resolve('./node_modules/eslint', 'lib/rules/index'))
@@ -18,20 +19,34 @@ describe('basic', function () {
 })
 
 describe('validate-config', function () {
-  this.timeout(10000)
+  this.timeout(60000)
 
   it('load config in eslint to validate all rule syntax is correct', async function () {
+    const files = await globby([
+      '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
+    ])
+    console.log(files)
     const eslint = new ESLint({
-      useEslintrc: false,
+      useEslintrc: true,
     })
+    // for (const file of files) {
+    //   try {
+    //     const config = await eslint.calculateConfigForFile(file)
+    //     console.log(config.rules['dot-notation'])
+    //   }
+    //   catch (err) {
+    //     console.error(file)
+    //     throw err
+    //   }
+    // }
 
-    const code = '\'use strict\'\n'
-
-    const result = await eslint.lintText(code)
-    console.log(JSON.stringify(result))
-    const log = JSON.stringify(result, null, 2)
-    assert.strictEqual(result.length, 1, log)
-    assert.strictEqual(result[0].errorCount, 0, log)
+    for (let i = 0; i < 10; i++) {
+      const result = await eslint.lintFiles(files)
+      // console.log(JSON.stringify(result))
+      const log = JSON.stringify(result, null, 2)
+      assert.strictEqual(result.length, files.length, log)
+      assert.strictEqual(result[0].errorCount, 0, log)
+    }
   })
 })
 

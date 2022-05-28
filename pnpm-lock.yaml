@@ -23,6 +23,7 @@ specifiers:
   eslint-plugin-node: ^11.1.0
   eslint-plugin-svelte3: '>=4.0.0'
   fs-extra: ^10.1.0
+  globby: '11'
   json5: ^2.2.1
   lodash: ^4.17.21
   mocha: ^9.2.2
@@ -64,6 +65,7 @@ devDependencies:
   eslint-plugin-html: 6.2.0
   eslint-plugin-svelte3: 4.0.0_vypdqzeyqutkgs6qzc7qod4c64
   fs-extra: 10.1.0
+  globby: 11.1.0
   json5: 2.2.1
   lodash: 4.17.21
   mocha: 9.2.2
@@ -2019,7 +2021,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: false
 
   /globby/9.2.0:
     resolution: {integrity: sha512-ollPHROa5mcxDEkwg6bPt3QbEf4pDQSNtd6JPL1YvOvAo/7/0VAm9TccUeoTmarjPw4pfUthSCqcyfNB1I3ZSg==}

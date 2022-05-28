@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tsRuleNames = require('./tsRuleNames.js');
 
-/* eslint-disable dot-notation, quote-props, @typescript-eslint/dot-notation */
+/* eslint-disable quote-props */
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
 const rulesJavaScript = {
@@ -551,11 +551,13 @@ const rulesJavaScript = {
     'template-tag-spacing': ['warn', 'always'],
     'unicode-bom': ['error', 'never'],
     'dot-location': ['warn', 'property'],
-    'dot-notation': [
-        'warn', {
-            allowKeywords: true,
-        },
-    ],
+    // doe to this error: https://github.com/standard/eslint-config-standard-with-typescript/issues/303
+    'dot-notation': 'off',
+    // 'dot-notation'        : [
+    //   'warn', {
+    //     allowKeywords: true,
+    //   },
+    // ],
     'default-case-last': 'warn',
     camelcase: 'off',
     'consistent-this': 'off',
