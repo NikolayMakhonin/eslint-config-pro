@@ -1,12 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+<script lang="ts">
+  import {onMount} from 'svelte'
+  type Type = {
+    prop: {[key: string]: any}
+  }
+  let x: Type
+  function init(value: Type) {
+    x = value
+  }
+  onMount(() => {
+    init({} as Type)
+    console.log(x)
+  })
+</script>
+
 <body>
 
 </body>
-</html>
