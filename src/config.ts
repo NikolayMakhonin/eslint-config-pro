@@ -92,6 +92,7 @@ export const config = {
         ].filter(o => o),
       },
       rules: {
+        ...rules.common.js,
         ...rules.common.ts,
         // 'no-undef': 'off', // due to: https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       },
