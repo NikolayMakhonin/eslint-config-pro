@@ -1,4 +1,4 @@
-declare type Rules = Record<string, string | [level: string, ...options: any]>;
+export declare type Rules = Record<string, string | [level: string, ...options: any]>;
 export declare const rules: {
     common: {
         js: Rules;
@@ -18,4 +18,3 @@ export declare const rules: {
         ignore: Record<string, boolean>;
     };
 };
-export {};

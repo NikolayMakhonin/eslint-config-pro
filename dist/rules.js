@@ -644,7 +644,6 @@ const rulesJavaScript = {
         }],
     // endregion
 };
-// endregion
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript = {
@@ -690,7 +689,7 @@ const rulesTypeScript = {
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'no-extra-semi': 'off',
-    '@typescript-eslint/no-extra-semi': ['warn'],
+    '@typescript-eslint/no-extra-semi': 'warn',
     '@typescript-eslint/no-misused-promises': [
         'off',
         {
@@ -706,6 +705,8 @@ const rulesTypeScript = {
             objectLiteralTypeAssertions: 'allow-as-parameter',
         },
     ],
+    'require-await': 'off',
+    '@typescript-eslint/require-await': 'error',
     // TypeError: Cannot read property '0' of undefined Occurred while linting
     // https://github.com/typescript-eslint/typescript-eslint/blob/1d55a7511b38d8e2b2eabe59f639e0a865e6c93f/packages/eslint-plugin/src/rules/unbound-method.ts#L272
     // decl.parameters is undefined
@@ -766,6 +767,10 @@ const rulesTestsAndEnv = {
         '@typescript-eslint/no-shadow': 'off',
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
+        'require-await': 'off',
+        '@typescript-eslint/require-await': 'warn',
+        'no-loop-func': 'off',
+        '@typescript-eslint/no-loop-func': 'warn',
     },
 };
 // endregion

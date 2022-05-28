@@ -1,8 +1,10 @@
+/* eslint-disable guard-for-in */
 import {config} from './config'
 import {ESLint} from 'eslint'
 import {Rules, rules} from './rules'
 import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
 import path from 'path'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const esPluginRules = require(path.resolve('./node_modules/eslint', 'lib/rules/index'))
 
 describe('basic', function () {
@@ -33,38 +35,45 @@ describe('validate-config', function () {
   })
 })
 
-describe('validate typescript configs', function () {
-  function jsKeyIsValid(key: string) {
-    if (/^\w+\//.test(key)) {
+describe('validate rules', function () {
+  function jsKeyIsValid(jsKey: string) {
+    if (/^\w+\//.test(jsKey)) {
       return true
     }
-    return !!esPluginRules.get(key)
+    return !jsKey.startsWith('@typescript-eslint/')
+      && !!esPluginRules.get(jsKey)
   }
+
   function tsKeyIsValid(tsKey: string) {
     const jsKey = tsKey.replace(/^@typescript-eslint\//, '')
     return tsKey !== jsKey && !!tsPluginRules[jsKey]
   }
+
   function getRuleLevel(rule: string | string[]) {
     return Array.isArray(rule) ? rule[0] : rule
   }
+
   const options = {
     ignoreRuleEquals: {
       'no-shadow'           : true,
       'no-use-before-define': true,
     },
   }
+
   function checkTypescriptRules(rules: {js: Rules, ts: Rules}[]) {
     const jsRules = Object.assign({}, ...rules.map(o => o.js))
     const tsRules = Object.assign({}, ...rules.map(o => o.ts))
+    const jsTsRules = Object.assign({}, ...rules.flatMap(o => [o.js, o.ts]))
     for (const jsKey in jsRules) {
       const jsRule = jsRules[jsKey]
       assert.ok(jsKeyIsValid(jsKey), `JS: ${jsKey} is invalid`)
       const tsKey = '@typescript-eslint/' + jsKey
+      assert.ok(jsKey in jsTsRules)
       if (tsKeyIsValid(tsKey)) {
         const tsRule = tsRules[tsKey]
         const jsRuleInTs = tsRules[jsKey]
+        assert.ok(tsRule, `TS: ${tsKey} should be specified`)
         if (tsRule || jsRuleInTs) {
-          assert.ok(tsRule, `TS: ${tsKey} should be specified`)
           if (getRuleLevel(tsRule) !== 'off') {
             assert.ok(jsRuleInTs, `TS: ${jsKey} should be specified`)
             assert.strictEqual(
@@ -102,13 +111,18 @@ describe('validate typescript configs', function () {
     }
   }
 
-  it('test basic properties of config', function () {
+  it('base', function () {
+    // console.log(JSON.stringify(Object.keys(tsPluginRules), null, 2))
     checkTypescriptRules([
       rules.common,
     ])
     checkTypescriptRules([
       rules.common,
       rules.svelte,
+    ])
+    checkTypescriptRules([
+      rules.common,
+      rules.tests,
     ])
     checkTypescriptRules([
       rules.common,
@@ -117,11 +131,23 @@ describe('validate typescript configs', function () {
     checkTypescriptRules([
       rules.common,
       rules.tests,
+      rules.envTools,
     ])
     checkTypescriptRules([
       rules.common,
       rules.svelte,
       rules.tests,
+    ])
+    checkTypescriptRules([
+      rules.common,
+      rules.svelte,
+      rules.envTools,
+    ])
+    checkTypescriptRules([
+      rules.common,
+      rules.svelte,
+      rules.tests,
+      rules.envTools,
     ])
   })
 })

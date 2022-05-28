@@ -1,5 +1,7 @@
 /* eslint-disable dot-notation, quote-props */
 
+import {tsRuleNames} from './tsRuleNames'
+
 export type Rules = Record<string, string | [level: string, ...options: any]>
 
 // region rulesJavaScript
@@ -677,10 +679,6 @@ const rulesJavaScript: Rules = {
 }
 // endregion
 
-function convertJsToTs() {
-
-}
-
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript: Rules = {
@@ -796,6 +794,10 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-unsafe-return'              : 'off',
   '@typescript-eslint/no-floating-promises'          : 'error',
   '@typescript-eslint/await-thenable'                : 'error',
+  '@typescript-eslint/no-magic-numbers'              : 'off',
+  '@typescript-eslint/no-restricted-imports'         : 'off',
+  'no-throw-literal'                                 : 'off',
+  '@typescript-eslint/no-throw-literal'              : 'error',
 }
 // endregion
 
@@ -908,12 +910,35 @@ const rulesEnvTools = {
 }
 // endregion
 
+function jsRulesToTs(jsRules) {
+  const tsRules = {}
+  for (const jsKey in jsRules) {
+    if (
+      Object.prototype.hasOwnProperty.call(jsRules, jsKey)
+      && tsRuleNames.has(jsKey)
+    ) {
+      const tsKey = '@typescript-eslint/' + jsKey
+      tsRules[jsKey] = 'off'
+      tsRules[tsKey] = jsRules[jsKey]
+    }
+  }
+  return tsRules
+}
+
+function correctTsRules<TRules extends {js: Rules, ts: Rules}>(rules: TRules): TRules {
+  rules.ts = {
+    ...jsRulesToTs(rules.js),
+    ...rules.ts,
+  }
+  return rules
+}
+
 export const rules = {
-  common: {
+  common: correctTsRules({
     js: rulesJavaScript,
     ts: rulesTypeScript,
-  },
-  tests   : rulesTests,
-  envTools: rulesEnvTools,
-  svelte  : rulesSvelte,
+  }),
+  tests   : correctTsRules(rulesTests),
+  envTools: correctTsRules(rulesEnvTools),
+  svelte  : correctTsRules(rulesSvelte),
 }
