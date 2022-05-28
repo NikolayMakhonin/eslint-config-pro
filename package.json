@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-
+    "pnpm": "^7.1.6"
   },
   "repository": {
     "type": "git",
@@ -76,6 +76,7 @@
     "json5": "^2.2.1",
     "lodash": "^4.17.21",
     "mocha": "^9.2.2",
+    "multimatch": "^5.0.0",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
@@ -93,10 +94,10 @@
     "typescript": ">=3.3.1"
   },
   "dependencies": {
-    "tslib": "^2.3.1",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "tslib": "^2.3.1"
   }
 }
