@@ -301,7 +301,7 @@ const rulesJavaScript = {
     'brace-style': ['warn', 'stroustrup', { allowSingleLine: false }],
     // camelcase      : [ 'error', { ignoreDestructuring: true }],
     'comma-dangle': [
-        'error',
+        'warn',
         {
             arrays: 'always-multiline',
             objects: 'always-multiline',
@@ -652,6 +652,10 @@ const rulesJavaScript = {
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript = {
+    '@typescript-eslint/comma-dangle': [
+        'warn',
+        Object.assign(Object.assign({}, rulesJavaScript['comma-dangle'][1]), { enums: 'always-multiline', generics: 'always-multiline', tuples: 'always-multiline' }),
+    ],
     '@typescript-eslint/no-shadow': [
         'off',
         Object.assign(Object.assign({}, rulesJavaScript['no-shadow'][1]), { hoist: 'never', ignoreTypeValueShadow: false, ignoreFunctionTypeParameterNameValueShadow: true }),
@@ -759,18 +763,16 @@ const rulesSvelte = {
         'no-return-assign': 'off',
         'no-use-before-define': 'off',
         'comma-dangle': [
-            'error',
-            {
-                arrays: 'always-multiline',
-                objects: 'always-multiline',
-                imports: 'always-multiline',
-                exports: 'always-multiline',
-                functions: 'only-multiline', // fix this svelte bug: <a {href,} />
-            },
+            'warn',
+            Object.assign(Object.assign({}, rulesJavaScript['comma-dangle'][1]), { functions: 'only-multiline' }),
         ],
     },
     ts: {
         '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/comma-dangle': [
+            'warn',
+            Object.assign(Object.assign({}, rulesTypeScript['@typescript-eslint/comma-dangle'][1]), { functions: 'only-multiline' }),
+        ],
     },
     ignore: {
         'unused-export-let': true,

@@ -322,7 +322,7 @@ const rulesJavaScript: Rules = {
   'brace-style'  : ['warn', 'stroustrup', {allowSingleLine: false}],
   // camelcase      : [ 'error', { ignoreDestructuring: true }],
   'comma-dangle' : [
-    'error',
+    'warn',
     {
       arrays   : 'always-multiline',
       objects  : 'always-multiline',
@@ -686,6 +686,16 @@ const rulesJavaScript: Rules = {
 // region rulesTypeScript
 // docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
 const rulesTypeScript: Rules = {
+  '@typescript-eslint/comma-dangle': [
+    'warn',
+    {
+      ...rulesJavaScript['comma-dangle'][1],
+      enums   : 'always-multiline',
+      generics: 'always-multiline',
+      tuples  : 'always-multiline',
+    },
+  ],
+
   '@typescript-eslint/no-shadow': [
     'off',
     {
@@ -821,18 +831,22 @@ const rulesSvelte = {
     'no-return-assign'       : 'off',
     'no-use-before-define'   : 'off',
     'comma-dangle'           : [
-      'error',
+      'warn',
       {
-        arrays   : 'always-multiline',
-        objects  : 'always-multiline',
-        imports  : 'always-multiline',
-        exports  : 'always-multiline',
+        ...rulesJavaScript['comma-dangle'][1],
         functions: 'only-multiline', // fix this svelte bug: <a {href,} />
       },
     ],
   } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/comma-dangle'        : [
+      'warn',
+      {
+        ...rulesTypeScript['@typescript-eslint/comma-dangle'][1],
+        functions: 'only-multiline', // fix this svelte bug: <a {href,} />
+      },
+    ],
   } as Rules,
   ignore: {
     'unused-export-let'                : true,

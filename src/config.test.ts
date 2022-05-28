@@ -72,6 +72,7 @@ describe('validate rules', function () {
     ignoreRuleEquals: {
       'no-shadow'           : true,
       'no-use-before-define': true,
+      'comma-dangle'        : true,
     },
   }
 
