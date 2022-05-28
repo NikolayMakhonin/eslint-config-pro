@@ -518,7 +518,8 @@ const rulesJavaScript = {
         },
     ],
     'space-in-parens': ['warn', 'never', { exceptions: [] }],
-    'space-infix-ops': ['error', { int32Hint: true }],
+    // disabled because it can't ignore Promise<void>|void
+    'space-infix-ops': ['off', { int32Hint: true }],
     'space-unary-ops': [
         'error',
         {

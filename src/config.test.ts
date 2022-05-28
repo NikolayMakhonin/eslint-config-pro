@@ -18,38 +18,6 @@ describe('basic', function () {
   })
 })
 
-describe('validate-config', function () {
-  this.timeout(60000)
-
-  it('load config in eslint to validate all rule syntax is correct', async function () {
-    const files = await globby([
-      '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
-    ])
-    console.log(files)
-    const eslint = new ESLint({
-      useEslintrc: true,
-    })
-    // for (const file of files) {
-    //   try {
-    //     const config = await eslint.calculateConfigForFile(file)
-    //     console.log(config.rules['dot-notation'])
-    //   }
-    //   catch (err) {
-    //     console.error(file)
-    //     throw err
-    //   }
-    // }
-
-    for (let i = 0; i < 10; i++) {
-      const result = await eslint.lintFiles(files)
-      // console.log(JSON.stringify(result))
-      const log = JSON.stringify(result, null, 2)
-      assert.strictEqual(result.length, files.length, log)
-      assert.strictEqual(result[0].errorCount, 0, log)
-    }
-  })
-})
-
 describe('validate rules', function () {
   function jsKeyIsValid(jsKey: string) {
     if (/^\w+\//.test(jsKey)) {
@@ -199,5 +167,54 @@ describe('validate rules', function () {
     checkRulesOrig(rulesOrig.tests)
     checkRulesOrig(rulesOrig.svelte)
     checkRulesOrig(rulesOrig.envTools)
+  })
+
+  it('new rules', function () {
+    const newRules = []
+    for (const key of esPluginRules.keys()) {
+      if (!rules.common.js[key]) {
+        newRules.push(key)
+      }
+    }
+    for (const key in tsPluginRules) {
+      const tsKey = '@typescript-eslint/' + key
+      if (!rules.common.ts[tsKey]) {
+        newRules.push(tsKey)
+      }
+    }
+
+    assert.ok(newRules.length === 0, `new rules:\n${newRules.join('\n')}`)
+  })
+})
+
+describe('validate-config', function () {
+  this.timeout(60000)
+
+  it('load config in eslint to validate all rule syntax is correct', async function () {
+    const files = await globby([
+      '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
+    ])
+    console.log(files)
+    const eslint = new ESLint({
+      useEslintrc: true,
+    })
+    // for (const file of files) {
+    //   try {
+    //     const config = await eslint.calculateConfigForFile(file)
+    //     console.log(config.rules['dot-notation'])
+    //   }
+    //   catch (err) {
+    //     console.error(file)
+    //     throw err
+    //   }
+    // }
+
+    for (let i = 0; i < 10; i++) {
+      const result = await eslint.lintFiles(files)
+      // console.log(JSON.stringify(result))
+      const log = JSON.stringify(result, null, 2)
+      assert.strictEqual(result.length, files.length, log)
+      assert.strictEqual(result[0].errorCount, 0, log)
+    }
   })
 })

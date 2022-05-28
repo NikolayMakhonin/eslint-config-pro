@@ -144,6 +144,7 @@ const rulesJavaScript: Rules = {
   'no-unreachable'               : 'warn',
   'require-atomic-updates'       : ['error', { allowProperties: true }],
   'no-new-func'                  : 'error',
+  'no-constant-binary-expression': 'error',
 
   // endregion
 
@@ -542,7 +543,8 @@ const rulesJavaScript: Rules = {
     },
   ],
   'space-in-parens': ['warn', 'never', {exceptions: []}],
-  'space-infix-ops': ['error', {int32Hint: true}],
+  // disabled because it can't ignore Promise<void>|void
+  'space-infix-ops': ['off', {int32Hint: true}],
   'space-unary-ops': [
     'error',
     {
@@ -764,6 +766,7 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-unsafe-return'              : 'off',
   '@typescript-eslint/no-floating-promises'          : 'error',
   '@typescript-eslint/await-thenable'                : 'error',
+  '@typescript-eslint/adjacent-overload-signatures'                : 'warn',
 }
 // endregion
 
