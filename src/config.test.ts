@@ -183,7 +183,7 @@ describe('validate rules', function () {
       }
     }
 
-    assert.ok(newRules.length === 0, `new rules:\n${newRules.join('\n')}`)
+    assert.ok(newRules.length === 0, `new rules (${newRules.length}):\n${newRules.join('\n')}`)
   })
 })
 

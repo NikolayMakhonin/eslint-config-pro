@@ -117,6 +117,7 @@ const rulesJavaScript: Rules = {
   'valid-jsdoc'                    : 'off',
   'valid-typeof'                   : 'error',
   'wrap-regex'                     : 'off',
+  'prefer-object-has-own'          : 'off',
 
   // endregion
 
@@ -138,13 +139,16 @@ const rulesJavaScript: Rules = {
       enforceForFunctionPrototypeMethods: true,
     },
   ],
-  'no-misleading-character-class': 'error',
-  'no-prototype-builtins'        : 'error',
-  'no-template-curly-in-string'  : 'error',
-  'no-unreachable'               : 'warn',
-  'require-atomic-updates'       : ['error', { allowProperties: true }],
-  'no-new-func'                  : 'error',
-  'no-constant-binary-expression': 'error',
+  'no-misleading-character-class'  : 'error',
+  'no-prototype-builtins'          : 'error',
+  'no-template-curly-in-string'    : 'error',
+  'no-unreachable'                 : 'warn',
+  'require-atomic-updates'         : ['error', { allowProperties: true }],
+  'no-new-func'                    : 'error',
+  'no-constant-binary-expression'  : 'error',
+  'no-nonoctal-decimal-escape'     : 'error',
+  'no-unsafe-optional-chaining'    : 'error',
+  'no-unused-private-class-members': 'off',
 
   // endregion
 
@@ -766,7 +770,7 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-unsafe-return'              : 'off',
   '@typescript-eslint/no-floating-promises'          : 'error',
   '@typescript-eslint/await-thenable'                : 'error',
-  '@typescript-eslint/adjacent-overload-signatures'                : 'warn',
+  '@typescript-eslint/adjacent-overload-signatures'  : 'warn',
 }
 // endregion
 
