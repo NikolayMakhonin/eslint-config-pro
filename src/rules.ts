@@ -512,7 +512,9 @@ const rulesJavaScript: Rules = {
   'one-var-declaration-per-line': ['error', 'always'],
   'operator-assignment'         : ['off', 'always'],
   'operator-linebreak'          : [
-    'error', 'before', {
+    'warn',
+    'before',
+    {
       overrides: {'=': 'after'},
     },
   ],

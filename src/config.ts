@@ -21,6 +21,8 @@ export const config = {
     sourceType : 'module',
   },
   ignorePatterns: [
+    '**/.*/**',
+    '**/node_modules/**',
     '!**/.*',
     ...!features.svelte ? patterns.svelte : [],
     ...!features.html ? patterns.html : [],

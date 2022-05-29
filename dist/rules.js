@@ -115,6 +115,7 @@ const rulesJavaScript = {
     'valid-jsdoc': 'off',
     'valid-typeof': 'error',
     'wrap-regex': 'off',
+    'prefer-object-has-own': 'off',
     // endregion
     // region Possible Errors
     'no-async-promise-executor': 'error',
@@ -139,6 +140,10 @@ const rulesJavaScript = {
     'no-unreachable': 'warn',
     'require-atomic-updates': ['error', { allowProperties: true }],
     'no-new-func': 'error',
+    'no-constant-binary-expression': 'error',
+    'no-nonoctal-decimal-escape': 'error',
+    'no-unsafe-optional-chaining': 'error',
+    'no-unused-private-class-members': 'off',
     // endregion
     // region Best Practices
     'accessor-pairs': ['error', { setWithoutGet: true }],
@@ -483,7 +488,9 @@ const rulesJavaScript = {
     'one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': ['off', 'always'],
     'operator-linebreak': [
-        'error', 'before', {
+        'warn',
+        'before',
+        {
             overrides: { '=': 'after' },
         },
     ],
@@ -709,6 +716,7 @@ const rulesTypeScript = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/await-thenable': 'error',
+    '@typescript-eslint/adjacent-overload-signatures': 'warn',
 };
 // endregion
 // region rulesTestsAndEnv
