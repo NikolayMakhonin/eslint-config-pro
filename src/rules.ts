@@ -3,8 +3,9 @@
 /* eslint @typescript-eslint/dot-notation: ["warn", { allowKeywords: true }] */
 
 import {tsRuleNames} from './tsRuleNames'
+import {Linter} from 'eslint'
 
-export type Rules = Record<string, string | [level: string, ...options: any]>
+export type Rules = Linter.Config['rules'] // Record<string, string | [level: string, ...options: any]>
 
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
@@ -787,13 +788,12 @@ const rulesTestsAndEnv = {
     'func-name-matching'          : ['off', 'always'],
     'function-paren-newline'      : 'off',
     'new-cap'                     : 'off',
-    'no-debugger'                 : 'off',
+    'no-debugger'                 : 'warn',
     'no-empty'                    : 'off',
     'no-eval'                     : 'off',
     'no-loop-func'                : 'warn',
     'no-new'                      : 'off',
     'no-new-func'                 : 'off',
-    'no-throw-literal'            : 'off',
     'no-useless-call'             : 'off',
     'no-useless-catch'            : 'off',
     'prefer-const'                : 'off',
@@ -817,7 +817,9 @@ const rulesTestsAndEnv = {
 const rulesTests = {
   js: {
     ...rulesTestsAndEnv.js,
-    'require-await': 'off',
+    'no-throw-literal': 'off',
+    'require-await'   : 'off',
+    'no-debugger'     : 'off',
   } as Rules,
   ts: {
     ...rulesTestsAndEnv.ts,

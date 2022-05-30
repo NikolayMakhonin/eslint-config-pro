@@ -5,6 +5,7 @@ import {Rules, rules, rulesOrig} from './rules'
 import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
 import globby from 'globby'
 import path from 'path'
+import {createTestVariants} from '@flemist/test-variants'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const esPluginRules = require(path.resolve('./node_modules/eslint', 'lib/rules/index'))
 
@@ -216,5 +217,123 @@ describe('validate-config', function () {
       assert.strictEqual(result.length, files.length, log)
       assert.strictEqual(result[0].errorCount, 0, log)
     }
+  })
+
+  async function checkFileFilter({
+    eslint,
+    file,
+    type,
+    test,
+    envTools,
+  }: {
+    eslint: ESLint,
+    file: string,
+    type?: 'js' | 'cjs' | 'mjs' | 'ts' | 'svelte' | 'html',
+    test?: boolean,
+    envTools?: boolean,
+  }) {
+    const absolutePath = path.resolve(file)
+    const config = await eslint.calculateConfigForFile(absolutePath)
+
+    const ruleNames = Object.keys(config.rules)
+    const isTypeScript = type === 'ts' || type === 'svelte'
+
+    // cjs
+    assert.deepStrictEqual(config.parserOptions.sourceType, type === 'cjs' || type === 'html' ? 'script' : 'module')
+
+    // mjs
+    assert.deepStrictEqual(config.rules['global-require'], type === 'mjs' ? ['error'] : ['off'])
+
+    // ts
+    assert.strictEqual(ruleNames.some(o => o.startsWith('@typescript-eslint/')), isTypeScript)
+
+    // svelte
+    assert.strictEqual(!!config.settings['svelte3/typescript'], type === 'svelte')
+
+    // html
+    assert.deepStrictEqual(config.rules['semi-style'], type === 'html' ? ['error', 'last'] : ['warn', 'first'])
+    assert.deepStrictEqual(config.parserOptions.ecmaVersion, type === 'html' ? 5 : 'latest')
+
+    assert.strictEqual(config.env.es6, type !== 'html')
+    assert.strictEqual(config.env.browser, type === 'html' || type === 'js' || isTypeScript)
+    assert.strictEqual(config.env.node, !(type === 'svelte' || type === 'html'))
+
+    // test
+    assert.deepStrictEqual(
+      config.rules[isTypeScript ? '@typescript-eslint/require-await' : 'require-await']?.[0] === 'off',
+      test,
+    )
+    assert.strictEqual(!!config.env.mocha, test)
+
+    // envTools
+    assert.deepStrictEqual(
+      config.rules[isTypeScript ? 'func-names' : 'func-names']?.[0] === 'off',
+      test || envTools,
+      JSON.stringify([
+        config.rules['func-names'],
+        config.rules['@typescript-eslint/func-names'],
+      ]),
+    )
+  }
+  
+  const testVariants = createTestVariants(checkFileFilter)
+
+  let eslint: ESLint
+  before(function () {
+    eslint = new ESLint({
+      useEslintrc: false,
+      baseConfig : config,
+    })
+  })
+
+  it('src', async function () {
+    await testVariants({
+      eslint  : [eslint],
+      type    : ['js', 'cjs', 'mjs', 'ts', 'svelte', 'html'],
+      envTools: [false, true],
+      test    : [false, true],
+      ext     : ({type}) => {
+        const exts: string[] = [type]
+        if (type === 'js' || type === 'ts') {
+          exts.push(type + 'x')
+        }
+        return exts
+      },
+      file({type, ext, envTools, test}) {
+        const files = []
+        if (envTools && !test) {
+          if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
+            files.push('file.' + ext)
+            files.push('dir/.file.' + ext)
+            files.push('dir/dir/.file.' + ext)
+            files.push('env/file.' + ext)
+            files.push('tools/file.' + ext)
+            files.push('deploy/file.' + ext)
+          }
+        }
+        else if (test && !envTools) {
+          if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
+            files.push('dir/file.test.' + ext)
+            files.push('dir/file.e2e.' + ext)
+            files.push('dir/file.perf.' + ext)
+            files.push('test/file.' + ext)
+            files.push('tests/file.' + ext)
+          }
+        }
+        else if (!test && !envTools) {
+          files.push('dir/file.' + ext)
+          files.push('dir/dir/file.' + ext)
+          if (type === 'html' || type === 'svelte' || ext === 'jsx' || ext === 'tsx') {
+            files.push('file.' + ext)
+            files.push('file.test.' + ext)
+            files.push('file.e2e.' + ext)
+            files.push('file.config.' + ext)
+            files.push('test/file.' + ext)
+            files.push('env/file.' + ext)
+          }
+        }
+        return files
+      },
+    })
   })
 })

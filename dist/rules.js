@@ -730,13 +730,12 @@ const rulesTestsAndEnv = {
         'func-name-matching': ['off', 'always'],
         'function-paren-newline': 'off',
         'new-cap': 'off',
-        'no-debugger': 'off',
+        'no-debugger': 'warn',
         'no-empty': 'off',
         'no-eval': 'off',
         'no-loop-func': 'warn',
         'no-new': 'off',
         'no-new-func': 'off',
-        'no-throw-literal': 'off',
         'no-useless-call': 'off',
         'no-useless-catch': 'off',
         'prefer-const': 'off',
@@ -755,7 +754,7 @@ const rulesTestsAndEnv = {
 // endregion
 // region rulesTests
 const rulesTests = {
-    js: Object.assign(Object.assign({}, rulesTestsAndEnv.js), { 'require-await': 'off' }),
+    js: Object.assign(Object.assign({}, rulesTestsAndEnv.js), { 'no-throw-literal': 'off', 'require-await': 'off', 'no-debugger': 'off' }),
     ts: Object.assign(Object.assign({}, rulesTestsAndEnv.ts), { '@typescript-eslint/no-floating-promises': 'off', '@typescript-eslint/await-thenable': 'warn' }),
 };
 // endregion

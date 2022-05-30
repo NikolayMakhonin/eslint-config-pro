@@ -35,6 +35,9 @@ const config = {
         // region *.cjs
         {
             files: patterns.cjs,
+            env: {
+                browser: false,
+            },
             plugins: ['node'],
             rules: {
                 'global-require': 'off',
@@ -57,6 +60,9 @@ const config = {
         // region *.mjs
         {
             files: patterns.mjs,
+            env: {
+                browser: false,
+            },
             plugins: ['node'],
             rules: {
                 'global-require': 'error',
@@ -105,9 +111,7 @@ const config = {
             files: patterns.svelte,
             processor: 'svelte3/svelte3',
             env: {
-                es6: true,
                 node: false,
-                browser: true,
             },
             plugins: ['svelte3'],
             rules: Object.assign(Object.assign({}, rules.rules.svelte.js), rules.rules.svelte.ts),
@@ -135,7 +139,6 @@ const config = {
             env: {
                 es6: false,
                 node: false,
-                browser: true,
             },
             plugins: ['html'],
             parser: 'espree',
@@ -190,7 +193,8 @@ const config = {
                 }],
         },
         // endregion
-    ].filter(o => { var _a; return (_a = o === null || o === void 0 ? void 0 : o.files) === null || _a === void 0 ? void 0 : _a.length; }),
+    ],
 };
+config.overrides = config.overrides.filter(o => { var _a; return (_a = o === null || o === void 0 ? void 0 : o.files) === null || _a === void 0 ? void 0 : _a.length; });
 
 exports.config = config;

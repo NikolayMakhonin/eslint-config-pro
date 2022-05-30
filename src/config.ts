@@ -2,8 +2,9 @@
 import * as features from './features'
 import * as patterns from './patterns'
 import {rules} from './rules'
+import {Linter} from 'eslint'
 
-export const config = {
+export const config: Linter.Config = {
   extends: [
     'eslint:recommended',
   ],
@@ -30,7 +31,10 @@ export const config = {
   overrides: [
     // region *.cjs
     {
-      files  : patterns.cjs,
+      files: patterns.cjs,
+      env  : {
+        browser: false,
+      },
       plugins: ['node'],
       rules  : {
         'global-require': 'off',
@@ -52,7 +56,10 @@ export const config = {
     // endregion
     // region *.mjs
     {
-      files  : patterns.mjs,
+      files: patterns.mjs,
+      env  : {
+        browser: false,
+      },
       plugins: ['node'],
       rules  : {
         'global-require': 'error',
@@ -105,9 +112,7 @@ export const config = {
       files    : patterns.svelte,
       processor: 'svelte3/svelte3',
       env      : {
-        es6    : true,
-        node   : false,
-        browser: true,
+        node: false,
       },
       plugins: ['svelte3'],
       rules  : {
@@ -136,9 +141,8 @@ export const config = {
         'comma-dangle'      : 'off',
       },
       env: {
-        es6    : false,
-        node   : false,
-        browser: true,
+        es6 : false,
+        node: false,
       },
       plugins : ['html'],
       parser  : 'espree',
@@ -201,5 +205,7 @@ export const config = {
       }],
     },
     // endregion
-  ].filter(o => o?.files?.length),
+  ],
 }
+
+config.overrides = config.overrides.filter(o => o?.files?.length)
