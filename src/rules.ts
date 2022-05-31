@@ -817,6 +817,24 @@ const rulesTypeScript: Rules = {
     allowWithDecorator: true,
   }],
   '@typescript-eslint/no-for-in-array': 'error',
+  '@typescript-eslint/no-invalid-void-type': 'warn',
+  '@typescript-eslint/no-meaningless-void-operator': 'warn',
+  '@typescript-eslint/no-misused-new': 'warn',
+  '@typescript-eslint/no-namespace': 'off',
+  '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
+  '@typescript-eslint/no-non-null-asserted-optional-chain': 'warn',
+  '@typescript-eslint/no-redundant-type-constituents': 'warn',
+  '@typescript-eslint/no-require-imports': 'off',
+  '@typescript-eslint/no-type-alias': 'off',
+  '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+  '@typescript-eslint/no-unnecessary-condition': 'warn',
+  '@typescript-eslint/no-unnecessary-qualifier': 'warn',
+  '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+  '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+  '@typescript-eslint/no-unnecessary-type-constraint': 'warn',
+  '@typescript-eslint/no-useless-empty-export': 'warn',
+  '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+  '@typescript-eslint/parameter-properties': ['warn', { "prefer": "class-property" }],
 }
 // endregion
 
@@ -851,7 +869,7 @@ const rulesTestsAndEnv = {
     'no-else-return'              : 'off',
   } as Rules,
   ts: {
-
+    '@typescript-eslint/no-unnecessary-condition': 'off',
   } as Rules,
 }
 // endregion
