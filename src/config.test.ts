@@ -261,7 +261,7 @@ describe('validate-config', function () {
     assert.deepStrictEqual(config.parserOptions.sourceType, type === 'cjs' || type === 'html' ? 'script' : 'module')
 
     // mjs
-    assert.deepStrictEqual(config.rules['global-require'], type === 'mjs' ? ['error'] : ['off'])
+    assert.deepStrictEqual(config.rules['node/global-require'], type === 'mjs' ? ['error'] : ['off'])
 
     // ts
     assert.strictEqual(ruleNames.some(o => o.startsWith('@typescript-eslint/')), isTypeScript)

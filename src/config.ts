@@ -37,7 +37,7 @@ export const config: Linter.Config = {
       },
       plugins: ['node'],
       rules  : {
-        'global-require': 'off',
+        'node/global-require': 'off',
       },
       parserOptions: {
         sourceType: 'script',
@@ -49,7 +49,7 @@ export const config: Linter.Config = {
       files  : patterns.js,
       plugins: ['node'],
       rules  : {
-        'global-require': 'off',
+        'node/global-require': 'off',
         'strict'        : 'off',
       },
     },
@@ -62,7 +62,7 @@ export const config: Linter.Config = {
       },
       plugins: ['node'],
       rules  : {
-        'global-require': 'error',
+        'node/global-require': 'error',
       },
     },
     // endregion
