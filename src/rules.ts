@@ -17,13 +17,13 @@ const rulesJavaScript: Rules = {
   'constructor-super'     : 'error',
   'for-direction'         : 'error',
   'getter-return'         : 'error',
-  'id-blacklist'          : 'off',
+  // 'id-blacklist'          : 'off', // deprecated
   'id-length'             : 'off',
   'id-match'              : 'off',
-  'indent-legacy'         : 'off',
+  // 'indent-legacy'         : 'off', // deprecated
   'jsx-quotes'            : 'off',
   'line-comment-position' : 'off',
-  'lines-around-directive': 'off',
+  // 'lines-around-directive': 'off', // deprecated
   'max-classes-per-file'  : 'off',
   'max-depth'             : 'off',
   'max-len'               : [
@@ -45,11 +45,11 @@ const rulesJavaScript: Rules = {
   'max-params'                     : 'off',
   'max-statements'                 : 'off',
   'max-statements-per-line'        : 'off',
-  'newline-after-var'              : 'off',
-  'newline-before-return'          : 'off',
+  // 'newline-after-var'              : 'off', // deprecated
+  // 'newline-before-return'          : 'off', // deprecated
   'no-bitwise'                     : 'off',
   'no-case-declarations'           : 'error',
-  'no-catch-shadow'                : 'off',
+  // 'no-catch-shadow'                : 'off', // deprecated
   'no-class-assign'                : 'error',
   'no-compare-neg-zero'            : 'error',
   'no-cond-assign'                 : 'error',
@@ -78,8 +78,8 @@ const rulesJavaScript: Rules = {
   'no-irregular-whitespace'        : 'error',
   'no-magic-numbers'               : 'off',
   'no-multi-assign'                : 'off',
-  'no-native-reassign'             : 'off',
-  'no-negated-in-lhs'              : 'off',
+  // 'no-native-reassign'             : 'off', // deprecated
+  // 'no-negated-in-lhs'              : 'off', // deprecated
   'no-new-symbol'                  : 'error',
   'no-obj-calls'                   : 'error',
   'no-octal'                       : 'error',
@@ -89,11 +89,11 @@ const rulesJavaScript: Rules = {
   'no-regex-spaces'                : 'error',
   'no-restricted-globals'          : 'off',
   'no-restricted-imports'          : 'off',
-  'no-restricted-modules'          : 'off',
+  // 'no-restricted-modules'          : 'off', // deprecated
   'no-restricted-properties'       : 'off',
   'no-restricted-syntax'           : 'off',
   'no-self-assign'                 : 'error',
-  'no-spaced-func'                 : 'off',
+  // 'no-spaced-func'                 : 'off', // deprecated
   'no-sparse-arrays'               : 'error',
   'no-ternary'                     : 'off',
   'no-this-before-super'           : 'error',
@@ -107,15 +107,15 @@ const rulesJavaScript: Rules = {
   'no-void'                        : 'off',
   'padding-line-between-statements': 'off',
   'prefer-promise-reject-errors'   : 'off',
-  'prefer-reflect'                 : 'off',
-  'require-jsdoc'                  : 'off',
+  // 'prefer-reflect'                 : 'off', // deprecated
+  // 'require-jsdoc'                  : 'off', // deprecated
   'require-unicode-regexp'         : 'off',
   'require-yield'                  : 'warn',
   'sort-imports'                   : 'off',
   'sort-keys'                      : 'off',
   'sort-vars'                      : 'off',
   'use-isnan'                      : 'error',
-  'valid-jsdoc'                    : 'off',
+  // 'valid-jsdoc'                    : 'off', // deprecated
   'valid-typeof'                   : 'error',
   'wrap-regex'                     : 'off',
   'prefer-object-has-own'          : 'off',
@@ -286,22 +286,22 @@ const rulesJavaScript: Rules = {
 
   // region Node.js and CommonJS
 
-  'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']],
-  'global-require'       : 'off',
-  'handle-callback-err'  : ['error', '^(err|error)$'],
-  'no-buffer-constructor': 'error',
-  'no-mixed-requires'    : [
-    'error',
-    {
-      grouping : false,
-      allowCall: true,
-    },
-  ],
-  'no-new-require' : 'error',
-  'no-path-concat' : 'error',
-  'no-process-env' : 'off',
-  'no-process-exit': 'off',
-  'no-sync'        : 'off',
+  // 'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']], // deprecated
+  // 'global-require'       : 'off', // deprecated
+  // 'handle-callback-err'  : ['error', '^(err|error)$'], // deprecated
+  // 'no-buffer-constructor': 'error', // deprecated
+  // 'no-mixed-requires'    : [
+  //   'error',
+  //   {
+  //     grouping : false,
+  //     allowCall: true,
+  //   },
+  // ], // deprecated
+  // 'no-new-require' : 'error', // deprecated
+  // 'no-path-concat' : 'error', // deprecated
+  // 'no-process-env' : 'off', // deprecated
+  // 'no-process-exit': 'off', // deprecated
+  // 'no-sync'        : 'off', // deprecated
 
   // endregion
 
@@ -672,7 +672,7 @@ const rulesJavaScript: Rules = {
   // endregion
   
   // region import
-  'no-duplicate-imports'     : ['off', {includeExports: false}],
+  // 'no-duplicate-imports'     : ['off', {includeExports: false}], // deprecated
   'import/no-duplicates'     : ['error', {considerQueryString: false}],
   'import/no-dynamic-require': 'off',
   'import/no-unresolved'     : 'off',
@@ -811,6 +811,12 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/no-duplicate-enum-values': 'error',
   '@typescript-eslint/no-dynamic-delete': 'off',
   '@typescript-eslint/no-extra-non-null-assertion': 'error',
+  '@typescript-eslint/no-extraneous-class': ['warn', {
+    allowConstructorOnly: true,
+    allowEmpty: true,
+    allowWithDecorator: true,
+  }],
+  '@typescript-eslint/no-for-in-array': 'error',
 }
 // endregion
 

@@ -170,20 +170,36 @@ describe('validate rules', function () {
     checkRulesOrig(rulesOrig.envTools)
   })
 
-  it('new rules', function () {
+  it('new or deprecated rules', function () {
+    const deprecatedRules = []
     const newRules = []
     for (const key of esPluginRules.keys()) {
-      if (!rules.common.js[key]) {
-        newRules.push(key)
+      const rule = esPluginRules.get(key)
+      if (rule.meta.deprecated) {
+        if (rules.common.js[key]) {
+          deprecatedRules.push(key)
+        }
+      } else {
+        if (!rules.common.js[key]) {
+          newRules.push(key)
+        }
       }
     }
     for (const key in tsPluginRules) {
+      const rule = tsPluginRules[key]
       const tsKey = '@typescript-eslint/' + key
-      if (!rules.common.ts[tsKey]) {
-        newRules.push(tsKey)
+      if (rule.meta.deprecated) {
+        if (rules.common.ts[tsKey]) {
+          deprecatedRules.push(tsKey)
+        }
+      } else {
+        if (!rules.common.ts[tsKey]) {
+          newRules.push(tsKey)
+        }
       }
     }
 
+    assert.ok(deprecatedRules.length === 0, `deprecated rules (${deprecatedRules.length}):\n${deprecatedRules.join('\n')}`)
     assert.ok(newRules.length === 0, `new rules (${newRules.length}):\n${newRules.join('\n')}`)
   })
 })
