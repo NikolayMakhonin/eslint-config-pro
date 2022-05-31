@@ -14,13 +14,13 @@ const rulesJavaScript = {
     'constructor-super': 'error',
     'for-direction': 'error',
     'getter-return': 'error',
-    'id-blacklist': 'off',
+    // 'id-blacklist'          : 'off', // deprecated
     'id-length': 'off',
     'id-match': 'off',
-    'indent-legacy': 'off',
+    // 'indent-legacy'         : 'off', // deprecated
     'jsx-quotes': 'off',
     'line-comment-position': 'off',
-    'lines-around-directive': 'off',
+    // 'lines-around-directive': 'off', // deprecated
     'max-classes-per-file': 'off',
     'max-depth': 'off',
     'max-len': [
@@ -42,11 +42,11 @@ const rulesJavaScript = {
     'max-params': 'off',
     'max-statements': 'off',
     'max-statements-per-line': 'off',
-    'newline-after-var': 'off',
-    'newline-before-return': 'off',
+    // 'newline-after-var'              : 'off', // deprecated
+    // 'newline-before-return'          : 'off', // deprecated
     'no-bitwise': 'off',
     'no-case-declarations': 'error',
-    'no-catch-shadow': 'off',
+    // 'no-catch-shadow'                : 'off', // deprecated
     'no-class-assign': 'error',
     'no-compare-neg-zero': 'error',
     'no-cond-assign': 'error',
@@ -75,8 +75,8 @@ const rulesJavaScript = {
     'no-irregular-whitespace': 'error',
     'no-magic-numbers': 'off',
     'no-multi-assign': 'off',
-    'no-native-reassign': 'off',
-    'no-negated-in-lhs': 'off',
+    // 'no-native-reassign'             : 'off', // deprecated
+    // 'no-negated-in-lhs'              : 'off', // deprecated
     'no-new-symbol': 'error',
     'no-obj-calls': 'error',
     'no-octal': 'error',
@@ -86,11 +86,11 @@ const rulesJavaScript = {
     'no-regex-spaces': 'error',
     'no-restricted-globals': 'off',
     'no-restricted-imports': 'off',
-    'no-restricted-modules': 'off',
+    // 'no-restricted-modules'          : 'off', // deprecated
     'no-restricted-properties': 'off',
     'no-restricted-syntax': 'off',
     'no-self-assign': 'error',
-    'no-spaced-func': 'off',
+    // 'no-spaced-func'                 : 'off', // deprecated
     'no-sparse-arrays': 'error',
     'no-ternary': 'off',
     'no-this-before-super': 'error',
@@ -104,15 +104,15 @@ const rulesJavaScript = {
     'no-void': 'off',
     'padding-line-between-statements': 'off',
     'prefer-promise-reject-errors': 'off',
-    'prefer-reflect': 'off',
-    'require-jsdoc': 'off',
+    // 'prefer-reflect'                 : 'off', // deprecated
+    // 'require-jsdoc'                  : 'off', // deprecated
     'require-unicode-regexp': 'off',
     'require-yield': 'warn',
     'sort-imports': 'off',
     'sort-keys': 'off',
     'sort-vars': 'off',
     'use-isnan': 'error',
-    'valid-jsdoc': 'off',
+    // 'valid-jsdoc'                    : 'off', // deprecated
     'valid-typeof': 'error',
     'wrap-regex': 'off',
     'prefer-object-has-own': 'off',
@@ -267,22 +267,22 @@ const rulesJavaScript = {
     ],
     // endregion
     // region Node.js and CommonJS
-    'callback-return': ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']],
-    'global-require': 'off',
-    'handle-callback-err': ['error', '^(err|error)$'],
-    'no-buffer-constructor': 'error',
-    'no-mixed-requires': [
-        'error',
-        {
-            grouping: false,
-            allowCall: true,
-        },
-    ],
-    'no-new-require': 'error',
-    'no-path-concat': 'error',
-    'no-process-env': 'off',
-    'no-process-exit': 'off',
-    'no-sync': 'off',
+    // 'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']], // deprecated
+    // 'global-require'       : 'off', // deprecated
+    // 'handle-callback-err'  : ['error', '^(err|error)$'], // deprecated
+    // 'no-buffer-constructor': 'error', // deprecated
+    // 'no-mixed-requires'    : [
+    //   'error',
+    //   {
+    //     grouping : false,
+    //     allowCall: true,
+    //   },
+    // ], // deprecated
+    // 'no-new-require' : 'error', // deprecated
+    // 'no-path-concat' : 'error', // deprecated
+    // 'no-process-env' : 'off', // deprecated
+    // 'no-process-exit': 'off', // deprecated
+    // 'no-sync'        : 'off', // deprecated
     // endregion
     // region Stylistic Issues
     'array-bracket-newline': [
@@ -639,7 +639,7 @@ const rulesJavaScript = {
     'no-restricted-exports': 'off',
     // endregion
     // region import
-    'no-duplicate-imports': ['off', { includeExports: false }],
+    // 'no-duplicate-imports'     : ['off', {includeExports: false}], // deprecated
     'import/no-duplicates': ['error', { considerQueryString: false }],
     'import/no-dynamic-require': 'off',
     'import/no-unresolved': 'off',
@@ -717,6 +717,103 @@ const rulesTypeScript = {
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/adjacent-overload-signatures': 'warn',
+    '@typescript-eslint/array-type': 'off',
+    '@typescript-eslint/ban-tslint-comment': 'warn',
+    '@typescript-eslint/class-literal-property-style': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/consistent-type-exports': 'warn',
+    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
+    '@typescript-eslint/member-delimiter-style': ['warn', {
+            'multiline': {
+                'delimiter': 'comma',
+                'requireLast': true,
+            },
+            'singleline': {
+                'delimiter': 'comma',
+                'requireLast': true,
+            },
+            'multilineDetection': 'brackets',
+            'overrides': {
+                'interface': {
+                    'multiline': {
+                        'delimiter': 'none',
+                        'requireLast': true,
+                    },
+                },
+            },
+        }],
+    '@typescript-eslint/member-ordering': 'off',
+    '@typescript-eslint/method-signature-style': ['warn', 'method'],
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/no-base-to-string': 'error',
+    '@typescript-eslint/no-confusing-non-null-assertion': 'warn',
+    '@typescript-eslint/no-confusing-void-expression': 'warn',
+    '@typescript-eslint/no-duplicate-enum-values': 'error',
+    '@typescript-eslint/no-dynamic-delete': 'off',
+    '@typescript-eslint/no-extra-non-null-assertion': 'error',
+    '@typescript-eslint/no-extraneous-class': ['warn', {
+            allowConstructorOnly: true,
+            allowEmpty: true,
+            allowWithDecorator: true,
+        }],
+    '@typescript-eslint/no-for-in-array': 'error',
+    '@typescript-eslint/no-invalid-void-type': 'warn',
+    '@typescript-eslint/no-meaningless-void-operator': 'warn',
+    '@typescript-eslint/no-misused-new': 'warn',
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'warn',
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
+    '@typescript-eslint/no-require-imports': 'off',
+    '@typescript-eslint/no-type-alias': 'off',
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+    '@typescript-eslint/no-unnecessary-condition': 'warn',
+    '@typescript-eslint/no-unnecessary-qualifier': 'warn',
+    '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+    '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+    '@typescript-eslint/no-unnecessary-type-constraint': 'warn',
+    '@typescript-eslint/no-useless-empty-export': 'warn',
+    '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+    '@typescript-eslint/parameter-properties': ['warn', { 'prefer': 'class-property' }],
+    '@typescript-eslint/prefer-as-const': 'off',
+    '@typescript-eslint/prefer-enum-initializers': 'off',
+    '@typescript-eslint/prefer-for-of': 'off',
+    '@typescript-eslint/prefer-function-type': 'warn',
+    '@typescript-eslint/prefer-includes': 'warn',
+    '@typescript-eslint/prefer-literal-enum-member': 'error',
+    '@typescript-eslint/prefer-namespace-keyword': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/prefer-optional-chain': 'off',
+    '@typescript-eslint/prefer-readonly': 'warn',
+    '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+    '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+    '@typescript-eslint/prefer-regexp-exec': 'off',
+    '@typescript-eslint/prefer-return-this-type': 'warn',
+    '@typescript-eslint/prefer-string-starts-ends-with': 'off',
+    '@typescript-eslint/prefer-ts-expect-error': 'warn',
+    '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/require-array-sort-compare': 'off',
+    '@typescript-eslint/return-await': ['warn', 'in-try-catch'],
+    '@typescript-eslint/sort-type-union-intersection-members': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/switch-exhaustiveness-check': 'warn',
+    '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/type-annotation-spacing': [
+        'warn',
+        {
+            'before': true,
+            'after': true,
+            overrides: {
+                colon: { before: false, after: true },
+                arrow: { before: true, after: true },
+            },
+        },
+    ],
+    '@typescript-eslint/typedef': 'off',
+    '@typescript-eslint/unified-signatures': 'warn',
 };
 // endregion
 // region rulesTestsAndEnv
@@ -749,7 +846,9 @@ const rulesTestsAndEnv = {
         'no-lonely-if': 'off',
         'no-else-return': 'off',
     },
-    ts: {},
+    ts: {
+        '@typescript-eslint/no-unnecessary-condition': 'off',
+    },
 };
 // endregion
 // region rulesTests
