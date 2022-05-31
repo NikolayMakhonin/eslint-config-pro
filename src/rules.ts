@@ -869,7 +869,7 @@ const rulesTypeScript: Rules = {
       },
     },
   ],
-  '@typescript-eslint/typedef': 'off',
+  '@typescript-eslint/typedef'           : 'off',
   '@typescript-eslint/unified-signatures': 'warn',
 }
 // endregion
