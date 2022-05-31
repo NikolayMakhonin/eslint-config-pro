@@ -5,6 +5,7 @@
       <w>denylist</w>
       <w>exts</w>
       <w>nocase</w>
+      <w>singleline</w>
     </words>
   </dictionary>
 </component>

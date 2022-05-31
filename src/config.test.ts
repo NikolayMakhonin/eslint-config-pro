@@ -286,7 +286,7 @@ describe('validate-config', function () {
     })
   })
 
-  it('src', async function () {
+  it('validate config filters', async function () {
     await testVariants({
       eslint  : [eslint],
       type    : ['js', 'cjs', 'mjs', 'ts', 'svelte', 'html'],
