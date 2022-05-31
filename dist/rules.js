@@ -723,10 +723,11 @@ const rulesTypeScript = {
     '@typescript-eslint/consistent-indexed-object-style': 'off',
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/consistent-type-exports': 'warn',
-    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+    '@typescript-eslint/consistent-type-imports': ['off', { prefer: 'type-imports' }],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'no-public' }],
-    '@typescript-eslint/member-delimiter-style': ['warn', {
+    // requireLast should be multiline
+    '@typescript-eslint/member-delimiter-style': ['off', {
             'multiline': {
                 'delimiter': 'comma',
                 'requireLast': true,
@@ -748,7 +749,8 @@ const rulesTypeScript = {
     '@typescript-eslint/member-ordering': 'off',
     '@typescript-eslint/method-signature-style': ['warn', 'method'],
     '@typescript-eslint/naming-convention': 'off',
-    '@typescript-eslint/no-base-to-string': 'error',
+    // should allow any/unknown types
+    '@typescript-eslint/no-base-to-string': 'off',
     '@typescript-eslint/no-confusing-non-null-assertion': 'warn',
     '@typescript-eslint/no-confusing-void-expression': 'warn',
     '@typescript-eslint/no-duplicate-enum-values': 'error',
@@ -770,7 +772,10 @@ const rulesTypeScript = {
     '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/no-type-alias': 'off',
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
-    '@typescript-eslint/no-unnecessary-condition': 'warn',
+    '@typescript-eslint/no-unnecessary-condition': ['off', {
+            allowConstantLoopConditions: true,
+            allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: true,
+        }],
     '@typescript-eslint/no-unnecessary-qualifier': 'warn',
     '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
     '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
@@ -880,6 +885,7 @@ const rulesSvelte = {
             'warn',
             Object.assign(Object.assign({}, rulesTypeScript['@typescript-eslint/comma-dangle'][1]), { functions: 'only-multiline' }),
         ],
+        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
     },
     ignore: {
         'unused-export-let': true,

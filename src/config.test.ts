@@ -181,7 +181,7 @@ describe('validate rules', function () {
           deprecatedRules.push(key)
         }
       }
- else {
+      else {
         if (!rules.common.js[key]) {
           newRules.push(key)
         }
@@ -195,7 +195,7 @@ describe('validate rules', function () {
           deprecatedRules.push(tsKey)
         }
       }
- else {
+      else {
         if (!rules.common.ts[tsKey]) {
           newRules.push(tsKey)
         }
