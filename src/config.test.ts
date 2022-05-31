@@ -175,7 +175,8 @@ describe('validate rules', function () {
     const newRules = []
     for (const key of esPluginRules.keys()) {
       const rule = esPluginRules.get(key)
-      if (rule.meta.deprecated) {
+      const tsRule = tsPluginRules[key]
+      if (rule.meta.deprecated || tsRule?.meta.deprecated) {
         if (rules.common.js[key]) {
           deprecatedRules.push(key)
         }
