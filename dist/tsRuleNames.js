@@ -24,7 +24,7 @@ const tsRuleNames = new Set([
     'explicit-member-accessibility',
     'explicit-module-boundary-types',
     'func-call-spacing',
-    'indent',
+    // 'indent', // https://github.com/typescript-eslint/typescript-eslint/issues/1824
     'init-declarations',
     'keyword-spacing',
     'lines-between-class-members',

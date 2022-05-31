@@ -268,7 +268,7 @@ const rulesJavaScript = {
     // endregion
     // region Node.js and CommonJS
     // 'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']], // deprecated
-    // 'global-require'       : 'off', // deprecated
+    'node/global-require': 'off',
     // 'handle-callback-err'  : ['error', '^(err|error)$'], // deprecated
     // 'no-buffer-constructor': 'error', // deprecated
     // 'no-mixed-requires'    : [

@@ -40,7 +40,7 @@ const config = {
             },
             plugins: ['node'],
             rules: {
-                'global-require': 'off',
+                'node/global-require': 'off',
             },
             parserOptions: {
                 sourceType: 'script',
@@ -52,7 +52,7 @@ const config = {
             files: patterns.js,
             plugins: ['node'],
             rules: {
-                'global-require': 'off',
+                'node/global-require': 'off',
                 'strict': 'off',
             },
         },
@@ -65,7 +65,7 @@ const config = {
             },
             plugins: ['node'],
             rules: {
-                'global-require': 'error',
+                'node/global-require': 'error',
             },
         },
         // endregion

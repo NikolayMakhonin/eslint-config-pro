@@ -6,8 +6,23 @@ import tsPluginRules from '@typescript-eslint/eslint-plugin/dist/rules'
 import globby from 'globby'
 import path from 'path'
 import {createTestVariants} from '@flemist/test-variants'
+import {rules as esPluginRulesNode} from 'eslint-plugin-node'
+import {rules as esPluginRulesImport} from 'eslint-plugin-import'
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const esPluginRules = require(path.resolve('./node_modules/eslint', 'lib/rules/index'))
+const esPluginRules = Array.from(require(path.resolve('./node_modules/eslint', 'lib/rules/index')))
+  .reduce<any>((a: any, [key, value]) => {
+    a[key] = value
+    return a
+  }, {})
+
+Object.keys(esPluginRulesNode).forEach(key => {
+  esPluginRules['node/' + key] = esPluginRulesNode[key]
+})
+
+Object.keys(esPluginRulesImport).forEach(key => {
+  esPluginRules['import/' + key] = esPluginRulesImport[key]
+})
 
 describe('basic', function () {
   function isObject(obj) {
@@ -20,29 +35,42 @@ describe('basic', function () {
 })
 
 describe('validate rules', function () {
-  function jsKeyIsValid(jsKey: string) {
-    if (/^\w+\//.test(jsKey)) {
-      return true
-    }
-    return !jsKey.startsWith('@typescript-eslint/')
-      && !!esPluginRules.get(jsKey)
-  }
-
-  function tsKeyIsValid(tsKey: string) {
-    const jsKey = tsKey.replace(/^@typescript-eslint\//, '')
-    return tsKey !== jsKey && !!tsPluginRules[jsKey]
-  }
-
-  function getRuleLevel(rule: string | string[]) {
-    return Array.isArray(rule) ? rule[0] : rule
-  }
-
   const options = {
     ignoreRuleEquals: {
       'no-shadow'           : true,
       'no-use-before-define': true,
       'comma-dangle'        : true,
     },
+    errorRules: {
+      '@typescript-eslint/indent': true,
+    },
+  }
+
+  function jsKeyIsValid(jsKey: string) {
+    if (options.errorRules[jsKey]) {
+      return false
+    }
+    if (jsKey.startsWith('@typescript-eslint/')) {
+      return false
+    }
+    const rule = esPluginRules[jsKey]
+    return rule && !rule.meta.deprecated
+  }
+
+  function tsKeyIsValid(tsKey: string) {
+    if (options.errorRules[tsKey]) {
+      return false
+    }
+    const jsKey = tsKey.replace(/^@typescript-eslint\//, '')
+    if (tsKey === jsKey) {
+      return false
+    }
+    const rule = tsPluginRules[jsKey]
+    return rule && !rule.meta.deprecated
+  }
+
+  function getRuleLevel(rule: string | string[]) {
+    return Array.isArray(rule) ? rule[0] : rule
   }
 
   function checkTypescriptRules(rules: {js: Rules, ts: Rules}[]) {
@@ -59,7 +87,7 @@ describe('validate rules', function () {
         const jsTsRule = jsTsRules[tsKey]
         const jsRuleInTs = tsRules[jsKey]
         const jsInJsTsRule = jsTsRules[jsKey]
-        assert.ok(tsRule, `TS: ${tsKey} should be specified`)
+        assert.ok(tsRule, `TS: ${tsKey} should be specified` + JSON.stringify(tsPluginRules[jsKey], null, 2))
         assert.ok(jsTsRule, `TS: ${tsKey} should be specified`)
         assert.strictEqual(
           Array.isArray(jsInJsTsRule) ? jsInJsTsRule[0] : jsInJsTsRule,
@@ -173,10 +201,8 @@ describe('validate rules', function () {
   it('new or deprecated rules', function () {
     const deprecatedRules = []
     const newRules = []
-    for (const key of esPluginRules.keys()) {
-      const rule = esPluginRules.get(key)
-      const tsRule = tsPluginRules[key]
-      if (rule.meta.deprecated || tsRule?.meta.deprecated) {
+    for (const key in esPluginRules) {
+      if (!jsKeyIsValid(key) || tsPluginRules[key]?.meta.deprecated) {
         if (rules.common.js[key]) {
           deprecatedRules.push(key)
         }
@@ -188,9 +214,8 @@ describe('validate rules', function () {
       }
     }
     for (const key in tsPluginRules) {
-      const rule = tsPluginRules[key]
       const tsKey = '@typescript-eslint/' + key
-      if (rule.meta.deprecated) {
+      if (!tsKeyIsValid(tsKey)) {
         if (rules.common.ts[tsKey]) {
           deprecatedRules.push(tsKey)
         }
@@ -202,7 +227,7 @@ describe('validate rules', function () {
       }
     }
 
-    assert.ok(deprecatedRules.length === 0, `deprecated rules (${deprecatedRules.length}):\n${deprecatedRules.join('\n')}`)
+    assert.ok(deprecatedRules.length === 0, `deprecated on invalid rules (${deprecatedRules.length}):\n${deprecatedRules.join('\n')}`)
     assert.ok(newRules.length === 0, `new rules (${newRules.length}):\n${newRules.join('\n')}`)
   })
 })
