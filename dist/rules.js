@@ -854,6 +854,7 @@ const rulesTestsAndEnv = {
     ts: {
         '@typescript-eslint/no-unnecessary-condition': 'off',
         '@typescript-eslint/prefer-includes': 'off',
+        '@typescript-eslint/no-confusing-void-expression': 'off',
     },
 };
 // endregion
