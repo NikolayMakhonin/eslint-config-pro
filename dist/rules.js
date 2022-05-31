@@ -747,7 +747,7 @@ const rulesTypeScript = {
             },
         }],
     '@typescript-eslint/member-ordering': 'off',
-    '@typescript-eslint/method-signature-style': ['warn', 'method'],
+    '@typescript-eslint/method-signature-style': ['off', 'method'],
     '@typescript-eslint/naming-convention': 'off',
     // should allow any/unknown types
     '@typescript-eslint/no-base-to-string': 'off',
@@ -762,7 +762,7 @@ const rulesTypeScript = {
             allowWithDecorator: true,
         }],
     '@typescript-eslint/no-for-in-array': 'error',
-    '@typescript-eslint/no-invalid-void-type': 'warn',
+    '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-meaningless-void-operator': 'warn',
     '@typescript-eslint/no-misused-new': 'warn',
     '@typescript-eslint/no-namespace': 'off',
@@ -771,7 +771,7 @@ const rulesTypeScript = {
     '@typescript-eslint/no-redundant-type-constituents': 'warn',
     '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/no-type-alias': 'off',
-    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
     '@typescript-eslint/no-unnecessary-condition': ['off', {
             allowConstantLoopConditions: true,
             allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: true,
@@ -853,6 +853,7 @@ const rulesTestsAndEnv = {
     },
     ts: {
         '@typescript-eslint/no-unnecessary-condition': 'off',
+        '@typescript-eslint/prefer-includes': 'off',
     },
 };
 // endregion
@@ -885,7 +886,8 @@ const rulesSvelte = {
             'warn',
             Object.assign(Object.assign({}, rulesTypeScript['@typescript-eslint/comma-dangle'][1]), { functions: 'only-multiline' }),
         ],
-        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+        // '@typescript-eslint/consistent-type-imports': ['error', {prefer: 'type-imports'}],
+        '@typescript-eslint/no-confusing-void-expression': 'off',
     },
     ignore: {
         'unused-export-let': true,
