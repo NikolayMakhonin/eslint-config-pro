@@ -738,8 +738,8 @@ const rulesJavaScript: Rules = {
   'node/prefer-global/text-encoder'     : ['off', 'never'],
   'node/prefer-global/url-search-params': ['error', 'always'],
   'node/prefer-global/url'              : ['error', 'always'],
-  'node/prefer-promises/dns'            : ['error', 'always'],
-  'node/prefer-promises/fs'             : ['error', 'always'],
+  'node/prefer-promises/dns'            : ['error'],
+  'node/prefer-promises/fs'             : ['error'],
   'node/process-exit-as-throw'          : 'error',
   'node/shebang'                        : 'error',
   'import/named'                        : 'error',
@@ -1074,6 +1074,7 @@ const rulesSvelte = {
       },
     ],
     'import/no-mutable-exports': 'off',
+    'import/no-nodejs-modules' : 'error',
   } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
@@ -1086,7 +1087,6 @@ const rulesSvelte = {
     ],
     // '@typescript-eslint/consistent-type-imports': ['error', {prefer: 'type-imports'}],
     '@typescript-eslint/no-confusing-void-expression': 'off',
-    'import/no-nodejs-modules'                       : 'error',
   } as Rules,
   ignore: {
     'unused-export-let'                : true,

@@ -247,34 +247,6 @@ describe('validate rules', function () {
 describe('validate-config', function () {
   this.timeout(60000)
 
-  it('load config in eslint to validate all rule syntax is correct', async function () {
-    const files = await globby([
-      '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
-    ])
-    console.log(files)
-    const eslint = new ESLint({
-      useEslintrc: true,
-    })
-    // for (const file of files) {
-    //   try {
-    //     const config = await eslint.calculateConfigForFile(file)
-    //     console.log(config.rules['dot-notation'])
-    //   }
-    //   catch (err) {
-    //     console.error(file)
-    //     throw err
-    //   }
-    // }
-
-    for (let i = 0; i < 10; i++) {
-      const result = await eslint.lintFiles(files)
-      // console.log(JSON.stringify(result))
-      const log = JSON.stringify(result, null, 2)
-      assert.strictEqual(result.length, files.length, log)
-      assert.strictEqual(result[0].errorCount, 0, log)
-    }
-  })
-
   async function checkFileFilter({
     eslint,
     file,
@@ -391,5 +363,33 @@ describe('validate-config', function () {
         return files
       },
     })
+  })
+
+  it('load config in eslint to validate all rule syntax is correct', async function () {
+    const files = await globby([
+      '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
+    ])
+    console.log(files)
+    const eslint = new ESLint({
+      useEslintrc: true,
+    })
+    // for (const file of files) {
+    //   try {
+    //     const config = await eslint.calculateConfigForFile(file)
+    //     console.log(config.rules['dot-notation'])
+    //   }
+    //   catch (err) {
+    //     console.error(file)
+    //     throw err
+    //   }
+    // }
+
+    for (let i = 0; i < 10; i++) {
+      const result = await eslint.lintFiles(files)
+      // console.log(JSON.stringify(result))
+      const log = JSON.stringify(result, null, 2)
+      assert.strictEqual(result.length, files.length, log)
+      assert.strictEqual(result[0].errorCount, 0, log)
+    }
   })
 })
