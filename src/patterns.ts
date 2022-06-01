@@ -29,12 +29,12 @@ export const envTools = [
   '**/*.tool.*',
   '**/*.tools.*',
 ]
-// export const javaScript = [
-//   ...js,
-//   ...jsx,
-//   ...cjs,
-//   ...mjs,
-// ]
+export const javaScript = [
+  ...js,
+  ...jsx,
+  ...cjs,
+  ...mjs,
+]
 export const typeScript = [
   ...ts,
   ...tsx,
