@@ -92,7 +92,6 @@ const config = {
         {
             files: [
                 ...patterns.typeScript,
-                ...features.svelte ? patterns.svelte : [],
             ],
             extends: [
                 'plugin:@typescript-eslint/recommended',

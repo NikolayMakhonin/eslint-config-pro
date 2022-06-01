@@ -290,7 +290,7 @@ describe('validate-config', function () {
 
     // test
     assert.deepStrictEqual(
-      config.rules[isTypeScript ? '@typescript-eslint/require-await' : 'require-await']?.[0] === 'off',
+      config.rules[isTypeScript ? '@typescript-eslint/no-throw-literal' : 'no-throw-literal']?.[0] === 'off',
       test,
     )
     assert.strictEqual(!!config.env.mocha, test)
@@ -319,7 +319,7 @@ describe('validate-config', function () {
   it('validate config filters', async function () {
     await testVariants({
       eslint  : [eslint],
-      type    : ['js', 'cjs', 'mjs', 'ts', 'svelte', 'html'],
+      type    : ['js', 'cjs', 'mjs', 'ts', 'html', 'svelte'],
       envTools: [false, true],
       test    : [false, true],
       ext     : ({type}) => {
@@ -332,23 +332,23 @@ describe('validate-config', function () {
       file({type, ext, envTools, test}) {
         const files = []
         if (envTools && !test) {
-          if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
-            files.push('file.' + ext)
-            files.push('dir/.file.' + ext)
-            files.push('dir/dir/.file.' + ext)
-            files.push('env/file.' + ext)
-            files.push('tools/file.' + ext)
-            files.push('deploy/file.' + ext)
-          }
+          // if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
+          files.push('file.' + ext)
+          files.push('dir/.file.' + ext)
+          files.push('dir/dir/.file.' + ext)
+          files.push('env/file.' + ext)
+          files.push('tools/file.' + ext)
+          files.push('deploy/file.' + ext)
+          // }
         }
         else if (test && !envTools) {
-          if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
-            files.push('dir/file.test.' + ext)
-            files.push('dir/file.e2e.' + ext)
-            files.push('dir/file.perf.' + ext)
-            files.push('test/file.' + ext)
-            files.push('tests/file.' + ext)
-          }
+          // if (type !== 'html' && type !== 'svelte' && ext !== 'jsx' && ext !== 'tsx') {
+          files.push('dir/file.test.' + ext)
+          files.push('dir/file.e2e.' + ext)
+          files.push('dir/file.perf.' + ext)
+          files.push('test/file.' + ext)
+          files.push('tests/file.' + ext)
+          // }
         }
         else if (!test && !envTools) {
           files.push('dir/file.' + ext)

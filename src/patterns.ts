@@ -1,3 +1,5 @@
+import * as features from './features'
+
 export const js    = ['**/*.js']
 export const jsx    = ['**/*.jsx']
 export const cjs   = ['**/*.cjs']
@@ -11,14 +13,14 @@ export const tests = [
   '**/*.test.*',
   '**/*.perf.*',
   '**/*.e2e.*',
-  '**/test/**/*',
-  '**/tests/**/*',
+  '**/test/**',
+  '**/tests/**',
 ]
 // const jsTsExtensions = ['js', 'jsx', 'cjs', 'mjs', 'ts', 'tsx']
 export const envTools = [
-  './env/**/*',
-  './tools/**/*',
-  './deploy/**/*',
+  './env/**',
+  './tools/**',
+  './deploy/**',
   './*',
   '**/.*',
   '**/*.config.*',
@@ -27,13 +29,14 @@ export const envTools = [
   '**/*.tool.*',
   '**/*.tools.*',
 ]
-export const javaScript = [
-  ...js,
-  ...jsx,
-  ...cjs,
-  ...mjs,
-]
+// export const javaScript = [
+//   ...js,
+//   ...jsx,
+//   ...cjs,
+//   ...mjs,
+// ]
 export const typeScript = [
   ...ts,
   ...tsx,
+  ...features.svelte ? svelte : [],
 ]

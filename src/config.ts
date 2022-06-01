@@ -89,7 +89,6 @@ export const config: Linter.Config = {
     {
       files: [
         ...patterns.typeScript,
-        ...features.svelte ? patterns.svelte : [],
       ],
       extends: [
         'plugin:@typescript-eslint/recommended',

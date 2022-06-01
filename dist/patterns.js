@@ -2,6 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var features = require('./features.js');
+require('./helpers.js');
+
 const js = ['**/*.js'];
 const jsx = ['**/*.jsx'];
 const cjs = ['**/*.cjs'];
@@ -15,14 +18,14 @@ const tests = [
     '**/*.test.*',
     '**/*.perf.*',
     '**/*.e2e.*',
-    '**/test/**/*',
-    '**/tests/**/*',
+    '**/test/**',
+    '**/tests/**',
 ];
 // const jsTsExtensions = ['js', 'jsx', 'cjs', 'mjs', 'ts', 'tsx']
 const envTools = [
-    './env/**/*',
-    './tools/**/*',
-    './deploy/**/*',
+    './env/**',
+    './tools/**',
+    './deploy/**',
     './*',
     '**/.*',
     '**/*.config.*',
@@ -31,21 +34,21 @@ const envTools = [
     '**/*.tool.*',
     '**/*.tools.*',
 ];
-const javaScript = [
-    ...js,
-    ...jsx,
-    ...cjs,
-    ...mjs,
-];
+// export const javaScript = [
+//   ...js,
+//   ...jsx,
+//   ...cjs,
+//   ...mjs,
+// ]
 const typeScript = [
     ...ts,
     ...tsx,
+    ...features.svelte ? svelte : [],
 ];
 
 exports.cjs = cjs;
 exports.envTools = envTools;
 exports.html = html;
-exports.javaScript = javaScript;
 exports.js = js;
 exports.jsx = jsx;
 exports.md = md;
