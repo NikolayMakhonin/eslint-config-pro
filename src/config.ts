@@ -30,7 +30,7 @@ export const config: Linter.Config = {
   ],
   'settings': {
     'node': {
-      'allowModules' : ['electron'],
+      'allowModules' : ['electron', 'svelte'],
       'tryExtensions': ['.js', '.ts', '.node'],
     },
   },
@@ -113,6 +113,41 @@ export const config: Linter.Config = {
       },
     },
     // endregion
+    // region Tests
+    {
+      files: patterns.tests,
+      env  : {
+        mocha: true,
+      },
+      globals: {
+        assert: true,
+        expect: true,
+      },
+      rules: {
+        ...rules.tests.js,
+      },
+      overrides: [{
+        files: patterns.typeScript,
+        rules: {
+          ...rules.tests.ts,
+        },
+      }],
+    },
+    // endregion
+    // region EnvTools
+    {
+      files: patterns.envTools,
+      rules: {
+        ...rules.envTools.js,
+      },
+      overrides: [{
+        files: patterns.typeScript,
+        rules: {
+          ...rules.envTools.ts,
+        },
+      }],
+    },
+    // endregion
     // region Svelte
     features.svelte && {
       files    : patterns.svelte,
@@ -175,41 +210,6 @@ export const config: Linter.Config = {
     //     'no-unused-vars': 'off',
     //   },
     // },
-    // endregion
-    // region Tests
-    {
-      files: patterns.tests,
-      env  : {
-        mocha: true,
-      },
-      globals: {
-        assert: true,
-        expect: true,
-      },
-      rules: {
-        ...rules.tests.js,
-      },
-      overrides: [{
-        files: patterns.typeScript,
-        rules: {
-          ...rules.tests.ts,
-        },
-      }],
-    },
-    // endregion
-    // region EnvTools
-    {
-      files: patterns.envTools,
-      rules: {
-        ...rules.envTools.js,
-      },
-      overrides: [{
-        files: patterns.typeScript,
-        rules: {
-          ...rules.envTools.ts,
-        },
-      }],
-    },
     // endregion
   ],
 }

@@ -353,14 +353,14 @@ describe('validate-config', function () {
         else if (!test && !envTools) {
           files.push('dir/file.' + ext)
           files.push('dir/dir/file.' + ext)
-          if (type === 'html' || type === 'svelte' || ext === 'jsx' || ext === 'tsx') {
-            files.push('file.' + ext)
-            files.push('file.test.' + ext)
-            files.push('file.e2e.' + ext)
-            files.push('file.config.' + ext)
-            files.push('test/file.' + ext)
-            files.push('env/file.' + ext)
-          }
+          // if (type === 'html' || type === 'svelte' || ext === 'jsx' || ext === 'tsx') {
+          //   files.push('file.' + ext)
+          //   files.push('file.test.' + ext)
+          //   files.push('file.e2e.' + ext)
+          //   files.push('file.config.' + ext)
+          //   files.push('test/file.' + ext)
+          //   files.push('env/file.' + ext)
+          // }
         }
         return files
       },

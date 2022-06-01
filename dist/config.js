@@ -33,7 +33,7 @@ const config = {
     ],
     'settings': {
         'node': {
-            'allowModules': ['electron'],
+            'allowModules': ['electron', 'svelte'],
             'tryExtensions': ['.js', '.ts', '.node'],
         },
     },
@@ -112,6 +112,33 @@ const config = {
             rules: Object.assign(Object.assign({}, rules.rules.common.js), rules.rules.common.ts),
         },
         // endregion
+        // region Tests
+        {
+            files: patterns.tests,
+            env: {
+                mocha: true,
+            },
+            globals: {
+                assert: true,
+                expect: true,
+            },
+            rules: Object.assign({}, rules.rules.tests.js),
+            overrides: [{
+                    files: patterns.typeScript,
+                    rules: Object.assign({}, rules.rules.tests.ts),
+                }],
+        },
+        // endregion
+        // region EnvTools
+        {
+            files: patterns.envTools,
+            rules: Object.assign({}, rules.rules.envTools.js),
+            overrides: [{
+                    files: patterns.typeScript,
+                    rules: Object.assign({}, rules.rules.envTools.ts),
+                }],
+        },
+        // endregion
         // region Svelte
         features.svelte && {
             files: patterns.svelte,
@@ -171,33 +198,6 @@ const config = {
         //     'no-unused-vars': 'off',
         //   },
         // },
-        // endregion
-        // region Tests
-        {
-            files: patterns.tests,
-            env: {
-                mocha: true,
-            },
-            globals: {
-                assert: true,
-                expect: true,
-            },
-            rules: Object.assign({}, rules.rules.tests.js),
-            overrides: [{
-                    files: patterns.typeScript,
-                    rules: Object.assign({}, rules.rules.tests.ts),
-                }],
-        },
-        // endregion
-        // region EnvTools
-        {
-            files: patterns.envTools,
-            rules: Object.assign({}, rules.rules.envTools.js),
-            overrides: [{
-                    files: patterns.typeScript,
-                    rules: Object.assign({}, rules.rules.envTools.ts),
-                }],
-        },
         // endregion
     ],
 };

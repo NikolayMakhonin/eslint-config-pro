@@ -12,20 +12,24 @@ const md = ['**/*.md'];
 const html = ['**/*.html', '**/*.htm'];
 const svelte = ['**/*.svelte'];
 const tests = [
-    '**/*.test.{js,cjs,mjs,ts}',
-    '**/*.perf.{js,cjs,mjs,ts}',
-    '**/*.e2e.{js,cjs,mjs,ts}',
-    '**/test/**/*.{js,cjs,mjs,ts}',
-    '**/tests/**/*.{js,cjs,mjs,ts}',
+    '**/*.test.*',
+    '**/*.perf.*',
+    '**/*.e2e.*',
+    '**/test/**/*',
+    '**/tests/**/*',
 ];
 // const jsTsExtensions = ['js', 'jsx', 'cjs', 'mjs', 'ts', 'tsx']
 const envTools = [
-    './env/**/*.{js,cjs,mjs,ts}',
-    './tools/**/*.{js,cjs,mjs,ts}',
-    './deploy/**/*.{js,cjs,mjs,ts}',
-    './*.{js,cjs,mjs,ts}',
-    '**/.*.{js,cjs,mjs,ts}',
-    '**/*.config.{js,cjs,mjs,ts}',
+    './env/**/*',
+    './tools/**/*',
+    './deploy/**/*',
+    './*',
+    '**/.*',
+    '**/*.config.*',
+    '**/*.build.*',
+    '**/*.env.*',
+    '**/*.tool.*',
+    '**/*.tools.*',
 ];
 const javaScript = [
     ...js,

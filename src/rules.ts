@@ -688,7 +688,7 @@ const rulesJavaScript: Rules = {
       'process.binding',
     ],
   }],
-  'node/callback-return': 'error',
+  'node/callback-return': 'off',
   'node/exports-style'  : [
     'error',
     'module.exports',
@@ -770,7 +770,7 @@ const rulesJavaScript: Rules = {
   'import/no-self-import'             : 'error',
   'import/no-cycle'                   : ['error', { maxDepth: 5, ignoreExternal: true }],
   'import/no-named-default'           : 'warn',
-  'import/no-named-as-default'        : 'warn',
+  'import/no-named-as-default'        : 'off',
   'import/no-named-as-default-member' : 'warn',
   'import/no-anonymous-default-export': ['warn', {
     'allowArray'            : true,
@@ -786,7 +786,8 @@ const rulesJavaScript: Rules = {
   'import/no-amd'                    : 'warn',
   'import/first'                     : 'error',
   'import/max-dependencies'          : 'off',
-  'import/no-extraneous-dependencies': ['error', {
+  // it should exclude: electron, svelte
+  'import/no-extraneous-dependencies': ['off', {
     bundledDependencies : true,
     peerDependencies    : true,
     optionalDependencies: true,
@@ -796,11 +797,11 @@ const rulesJavaScript: Rules = {
   'import/no-nodejs-modules'       : 'off',
   'import/no-webpack-loader-syntax': 'off',
   'import/order'                   : 'off',
-  'import/newline-after-import'    : ['error', { 'count': 1 }],
+  'import/newline-after-import'    : ['off', { 'count': 1 }],
   'import/prefer-default-export'   : 'off',
   'import/no-default-export'       : 'off',
   'import/no-named-export'         : 'off',
-  'import/unambiguous'             : 'error',
+  'import/unambiguous'             : 'off',
   'import/no-unassigned-import'    : 'off',
   'import/no-useless-path-segments': 'warn',
   'import/dynamic-import-chunkname': 'off',
@@ -997,6 +998,8 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/typedef'            : 'off',
   '@typescript-eslint/unified-signatures' : 'warn',
   'node/no-unsupported-features/es-syntax': 'off',
+  'node/no-missing-import'                : 'off',
+  'node/no-unpublished-import'            : 'off',
 }
 // endregion
 
@@ -1032,6 +1035,8 @@ const rulesTestsAndEnv = {
     'node/handle-callback-err'         : 'warn',
     'node/no-sync'                     : 'off',
     'import/no-extraneous-dependencies': 'off',
+    'node/no-unpublished-import'       : 'off',
+    'node/no-unpublished-require'      : 'off',
   } as Rules,
   ts: {
     '@typescript-eslint/no-unnecessary-condition'    : 'off',
@@ -1091,6 +1096,7 @@ const rulesSvelte = {
     ],
     'import/no-mutable-exports': 'off',
     'import/no-nodejs-modules' : 'error',
+    'import/first'             : 'off',
   } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
