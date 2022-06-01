@@ -28,6 +28,12 @@ export const config: Linter.Config = {
     ...!features.svelte ? patterns.svelte : [],
     ...!features.html ? patterns.html : [],
   ],
+  'settings': {
+    'node': {
+      'allowModules' : ['electron'],
+      'tryExtensions': ['.js', '.ts', '.node'],
+    },
+  },
   overrides: [
     // region *.cjs
     {
@@ -50,7 +56,7 @@ export const config: Linter.Config = {
       plugins: ['node'],
       rules  : {
         'node/global-require': 'off',
-        'strict'        : 'off',
+        'strict'             : 'off',
       },
     },
     // endregion

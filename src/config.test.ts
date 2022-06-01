@@ -209,7 +209,13 @@ describe('validate rules', function () {
       }
       else {
         if (!rules.common.js[key]) {
-          newRules.push(key)
+          newRules.push(`${key}\n${
+            esPluginRules[key].meta.docs.category
+          }\n${
+            esPluginRules[key].meta.docs.description
+          }\n${
+            esPluginRules[key].meta.docs.url
+          }\n`)
         }
       }
     }
@@ -222,7 +228,13 @@ describe('validate rules', function () {
       }
       else {
         if (!rules.common.ts[tsKey]) {
-          newRules.push(tsKey)
+          newRules.push(`${key}\n${
+            tsPluginRules[key].meta.docs.category
+          }\n${
+            tsPluginRules[key].meta.docs.description
+          }\n${
+            tsPluginRules[key].meta.docs.url
+          }\n`)
         }
       }
     }

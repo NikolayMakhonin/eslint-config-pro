@@ -688,6 +688,60 @@ const rulesJavaScript: Rules = {
       'process.binding',
     ],
   }],
+  'node/callback-return': 'error',
+  'node/exports-style'  : [
+    'error',
+    'module.exports',
+    {
+      'allowBatchAssign': false,
+    },
+  ],
+  'node/file-extension-in-import': [
+    'error',
+    'always',
+    {
+      '.js': 'never',
+      '.ts': 'never',
+    },
+  ],
+  'node/handle-callback-err'                : 'error',
+  'node/no-callback-literal'                : 'off',
+  'node/no-exports-assign'                  : 'error',
+  'node/no-extraneous-import'               : 'error',
+  'node/no-extraneous-require'              : 'error',
+  'node/no-missing-import'                  : 'error',
+  'node/no-missing-require'                 : 'error',
+  'node/no-mixed-requires'                  : 'warn',
+  'node/no-new-require'                     : 'warn',
+  'node/no-path-concat'                     : 'warn',
+  'node/no-process-env'                     : 'off',
+  'node/no-process-exit'                    : 'warn',
+  'node/no-restricted-import'               : 'off',
+  'node/no-restricted-require'              : 'off',
+  'node/no-sync'                            : ['warn', { allowAtRootLevel: false }],
+  'node/no-unpublished-bin'                 : 'error',
+  'node/no-unpublished-import'              : 'error',
+  'node/no-unpublished-require'             : 'error',
+  'node/no-unsupported-features/es-builtins': ['error', {
+    'ignores': [],
+  }],
+  'node/no-unsupported-features/es-syntax': ['error', {
+    'ignores': [],
+  }],
+  'node/no-unsupported-features/node-builtins': ['error', {
+    'ignores': [],
+  }],
+  'node/prefer-global/buffer': ['off', 'never'],
+  'node/prefer-global/console': ['error', 'always'],
+  'node/prefer-global/process': ['error', 'always'],
+  'node/prefer-global/text-decoder': ['off', 'never'],
+  'node/prefer-global/text-encoder': ['off', 'never'],
+  'node/prefer-global/url-search-params': ['error', 'always'],
+  'node/prefer-global/url': ['error', 'always'],
+  'node/prefer-promises/dns': ['error', 'always'],
+  'node/prefer-promises/fs': ['error', 'always'],
+  'node/process-exit-as-throw': 'error',
+  'node/shebang': 'error',
   // endregion
 }
 // endregion
@@ -908,6 +962,8 @@ const rulesTestsAndEnv = {
     'no-return-await'             : 'off',
     'no-lonely-if'                : 'off',
     'no-else-return'              : 'off',
+    'node/handle-callback-err'    : 'warn',
+    'node/no-sync'                : 'off',
   } as Rules,
   ts: {
     '@typescript-eslint/no-unnecessary-condition'    : 'off',
@@ -982,6 +1038,7 @@ const rulesSvelte = {
 const rulesEnvTools = {
   js: {
     ...rulesTestsAndEnv.js,
+    'node/no-process-exit': 'off',
   } as Rules,
   ts: {
     ...rulesTestsAndEnv.ts,
