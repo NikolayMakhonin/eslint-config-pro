@@ -114,7 +114,9 @@ describe('validate rules', function () {
       }
       else {
         assert.ok(!(tsKey in tsRules), `TS: ${tsKey} is not valid`)
-        assert.ok(!(jsKey in tsRules), `TS: ${jsKey} should not be specified`)
+        if (!jsKey.includes('/')) {
+          assert.ok(!(jsKey in tsRules), `TS: ${jsKey} should not be specified`)
+        }
       }
     }
 
@@ -366,13 +368,14 @@ describe('validate-config', function () {
   })
 
   it('load config in eslint to validate all rule syntax is correct', async function () {
-    const files = await globby([
+    const files = (await globby([
       '{{src,env,tools}/**/,}*.{js,cjs,mjs,ts,tsx,svelte,html}',
-    ])
+    ]))
+      .map(file => path.resolve(file))
     console.log(files)
-    const eslint = new ESLint({
-      useEslintrc: true,
-    })
+    // const eslint = new ESLint({
+    //   useEslintrc: true,
+    // })
     // for (const file of files) {
     //   try {
     //     const config = await eslint.calculateConfigForFile(file)
@@ -387,9 +390,9 @@ describe('validate-config', function () {
     for (let i = 0; i < 10; i++) {
       const result = await eslint.lintFiles(files)
       // console.log(JSON.stringify(result))
-      const log = JSON.stringify(result, null, 2)
-      assert.strictEqual(result.length, files.length, log)
-      assert.strictEqual(result[0].errorCount, 0, log)
+      assert.strictEqual(result.length, files.length)
+      const errors = result.filter(o => o.errorCount > 0 || o.warningCount > 0)
+      assert.strictEqual(errors.length, 0, JSON.stringify(errors, null, 2))
     }
   })
 })

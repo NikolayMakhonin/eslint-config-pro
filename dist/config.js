@@ -31,6 +31,12 @@ const config = {
         ...!features.svelte ? patterns.svelte : [],
         ...!features.html ? patterns.html : [],
     ],
+    'settings': {
+        'node': {
+            'allowModules': ['electron'],
+            'tryExtensions': ['.js', '.ts', '.node'],
+        },
+    },
     overrides: [
         // region *.cjs
         {

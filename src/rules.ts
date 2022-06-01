@@ -726,7 +726,9 @@ const rulesJavaScript: Rules = {
     'ignores': [],
   }],
   'node/no-unsupported-features/es-syntax': ['error', {
-    'ignores': [],
+    'ignores': [
+      'modules',
+    ],
   }],
   'node/no-unsupported-features/node-builtins': ['error', {
     'ignores': [],
@@ -749,7 +751,7 @@ const rulesJavaScript: Rules = {
   'import/export'                       : 'error',
   'import/no-mutable-exports'           : 'error',
   'import/extensions'                   : [
-    'error',
+    'off',
     'always',
     {
       ignorePackages: true,
@@ -992,8 +994,9 @@ const rulesTypeScript: Rules = {
       },
     },
   ],
-  '@typescript-eslint/typedef'           : 'off',
-  '@typescript-eslint/unified-signatures': 'warn',
+  '@typescript-eslint/typedef'            : 'off',
+  '@typescript-eslint/unified-signatures' : 'warn',
+  'node/no-unsupported-features/es-syntax': 'off',
 }
 // endregion
 
@@ -1054,6 +1057,19 @@ const rulesTests = {
 }
 // endregion
 
+// region rulesEnvTools
+// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
+const rulesEnvTools = {
+  js: {
+    ...rulesTestsAndEnv.js,
+    'node/no-process-exit': 'off',
+  } as Rules,
+  ts: {
+    ...rulesTestsAndEnv.ts,
+  } as Rules,
+}
+// endregion
+
 // region rulesSvelte
 const rulesSvelte = {
   js: {
@@ -1097,19 +1113,6 @@ const rulesSvelte = {
     'a11y-missing-content'             : true,
     'a11y-mouse-events-have-key-events': true,
   } as Record<string, boolean>,
-}
-// endregion
-
-// region rulesEnvTools
-// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
-const rulesEnvTools = {
-  js: {
-    ...rulesTestsAndEnv.js,
-    'node/no-process-exit': 'off',
-  } as Rules,
-  ts: {
-    ...rulesTestsAndEnv.ts,
-  } as Rules,
 }
 // endregion
 

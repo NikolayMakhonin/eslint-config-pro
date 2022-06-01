@@ -654,6 +654,125 @@ const rulesJavaScript = {
                 'process.binding',
             ],
         }],
+    'node/callback-return': 'error',
+    'node/exports-style': [
+        'error',
+        'module.exports',
+        {
+            'allowBatchAssign': false,
+        },
+    ],
+    'node/file-extension-in-import': [
+        'error',
+        'always',
+        {
+            '.js': 'never',
+            '.ts': 'never',
+        },
+    ],
+    'node/handle-callback-err': 'error',
+    'node/no-callback-literal': 'off',
+    'node/no-exports-assign': 'error',
+    'node/no-extraneous-import': 'error',
+    'node/no-extraneous-require': 'error',
+    'node/no-missing-import': 'error',
+    'node/no-missing-require': 'error',
+    'node/no-mixed-requires': 'warn',
+    'node/no-new-require': 'warn',
+    'node/no-path-concat': 'warn',
+    'node/no-process-env': 'off',
+    'node/no-process-exit': 'warn',
+    'node/no-restricted-import': 'off',
+    'node/no-restricted-require': 'off',
+    'node/no-sync': ['warn', { allowAtRootLevel: false }],
+    'node/no-unpublished-bin': 'error',
+    'node/no-unpublished-import': 'error',
+    'node/no-unpublished-require': 'error',
+    'node/no-unsupported-features/es-builtins': ['error', {
+            'ignores': [],
+        }],
+    'node/no-unsupported-features/es-syntax': ['error', {
+            'ignores': [
+                'modules',
+            ],
+        }],
+    'node/no-unsupported-features/node-builtins': ['error', {
+            'ignores': [],
+        }],
+    'node/prefer-global/buffer': ['off', 'never'],
+    'node/prefer-global/console': ['error', 'always'],
+    'node/prefer-global/process': ['error', 'always'],
+    'node/prefer-global/text-decoder': ['off', 'never'],
+    'node/prefer-global/text-encoder': ['off', 'never'],
+    'node/prefer-global/url-search-params': ['error', 'always'],
+    'node/prefer-global/url': ['error', 'always'],
+    'node/prefer-promises/dns': ['error'],
+    'node/prefer-promises/fs': ['error'],
+    'node/process-exit-as-throw': 'error',
+    'node/shebang': 'error',
+    'import/named': 'error',
+    'import/default': 'error',
+    'import/namespace': 'error',
+    'import/no-namespace': 'off',
+    'import/export': 'error',
+    'import/no-mutable-exports': 'error',
+    'import/extensions': [
+        'off',
+        'always',
+        {
+            ignorePackages: true,
+            pattern: {
+                js: 'never',
+                ts: 'never',
+                node: 'never',
+            },
+        },
+    ],
+    'import/no-restricted-paths': 'off',
+    'import/no-internal-modules': 'off',
+    'import/group-exports': 'off',
+    'import/no-relative-packages': 'off',
+    'import/no-relative-parent-imports': 'off',
+    'import/no-self-import': 'error',
+    'import/no-cycle': ['error', { maxDepth: 5, ignoreExternal: true }],
+    'import/no-named-default': 'warn',
+    'import/no-named-as-default': 'warn',
+    'import/no-named-as-default-member': 'warn',
+    'import/no-anonymous-default-export': ['warn', {
+            'allowArray': true,
+            'allowArrowFunction': false,
+            'allowAnonymousClass': false,
+            'allowAnonymousFunction': false,
+            'allowCallExpression': true,
+            'allowLiteral': true,
+            'allowObject': true,
+        }],
+    'import/no-unused-modules': 'off',
+    'import/no-commonjs': 'off',
+    'import/no-amd': 'warn',
+    'import/first': 'error',
+    'import/max-dependencies': 'off',
+    'import/no-extraneous-dependencies': ['error', {
+            bundledDependencies: true,
+            peerDependencies: true,
+            optionalDependencies: true,
+            devDependencies: false,
+        }],
+    'import/no-absolute-path': 'error',
+    'import/no-nodejs-modules': 'off',
+    'import/no-webpack-loader-syntax': 'off',
+    'import/order': 'off',
+    'import/newline-after-import': ['error', { 'count': 1 }],
+    'import/prefer-default-export': 'off',
+    'import/no-default-export': 'off',
+    'import/no-named-export': 'off',
+    'import/unambiguous': 'error',
+    'import/no-unassigned-import': 'off',
+    'import/no-useless-path-segments': 'warn',
+    'import/dynamic-import-chunkname': 'off',
+    'import/no-import-module-exports': 'warn',
+    'import/exports-last': 'off',
+    'import/no-deprecated': 'warn',
     // endregion
 };
 // endregion
@@ -819,6 +938,7 @@ const rulesTypeScript = {
     ],
     '@typescript-eslint/typedef': 'off',
     '@typescript-eslint/unified-signatures': 'warn',
+    'node/no-unsupported-features/es-syntax': 'off',
 };
 // endregion
 // region rulesTestsAndEnv
@@ -850,6 +970,9 @@ const rulesTestsAndEnv = {
         'no-return-await': 'off',
         'no-lonely-if': 'off',
         'no-else-return': 'off',
+        'node/handle-callback-err': 'warn',
+        'node/no-sync': 'off',
+        'import/no-extraneous-dependencies': 'off',
     },
     ts: {
         '@typescript-eslint/no-unnecessary-condition': 'off',
@@ -862,6 +985,13 @@ const rulesTestsAndEnv = {
 const rulesTests = {
     js: Object.assign(Object.assign({}, rulesTestsAndEnv.js), { 'no-throw-literal': 'off', 'require-await': 'off', 'no-debugger': 'off' }),
     ts: Object.assign(Object.assign({}, rulesTestsAndEnv.ts), { '@typescript-eslint/no-floating-promises': 'off', '@typescript-eslint/await-thenable': 'warn' }),
+};
+// endregion
+// region rulesEnvTools
+// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
+const rulesEnvTools = {
+    js: Object.assign(Object.assign({}, rulesTestsAndEnv.js), { 'node/no-process-exit': 'off' }),
+    ts: Object.assign({}, rulesTestsAndEnv.ts),
 };
 // endregion
 // region rulesSvelte
@@ -880,6 +1010,8 @@ const rulesSvelte = {
             'warn',
             Object.assign(Object.assign({}, rulesJavaScript['comma-dangle'][1]), { functions: 'only-multiline' }),
         ],
+        'import/no-mutable-exports': 'off',
+        'import/no-nodejs-modules': 'error',
     },
     ts: {
         '@typescript-eslint/no-floating-promises': 'off',
@@ -899,13 +1031,6 @@ const rulesSvelte = {
         'a11y-missing-content': true,
         'a11y-mouse-events-have-key-events': true,
     },
-};
-// endregion
-// region rulesEnvTools
-// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
-const rulesEnvTools = {
-    js: Object.assign({}, rulesTestsAndEnv.js),
-    ts: Object.assign({}, rulesTestsAndEnv.ts),
 };
 // endregion
 function jsRulesToTs(jsRules) {
