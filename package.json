@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pro",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
