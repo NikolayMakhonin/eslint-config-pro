@@ -3,29 +3,30 @@
 /* eslint @typescript-eslint/dot-notation: ["warn", { allowKeywords: true }] */
 
 import {tsRuleNames} from './tsRuleNames'
+import {Linter} from 'eslint'
 
-export type Rules = Record<string, string | [level: string, ...options: any]>
+export type Rules = Linter.Config['rules'] // Record<string, string | [level: string, ...options: any]>
 
 // region rulesJavaScript
 // doc: https://eslint.org/docs/rules/
 const rulesJavaScript: Rules = {
   // region eslint:recommended copy
 
-  'capitalized-comments'  : 'off',
-  'complexity'            : 'off',
-  'constructor-super'     : 'error',
-  'for-direction'         : 'error',
-  'getter-return'         : 'error',
-  'id-blacklist'          : 'off',
-  'id-length'             : 'off',
-  'id-match'              : 'off',
-  'indent-legacy'         : 'off',
-  'jsx-quotes'            : 'off',
-  'line-comment-position' : 'off',
-  'lines-around-directive': 'off',
-  'max-classes-per-file'  : 'off',
-  'max-depth'             : 'off',
-  'max-len'               : [
+  'capitalized-comments' : 'off',
+  'complexity'           : 'off',
+  'constructor-super'    : 'error',
+  'for-direction'        : 'error',
+  'getter-return'        : 'error',
+  // 'id-blacklist'          : 'off', // deprecated
+  'id-length'            : 'off',
+  'id-match'             : 'off',
+  // 'indent-legacy'         : 'off', // deprecated
+  'jsx-quotes'           : 'off',
+  'line-comment-position': 'off',
+  // 'lines-around-directive': 'off', // deprecated
+  'max-classes-per-file' : 'off',
+  'max-depth'            : 'off',
+  'max-len'              : [
     'warn', {
       tabWidth              : 2,
       code                  : 120,
@@ -44,11 +45,11 @@ const rulesJavaScript: Rules = {
   'max-params'                     : 'off',
   'max-statements'                 : 'off',
   'max-statements-per-line'        : 'off',
-  'newline-after-var'              : 'off',
-  'newline-before-return'          : 'off',
+  // 'newline-after-var'              : 'off', // deprecated
+  // 'newline-before-return'          : 'off', // deprecated
   'no-bitwise'                     : 'off',
   'no-case-declarations'           : 'error',
-  'no-catch-shadow'                : 'off',
+  // 'no-catch-shadow'                : 'off', // deprecated
   'no-class-assign'                : 'error',
   'no-compare-neg-zero'            : 'error',
   'no-cond-assign'                 : 'error',
@@ -77,8 +78,8 @@ const rulesJavaScript: Rules = {
   'no-irregular-whitespace'        : 'error',
   'no-magic-numbers'               : 'off',
   'no-multi-assign'                : 'off',
-  'no-native-reassign'             : 'off',
-  'no-negated-in-lhs'              : 'off',
+  // 'no-native-reassign'             : 'off', // deprecated
+  // 'no-negated-in-lhs'              : 'off', // deprecated
   'no-new-symbol'                  : 'error',
   'no-obj-calls'                   : 'error',
   'no-octal'                       : 'error',
@@ -88,11 +89,11 @@ const rulesJavaScript: Rules = {
   'no-regex-spaces'                : 'error',
   'no-restricted-globals'          : 'off',
   'no-restricted-imports'          : 'off',
-  'no-restricted-modules'          : 'off',
+  // 'no-restricted-modules'          : 'off', // deprecated
   'no-restricted-properties'       : 'off',
   'no-restricted-syntax'           : 'off',
   'no-self-assign'                 : 'error',
-  'no-spaced-func'                 : 'off',
+  // 'no-spaced-func'                 : 'off', // deprecated
   'no-sparse-arrays'               : 'error',
   'no-ternary'                     : 'off',
   'no-this-before-super'           : 'error',
@@ -106,17 +107,18 @@ const rulesJavaScript: Rules = {
   'no-void'                        : 'off',
   'padding-line-between-statements': 'off',
   'prefer-promise-reject-errors'   : 'off',
-  'prefer-reflect'                 : 'off',
-  'require-jsdoc'                  : 'off',
+  // 'prefer-reflect'                 : 'off', // deprecated
+  // 'require-jsdoc'                  : 'off', // deprecated
   'require-unicode-regexp'         : 'off',
   'require-yield'                  : 'warn',
   'sort-imports'                   : 'off',
   'sort-keys'                      : 'off',
   'sort-vars'                      : 'off',
   'use-isnan'                      : 'error',
-  'valid-jsdoc'                    : 'off',
+  // 'valid-jsdoc'                    : 'off', // deprecated
   'valid-typeof'                   : 'error',
   'wrap-regex'                     : 'off',
+  'prefer-object-has-own'          : 'off',
 
   // endregion
 
@@ -138,13 +140,16 @@ const rulesJavaScript: Rules = {
       enforceForFunctionPrototypeMethods: true,
     },
   ],
-  'no-misleading-character-class': 'error',
-  'no-prototype-builtins'        : 'error',
-  'no-template-curly-in-string'  : 'error',
-  'no-unreachable'               : 'warn',
-  'require-atomic-updates'       : ['error', { allowProperties: true }],
-  'no-new-func'                  : 'error',
-  'no-constant-binary-expression': 'error',
+  'no-misleading-character-class'  : 'error',
+  'no-prototype-builtins'          : 'error',
+  'no-template-curly-in-string'    : 'error',
+  'no-unreachable'                 : 'warn',
+  'require-atomic-updates'         : ['error', { allowProperties: true }],
+  'no-new-func'                    : 'error',
+  'no-constant-binary-expression'  : 'error',
+  'no-nonoctal-decimal-escape'     : 'error',
+  'no-unsafe-optional-chaining'    : 'error',
+  'no-unused-private-class-members': 'off',
 
   // endregion
 
@@ -281,22 +286,22 @@ const rulesJavaScript: Rules = {
 
   // region Node.js and CommonJS
 
-  'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']],
-  'global-require'       : 'off',
-  'handle-callback-err'  : ['error', '^(err|error)$'],
-  'no-buffer-constructor': 'error',
-  'no-mixed-requires'    : [
-    'error',
-    {
-      grouping : false,
-      allowCall: true,
-    },
-  ],
-  'no-new-require' : 'error',
-  'no-path-concat' : 'error',
-  'no-process-env' : 'off',
-  'no-process-exit': 'off',
-  'no-sync'        : 'off',
+  // 'callback-return'      : ['off', ['done', 'cb', 'next', 'resolve', 'reject', 'callback', 'callbackfn', 'handler']], // deprecated
+  'node/global-require': 'off', // deprecated
+  // 'handle-callback-err'  : ['error', '^(err|error)$'], // deprecated
+  // 'no-buffer-constructor': 'error', // deprecated
+  // 'no-mixed-requires'    : [
+  //   'error',
+  //   {
+  //     grouping : false,
+  //     allowCall: true,
+  //   },
+  // ], // deprecated
+  // 'no-new-require' : 'error', // deprecated
+  // 'no-path-concat' : 'error', // deprecated
+  // 'no-process-env' : 'off', // deprecated
+  // 'no-process-exit': 'off', // deprecated
+  // 'no-sync'        : 'off', // deprecated
 
   // endregion
 
@@ -508,7 +513,9 @@ const rulesJavaScript: Rules = {
   'one-var-declaration-per-line': ['error', 'always'],
   'operator-assignment'         : ['off', 'always'],
   'operator-linebreak'          : [
-    'error', 'before', {
+    'warn',
+    'before',
+    {
       overrides: {'=': 'after'},
     },
   ],
@@ -665,7 +672,7 @@ const rulesJavaScript: Rules = {
   // endregion
   
   // region import
-  'no-duplicate-imports'     : ['off', {includeExports: false}],
+  // 'no-duplicate-imports'     : ['off', {includeExports: false}], // deprecated
   'import/no-duplicates'     : ['error', {considerQueryString: false}],
   'import/no-dynamic-require': 'off',
   'import/no-unresolved'     : 'off',
@@ -681,6 +688,127 @@ const rulesJavaScript: Rules = {
       'process.binding',
     ],
   }],
+  'node/callback-return': 'off',
+  'node/exports-style'  : [
+    'error',
+    'module.exports',
+    {
+      'allowBatchAssign': false,
+    },
+  ],
+  'node/file-extension-in-import': [
+    'error',
+    'always',
+    {
+      '.js': 'never',
+      '.ts': 'never',
+    },
+  ],
+  'node/handle-callback-err'                : 'error',
+  'node/no-callback-literal'                : 'off',
+  'node/no-exports-assign'                  : 'error',
+  'node/no-extraneous-import'               : 'error',
+  'node/no-extraneous-require'              : 'error',
+  'node/no-missing-import'                  : 'error',
+  'node/no-missing-require'                 : 'error',
+  'node/no-mixed-requires'                  : 'warn',
+  'node/no-new-require'                     : 'warn',
+  'node/no-path-concat'                     : 'warn',
+  'node/no-process-env'                     : 'off',
+  'node/no-process-exit'                    : 'warn',
+  'node/no-restricted-import'               : 'off',
+  'node/no-restricted-require'              : 'off',
+  'node/no-sync'                            : ['warn', { allowAtRootLevel: false }],
+  'node/no-unpublished-bin'                 : 'error',
+  'node/no-unpublished-import'              : 'error',
+  'node/no-unpublished-require'             : 'error',
+  'node/no-unsupported-features/es-builtins': ['error', {
+    'ignores': [],
+  }],
+  'node/no-unsupported-features/es-syntax': ['error', {
+    'ignores': [
+      'modules',
+    ],
+  }],
+  'node/no-unsupported-features/node-builtins': ['error', {
+    'ignores': [],
+  }],
+  'node/prefer-global/buffer'           : ['off', 'never'],
+  'node/prefer-global/console'          : ['error', 'always'],
+  'node/prefer-global/process'          : ['error', 'always'],
+  'node/prefer-global/text-decoder'     : ['off', 'never'],
+  'node/prefer-global/text-encoder'     : ['off', 'never'],
+  'node/prefer-global/url-search-params': ['error', 'always'],
+  'node/prefer-global/url'              : ['error', 'always'],
+  'node/prefer-promises/dns'            : ['error'],
+  'node/prefer-promises/fs'             : ['error'],
+  'node/process-exit-as-throw'          : 'error',
+  'node/shebang'                        : 'error',
+  'import/named'                        : 'error',
+  'import/default'                      : 'error',
+  'import/namespace'                    : 'error',
+  'import/no-namespace'                 : 'off',
+  'import/export'                       : 'error',
+  'import/no-mutable-exports'           : 'error',
+  'import/extensions'                   : [
+    'off',
+    'always',
+    {
+      ignorePackages: true,
+      pattern       : {
+        js  : 'never',
+        ts  : 'never',
+        node: 'never',
+      },
+    },
+  ],
+  'import/no-restricted-paths'        : 'off',
+  'import/no-internal-modules'        : 'off',
+  'import/group-exports'              : 'off',
+  'import/no-relative-packages'       : 'off',
+  'import/no-relative-parent-imports' : 'off',
+  'import/no-self-import'             : 'error',
+  'import/no-cycle'                   : ['error', { maxDepth: 5, ignoreExternal: true }],
+  'import/no-named-default'           : 'warn',
+  'import/no-named-as-default'        : 'off',
+  'import/no-named-as-default-member' : 'warn',
+  'import/no-anonymous-default-export': ['warn', {
+    'allowArray'            : true,
+    'allowArrowFunction'    : false,
+    'allowAnonymousClass'   : false,
+    'allowAnonymousFunction': false,
+    'allowCallExpression'   : true,
+    'allowLiteral'          : true,
+    'allowObject'           : true,
+  }],
+  'import/no-unused-modules'         : 'off',
+  'import/no-commonjs'               : 'off',
+  'import/no-amd'                    : 'warn',
+  'import/first'                     : 'error',
+  'import/max-dependencies'          : 'off',
+  // it should exclude: electron, svelte
+  'import/no-extraneous-dependencies': ['off', {
+    bundledDependencies : true,
+    peerDependencies    : true,
+    optionalDependencies: true,
+    devDependencies     : false,
+  }],
+  'import/no-absolute-path'        : 'error',
+  'import/no-nodejs-modules'       : 'off',
+  'import/no-webpack-loader-syntax': 'off',
+  'import/order'                   : 'off',
+  'import/newline-after-import'    : ['off', { 'count': 1 }],
+  'import/prefer-default-export'   : 'off',
+  'import/no-default-export'       : 'off',
+  'import/no-named-export'         : 'off',
+  'import/unambiguous'             : 'off',
+  'import/no-unassigned-import'    : 'off',
+  'import/no-useless-path-segments': 'warn',
+  'import/dynamic-import-chunkname': 'off',
+  'import/no-import-module-exports': 'warn',
+  'import/exports-last'            : 'off',
+  'import/no-deprecated'           : 'warn',
+
   // endregion
 }
 // endregion
@@ -749,60 +877,171 @@ const rulesTypeScript: Rules = {
   // decl.parameters is undefined
   '@typescript-eslint/unbound-method': 'off',
 
-  '@typescript-eslint/no-non-null-assertion'         : 'error',
-  '@typescript-eslint/no-unsafe-assignment'          : 'off',
-  '@typescript-eslint/no-unsafe-member-access'       : 'off',
-  '@typescript-eslint/no-unsafe-call'                : 'off',
-  '@typescript-eslint/ban-ts-comment'                : 'off',
-  '@typescript-eslint/no-var-requires'               : 'warn',
-  '@typescript-eslint/no-this-alias'                 : 'off',
-  '@typescript-eslint/explicit-module-boundary-types': 'off',
-  '@typescript-eslint/no-inferrable-types'           : 'off',
-  '@typescript-eslint/no-empty-interface'            : 'off',
-  '@typescript-eslint/no-explicit-any'               : 'off',
-  '@typescript-eslint/no-unsafe-argument'            : 'off',
-  '@typescript-eslint/restrict-plus-operands'        : 'off',
-  '@typescript-eslint/restrict-template-expressions' : 'off',
-  '@typescript-eslint/no-unsafe-return'              : 'off',
-  '@typescript-eslint/no-floating-promises'          : 'error',
-  '@typescript-eslint/await-thenable'                : 'error',
-  '@typescript-eslint/adjacent-overload-signatures'                : 'warn',
+  '@typescript-eslint/no-non-null-assertion'          : 'error',
+  '@typescript-eslint/no-unsafe-assignment'           : 'off',
+  '@typescript-eslint/no-unsafe-member-access'        : 'off',
+  '@typescript-eslint/no-unsafe-call'                 : 'off',
+  '@typescript-eslint/ban-ts-comment'                 : 'off',
+  '@typescript-eslint/no-var-requires'                : 'warn',
+  '@typescript-eslint/no-this-alias'                  : 'off',
+  '@typescript-eslint/explicit-module-boundary-types' : 'off',
+  '@typescript-eslint/no-inferrable-types'            : 'off',
+  '@typescript-eslint/no-empty-interface'             : 'off',
+  '@typescript-eslint/no-explicit-any'                : 'off',
+  '@typescript-eslint/no-unsafe-argument'             : 'off',
+  '@typescript-eslint/restrict-plus-operands'         : 'off',
+  '@typescript-eslint/restrict-template-expressions'  : 'off',
+  '@typescript-eslint/no-unsafe-return'               : 'off',
+  '@typescript-eslint/no-floating-promises'           : 'error',
+  '@typescript-eslint/await-thenable'                 : 'error',
+  '@typescript-eslint/adjacent-overload-signatures'   : 'warn',
+  '@typescript-eslint/array-type'                     : 'off',
+  '@typescript-eslint/ban-tslint-comment'             : 'warn',
+  '@typescript-eslint/class-literal-property-style'   : 'off',
+  '@typescript-eslint/consistent-indexed-object-style': 'off',
+  '@typescript-eslint/consistent-type-definitions'    : 'off',
+  '@typescript-eslint/consistent-type-exports'        : 'warn',
+  '@typescript-eslint/consistent-type-imports'        : ['off', {prefer: 'type-imports'}],
+  '@typescript-eslint/explicit-function-return-type'  : 'off',
+  '@typescript-eslint/explicit-member-accessibility'  : ['warn', { accessibility: 'no-public' }],
+  // requireLast should be multiline
+  '@typescript-eslint/member-delimiter-style'         : ['off', {
+    'multiline': {
+      'delimiter'  : 'comma',
+      'requireLast': true,
+    },
+    'singleline': {
+      'delimiter'  : 'comma',
+      'requireLast': true,
+    },
+    'multilineDetection': 'brackets',
+    'overrides'         : {
+      'interface': {
+        'multiline': {
+          'delimiter'  : 'none',
+          'requireLast': true,
+        },
+      },
+    },
+  }],
+  '@typescript-eslint/member-ordering'                : 'off',
+  '@typescript-eslint/method-signature-style'         : ['off', 'method'],
+  '@typescript-eslint/naming-convention'              : 'off',
+  // should allow any/unknown types
+  '@typescript-eslint/no-base-to-string'              : 'off',
+  '@typescript-eslint/no-confusing-non-null-assertion': 'warn',
+  '@typescript-eslint/no-confusing-void-expression'   : 'warn',
+  '@typescript-eslint/no-duplicate-enum-values'       : 'error',
+  '@typescript-eslint/no-dynamic-delete'              : 'off',
+  '@typescript-eslint/no-extra-non-null-assertion'    : 'error',
+  '@typescript-eslint/no-extraneous-class'            : ['warn', {
+    allowConstructorOnly: true,
+    allowEmpty          : true,
+    allowWithDecorator  : true,
+  }],
+  '@typescript-eslint/no-for-in-array'                        : 'error',
+  '@typescript-eslint/no-invalid-void-type'                   : 'off',
+  '@typescript-eslint/no-meaningless-void-operator'           : 'warn',
+  '@typescript-eslint/no-misused-new'                         : 'warn',
+  '@typescript-eslint/no-namespace'                           : 'off',
+  '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'warn',
+  '@typescript-eslint/no-non-null-asserted-optional-chain'    : 'warn',
+  '@typescript-eslint/no-redundant-type-constituents'         : 'warn',
+  '@typescript-eslint/no-require-imports'                     : 'off',
+  '@typescript-eslint/no-type-alias'                          : 'off',
+  '@typescript-eslint/no-unnecessary-boolean-literal-compare' : 'off',
+  '@typescript-eslint/no-unnecessary-condition'               : ['off', {
+    allowConstantLoopConditions                           : true,
+    allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: true,
+  }],
+  '@typescript-eslint/no-unnecessary-qualifier'            : 'warn',
+  '@typescript-eslint/no-unnecessary-type-arguments'       : 'warn',
+  '@typescript-eslint/no-unnecessary-type-assertion'       : 'warn',
+  '@typescript-eslint/no-unnecessary-type-constraint'      : 'warn',
+  '@typescript-eslint/no-useless-empty-export'             : 'warn',
+  '@typescript-eslint/non-nullable-type-assertion-style'   : 'off',
+  '@typescript-eslint/parameter-properties'                : ['warn', { 'prefer': 'class-property' }],
+  '@typescript-eslint/prefer-as-const'                     : 'off',
+  '@typescript-eslint/prefer-enum-initializers'            : 'off',
+  '@typescript-eslint/prefer-for-of'                       : 'off',
+  '@typescript-eslint/prefer-function-type'                : 'warn',
+  '@typescript-eslint/prefer-includes'                     : 'warn',
+  '@typescript-eslint/prefer-literal-enum-member'          : 'error',
+  '@typescript-eslint/prefer-namespace-keyword'            : 'off',
+  '@typescript-eslint/prefer-nullish-coalescing'           : 'off',
+  '@typescript-eslint/prefer-optional-chain'               : 'off',
+  '@typescript-eslint/prefer-readonly'                     : 'warn',
+  '@typescript-eslint/prefer-readonly-parameter-types'     : 'off',
+  '@typescript-eslint/prefer-reduce-type-parameter'        : 'off',
+  '@typescript-eslint/prefer-regexp-exec'                  : 'off',
+  '@typescript-eslint/prefer-return-this-type'             : 'warn',
+  '@typescript-eslint/prefer-string-starts-ends-with'      : 'off',
+  '@typescript-eslint/prefer-ts-expect-error'              : 'warn',
+  '@typescript-eslint/promise-function-async'              : 'off',
+  '@typescript-eslint/require-array-sort-compare'          : 'off',
+  '@typescript-eslint/return-await'                        : ['warn', 'in-try-catch'],
+  '@typescript-eslint/sort-type-union-intersection-members': 'off',
+  '@typescript-eslint/strict-boolean-expressions'          : 'off',
+  '@typescript-eslint/switch-exhaustiveness-check'         : 'warn',
+  '@typescript-eslint/triple-slash-reference'              : 'off',
+  '@typescript-eslint/type-annotation-spacing'             : [
+    'warn',
+    {
+      'before' : true,
+      'after'  : true,
+      overrides: {
+        colon: { before: false, after: true },
+        arrow: { before: true, after: true },
+      },
+    },
+  ],
+  '@typescript-eslint/typedef'            : 'off',
+  '@typescript-eslint/unified-signatures' : 'warn',
+  'node/no-unsupported-features/es-syntax': 'off',
+  'node/no-missing-import'                : 'off',
+  'node/no-unpublished-import'            : 'off',
 }
 // endregion
 
 // region rulesTestsAndEnv
 const rulesTestsAndEnv = {
   js: {
-    'func-names'                  : 'off',
-    'no-shadow'                   : 'off',
-    'no-unused-vars'              : 'off',
-    'array-bracket-newline'       : 'off',
-    'consistent-return'           : ['off', {treatUndefinedAsUnspecified: false}],
-    'func-name-matching'          : ['off', 'always'],
-    'function-paren-newline'      : 'off',
-    'new-cap'                     : 'off',
-    'no-debugger'                 : 'off',
-    'no-empty'                    : 'off',
-    'no-eval'                     : 'off',
-    'no-loop-func'                : 'warn',
-    'no-new'                      : 'off',
-    'no-new-func'                 : 'off',
-    'no-throw-literal'            : 'off',
-    'no-useless-call'             : 'off',
-    'no-useless-catch'            : 'off',
-    'prefer-const'                : 'off',
-    'no-useless-concat'           : 'off',
-    'lines-between-class-members' : 'off',
-    'max-len'                     : 'off',
-    'lines-around-comment'        : 'off',
-    'require-await'               : 'warn',
-    'no-unmodified-loop-condition': 'warn',
-    'no-return-await'             : 'off',
-    'no-lonely-if'                : 'off',
-    'no-else-return'              : 'off',
+    'func-names'                       : 'off',
+    'no-shadow'                        : 'off',
+    'no-unused-vars'                   : 'off',
+    'array-bracket-newline'            : 'off',
+    'consistent-return'                : ['off', {treatUndefinedAsUnspecified: false}],
+    'func-name-matching'               : ['off', 'always'],
+    'function-paren-newline'           : 'off',
+    'new-cap'                          : 'off',
+    'no-debugger'                      : 'warn',
+    'no-empty'                         : 'off',
+    'no-eval'                          : 'off',
+    'no-loop-func'                     : 'warn',
+    'no-new'                           : 'off',
+    'no-new-func'                      : 'off',
+    'no-useless-call'                  : 'off',
+    'no-useless-catch'                 : 'off',
+    'prefer-const'                     : 'off',
+    'no-useless-concat'                : 'off',
+    'lines-between-class-members'      : 'off',
+    'max-len'                          : 'off',
+    'lines-around-comment'             : 'off',
+    'require-await'                    : 'warn',
+    'no-unmodified-loop-condition'     : 'warn',
+    'no-return-await'                  : 'off',
+    'no-lonely-if'                     : 'off',
+    'no-else-return'                   : 'off',
+    'node/handle-callback-err'         : 'warn',
+    'node/no-sync'                     : 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'node/no-unpublished-import'       : 'off',
+    'node/no-unpublished-require'      : 'off',
   } as Rules,
   ts: {
-
+    '@typescript-eslint/no-unnecessary-condition'    : 'off',
+    '@typescript-eslint/prefer-includes'             : 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
   } as Rules,
 }
 // endregion
@@ -811,12 +1050,27 @@ const rulesTestsAndEnv = {
 const rulesTests = {
   js: {
     ...rulesTestsAndEnv.js,
-    'require-await': 'off',
+    'no-throw-literal': 'off',
+    'require-await'   : 'off',
+    'no-debugger'     : 'off',
   } as Rules,
   ts: {
     ...rulesTestsAndEnv.ts,
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/await-thenable'      : 'warn',
+  } as Rules,
+}
+// endregion
+
+// region rulesEnvTools
+// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
+const rulesEnvTools = {
+  js: {
+    ...rulesTestsAndEnv.js,
+    'node/no-process-exit': 'off',
+  } as Rules,
+  ts: {
+    ...rulesTestsAndEnv.ts,
   } as Rules,
 }
 // endregion
@@ -840,6 +1094,9 @@ const rulesSvelte = {
         functions: 'only-multiline', // fix this svelte bug: <a {href,} />
       },
     ],
+    'import/no-mutable-exports': 'off',
+    'import/no-nodejs-modules' : 'error',
+    'import/first'             : 'off',
   } as Rules,
   ts: {
     '@typescript-eslint/no-floating-promises': 'off',
@@ -850,6 +1107,8 @@ const rulesSvelte = {
         functions: 'only-multiline', // fix this svelte bug: <a {href,} />
       },
     ],
+    // '@typescript-eslint/consistent-type-imports': ['error', {prefer: 'type-imports'}],
+    '@typescript-eslint/no-confusing-void-expression': 'off',
   } as Rules,
   ignore: {
     'unused-export-let'                : true,
@@ -860,18 +1119,6 @@ const rulesSvelte = {
     'a11y-missing-content'             : true,
     'a11y-mouse-events-have-key-events': true,
   } as Record<string, boolean>,
-}
-// endregion
-
-// region rulesEnvTools
-// docs: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/
-const rulesEnvTools = {
-  js: {
-    ...rulesTestsAndEnv.js,
-  } as Rules,
-  ts: {
-    ...rulesTestsAndEnv.ts,
-  } as Rules,
 }
 // endregion
 

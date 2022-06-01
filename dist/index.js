@@ -7,4 +7,5 @@ require('./patterns.js');
 require('./rules.js');
 require('./tsRuleNames.js');
 
+/* eslint-disable import/no-import-module-exports */
 module.exports = config.config;

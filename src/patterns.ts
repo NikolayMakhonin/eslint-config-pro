@@ -1,7 +1,7 @@
 export const js    = ['**/*.js']
 export const jsx    = ['**/*.jsx']
 export const cjs   = ['**/*.cjs']
-export const mjs   = ['**/*.cjs']
+export const mjs   = ['**/*.mjs']
 export const ts    = ['**/*.ts']
 export const tsx   = ['**/*.tsx']
 export const md   = ['**/*.md']
@@ -11,16 +11,21 @@ export const tests = [
   '**/*.test.*',
   '**/*.perf.*',
   '**/*.e2e.*',
-  '**/test/**',
-  '**/tests/**',
+  '**/test/**/*',
+  '**/tests/**/*',
 ]
+// const jsTsExtensions = ['js', 'jsx', 'cjs', 'mjs', 'ts', 'tsx']
 export const envTools = [
-  './env/**',
-  './tools/**',
-  './deploy/**',
+  './env/**/*',
+  './tools/**/*',
+  './deploy/**/*',
   './*',
-  './**/.*',
+  '**/.*',
   '**/*.config.*',
+  '**/*.build.*',
+  '**/*.env.*',
+  '**/*.tool.*',
+  '**/*.tools.*',
 ]
 export const javaScript = [
   ...js,

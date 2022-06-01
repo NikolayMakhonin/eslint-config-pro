@@ -2,8 +2,9 @@
 import * as features from './features'
 import * as patterns from './patterns'
 import {rules} from './rules'
+import {Linter} from 'eslint'
 
-export const config = {
+export const config: Linter.Config = {
   extends: [
     'eslint:recommended',
   ],
@@ -21,17 +22,28 @@ export const config = {
     sourceType : 'module',
   },
   ignorePatterns: [
+    '**/.*/**',
+    '**/node_modules/**',
     '!**/.*',
     ...!features.svelte ? patterns.svelte : [],
     ...!features.html ? patterns.html : [],
   ],
+  'settings': {
+    'node': {
+      'allowModules' : ['electron', 'svelte'],
+      'tryExtensions': ['.js', '.ts', '.node'],
+    },
+  },
   overrides: [
     // region *.cjs
     {
-      files  : patterns.cjs,
+      files: patterns.cjs,
+      env  : {
+        browser: false,
+      },
       plugins: ['node'],
       rules  : {
-        'global-require': 'off',
+        'node/global-require': 'off',
       },
       parserOptions: {
         sourceType: 'script',
@@ -43,17 +55,20 @@ export const config = {
       files  : patterns.js,
       plugins: ['node'],
       rules  : {
-        'global-require': 'off',
-        'strict'        : 'off',
+        'node/global-require': 'off',
+        'strict'             : 'off',
       },
     },
     // endregion
     // region *.mjs
     {
-      files  : patterns.mjs,
+      files: patterns.mjs,
+      env  : {
+        browser: false,
+      },
       plugins: ['node'],
       rules  : {
-        'global-require': 'error',
+        'node/global-require': 'error',
       },
     },
     // endregion
@@ -98,72 +113,6 @@ export const config = {
       },
     },
     // endregion
-    // region Svelte
-    features.svelte && {
-      files    : patterns.svelte,
-      processor: 'svelte3/svelte3',
-      env      : {
-        es6    : true,
-        node   : false,
-        browser: true,
-      },
-      plugins: ['svelte3'],
-      rules  : {
-        ...rules.svelte.js,
-        ...rules.svelte.ts,
-      },
-      settings: {
-        'svelte3/typescript'     : true,
-        'svelte3/ignore-warnings': warn => {
-          return rules.svelte.ignore[warn.code]
-        },
-      },
-    },
-    // endregion
-    // region Html
-    features.html && {
-      files: patterns.html,
-      rules: {
-        'semi'              : ['error', 'always'],
-        'semi-style'        : ['error', 'last'],
-        'no-extra-semi'     : 'off',
-        'prefer-rest-params': 'off',
-        'no-var'            : 'off',
-        'vars-on-top'       : 'off',
-        'strict'            : ['error', 'global'],
-        'comma-dangle'      : 'off',
-      },
-      env: {
-        es6    : false,
-        node   : false,
-        browser: true,
-      },
-      plugins : ['html'],
-      parser  : 'espree',
-      settings: {
-        'html/indent'           : '+2',
-        'html/report-bad-indent': 'warn',
-        'html/html-extensions'  : [
-          '.htm',
-          '.html',
-          features.svelte && '.svelte',
-        ].filter(o => o),
-      },
-      parserOptions: {
-        ecmaVersion: 5,
-        sourceType : 'script',
-      },
-    },
-    // endregion
-    // region Markdown
-    // {
-    //   files: patterns.md,
-    //   rules: {
-    //     'no-undef'      : 'off',
-    //     'no-unused-vars': 'off',
-    //   },
-    // },
-    // endregion
     // region Tests
     {
       files: patterns.tests,
@@ -199,5 +148,70 @@ export const config = {
       }],
     },
     // endregion
-  ].filter(o => o?.files?.length),
+    // region Svelte
+    features.svelte && {
+      files    : patterns.svelte,
+      processor: 'svelte3/svelte3',
+      env      : {
+        node: false,
+      },
+      plugins: ['svelte3'],
+      rules  : {
+        ...rules.svelte.js,
+        ...rules.svelte.ts,
+      },
+      settings: {
+        'svelte3/typescript'     : true,
+        'svelte3/ignore-warnings': warn => {
+          return rules.svelte.ignore[warn.code]
+        },
+      },
+    },
+    // endregion
+    // region Html
+    features.html && {
+      files: patterns.html,
+      rules: {
+        'semi'              : ['error', 'always'],
+        'semi-style'        : ['error', 'last'],
+        'no-extra-semi'     : 'off',
+        'prefer-rest-params': 'off',
+        'no-var'            : 'off',
+        'vars-on-top'       : 'off',
+        'strict'            : ['error', 'global'],
+        'comma-dangle'      : 'off',
+      },
+      env: {
+        es6 : false,
+        node: false,
+      },
+      plugins : ['html'],
+      parser  : 'espree',
+      settings: {
+        'html/indent'           : '+2',
+        'html/report-bad-indent': 'warn',
+        'html/html-extensions'  : [
+          '.htm',
+          '.html',
+          features.svelte && '.svelte',
+        ].filter(o => o),
+      },
+      parserOptions: {
+        ecmaVersion: 5,
+        sourceType : 'script',
+      },
+    },
+    // endregion
+    // region Markdown
+    // {
+    //   files: patterns.md,
+    //   rules: {
+    //     'no-undef'      : 'off',
+    //     'no-unused-vars': 'off',
+    //   },
+    // },
+    // endregion
+  ],
 }
+
+config.overrides = config.overrides.filter(o => o?.files?.length)

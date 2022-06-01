@@ -1,40 +1,41 @@
-export declare type Rules = Record<string, string | [level: string, ...options: any]>;
+import { Linter } from 'eslint';
+export declare type Rules = Linter.Config['rules'];
 export declare function jsRulesToTs(jsRules: any): {};
 export declare const rulesOrig: {
     common: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     tests: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     envTools: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     svelte: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
         ignore: Record<string, boolean>;
     };
 };
 export declare const rules: {
     common: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     tests: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     envTools: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
     };
     svelte: {
-        js: Rules;
-        ts: Rules;
+        js: Partial<Linter.RulesRecord>;
+        ts: Partial<Linter.RulesRecord>;
         ignore: Record<string, boolean>;
     };
 };

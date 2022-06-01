@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const js = ['**/*.js'];
 const jsx = ['**/*.jsx'];
 const cjs = ['**/*.cjs'];
-const mjs = ['**/*.cjs'];
+const mjs = ['**/*.mjs'];
 const ts = ['**/*.ts'];
 const tsx = ['**/*.tsx'];
 const md = ['**/*.md'];
@@ -15,16 +15,21 @@ const tests = [
     '**/*.test.*',
     '**/*.perf.*',
     '**/*.e2e.*',
-    '**/test/**',
-    '**/tests/**',
+    '**/test/**/*',
+    '**/tests/**/*',
 ];
+// const jsTsExtensions = ['js', 'jsx', 'cjs', 'mjs', 'ts', 'tsx']
 const envTools = [
-    './env/**',
-    './tools/**',
-    './deploy/**',
+    './env/**/*',
+    './tools/**/*',
+    './deploy/**/*',
     './*',
-    './**/.*',
+    '**/.*',
     '**/*.config.*',
+    '**/*.build.*',
+    '**/*.env.*',
+    '**/*.tool.*',
+    '**/*.tools.*',
 ];
 const javaScript = [
     ...js,

@@ -269,4 +269,6 @@ Promise.all([
     excludeDirNames: ['node_modules', '.git', 'dist', 'tmp', 'public', 'build', 'static'],
   }),
 ])
-  .catch(err => console.error(err))
+  .catch(err => {
+    console.error(err)
+  })

@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pro",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "access": "public"
   },
   "scripts": {
-    "prepublishOnly": "pnpm run audit && pnpm run lint && pnpm build && pnpm run test:mocha:ci",
+    "_prepublishOnly": "pnpm run audit && pnpm run lint && pnpm build && pnpm run test:mocha:ci",
     "audit": "pnpm audit --prod",
     "lint": "eslint ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
     "lint:wizard": "eslint-nibble --cache --multi ./**/*.{js,cjs,mjs,ts,tsx,svelte,html}",
@@ -58,6 +58,7 @@
     "analysis": "ts-node tools/analysis.ts"
   },
   "devDependencies": {
+    "@flemist/test-variants": "^0.0.0",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^21.0.3",
     "@rollup/plugin-json": "^4.1.0",
