@@ -34,12 +34,12 @@ const envTools = [
     '**/*.tool.*',
     '**/*.tools.*',
 ];
-// export const javaScript = [
-//   ...js,
-//   ...jsx,
-//   ...cjs,
-//   ...mjs,
-// ]
+const javaScript = [
+    ...js,
+    ...jsx,
+    ...cjs,
+    ...mjs,
+];
 const typeScript = [
     ...ts,
     ...tsx,
@@ -49,6 +49,7 @@ const typeScript = [
 exports.cjs = cjs;
 exports.envTools = envTools;
 exports.html = html;
+exports.javaScript = javaScript;
 exports.js = js;
 exports.jsx = jsx;
 exports.md = md;

@@ -978,7 +978,7 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/prefer-string-starts-ends-with'      : 'off',
   '@typescript-eslint/prefer-ts-expect-error'              : 'warn',
   '@typescript-eslint/promise-function-async'              : 'off',
-  '@typescript-eslint/require-array-sort-compare'          : 'off',
+  '@typescript-eslint/require-array-sort-compare'          : ['error', { ignoreStringArrays: true }],
   '@typescript-eslint/return-await'                        : ['warn', 'in-try-catch'],
   '@typescript-eslint/sort-type-union-intersection-members': 'off',
   '@typescript-eslint/strict-boolean-expressions'          : 'off',

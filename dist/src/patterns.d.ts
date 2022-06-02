@@ -9,4 +9,5 @@ export declare const html: string[];
 export declare const svelte: string[];
 export declare const tests: string[];
 export declare const envTools: string[];
+export declare const javaScript: string[];
 export declare const typeScript: string[];
