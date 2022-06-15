@@ -20,6 +20,9 @@ const config = {
         node: true,
         browser: true,
     },
+    globals: {
+        BigInt: true,
+    },
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',

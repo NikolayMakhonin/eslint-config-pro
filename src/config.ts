@@ -17,6 +17,9 @@ export const config: Linter.Config = {
     node   : true,
     browser: true,
   },
+  globals: {
+    BigInt: true,
+  },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType : 'module',
