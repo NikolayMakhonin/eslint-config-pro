@@ -942,6 +942,7 @@ const rulesTypeScript = {
     'node/no-unsupported-features/es-syntax': 'off',
     'node/no-missing-import': 'off',
     'node/no-unpublished-import': 'off',
+    '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
 };
 // endregion
 // region rulesTestsAndEnv

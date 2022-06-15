@@ -40,6 +40,7 @@ describe('validate rules', function () {
       'no-shadow'           : true,
       'no-use-before-define': true,
       'comma-dangle'        : true,
+      'no-redeclare'        : true,
     },
     errorRules: {
       '@typescript-eslint/indent': true,
