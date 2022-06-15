@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pro",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -94,11 +94,17 @@
   },
   "peerDependencies": {
     "eslint": ">=7.4.0",
-    "typescript": ">=3.3.1"
-  },
-  "optionalDependencies": {
+    "typescript": ">=3.3.1",
     "eslint-plugin-html": ">=6.2.0",
     "eslint-plugin-svelte3": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-html": {
+      "optional": true
+    },
+    "eslint-plugin-svelte3": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.26.0",
