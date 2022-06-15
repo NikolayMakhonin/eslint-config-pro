@@ -5,6 +5,7 @@
 /node_modules/
 
 # additional rules
+/.idea/
 /.github/
 /dist/
 /docs/
