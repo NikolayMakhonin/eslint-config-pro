@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 const tsRuleNames = new Set([
     'adjacent-overload-signatures',
     'array-type',

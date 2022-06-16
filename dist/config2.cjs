@@ -1,12 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var features = require('./features.js');
-var patterns = require('./patterns.js');
-var rules = require('./rules.js');
-require('./helpers.js');
-require('./tsRuleNames.js');
+var features = require('./features2.cjs');
+var patterns = require('./patterns2.cjs');
+var rules = require('./rules2.cjs');
 
 /* eslint-disable dot-notation, quote-props */
 const config = {

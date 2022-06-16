@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pro",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "Almost all ESLint v5 rules are proven in practice for professional developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -59,7 +59,7 @@
     "analysis": "ts-node tools/analysis.ts"
   },
   "devDependencies": {
-    "@flemist/test-variants": "^0.0.0",
+    "@flemist/test-variants": "^0.0.1",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -72,7 +72,7 @@
     "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.0",
-    "cpy-cli": "^3.1.1",
+    "cpy-cli": "^4.1.0",
     "eslint": "^8.17.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-svelte3": ">=4.0.0",

@@ -1,8 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var tsRuleNames = require('./tsRuleNames.js');
+var tsRuleNames = require('./tsRuleNames2.cjs');
 
 /* eslint-disable quote-props */
 // region rulesJavaScript

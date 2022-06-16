@@ -1,9 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var features = require('./features.js');
-require('./helpers.js');
+var features = require('./features2.cjs');
 
 const js = ['**/*.js'];
 const jsx = ['**/*.jsx'];

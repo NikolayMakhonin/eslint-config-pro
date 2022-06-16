@@ -80,9 +80,7 @@ const nodeConfig = ({input, outputDir, relative}) => ({
     }),
   ],
   onwarn  : onwarnRollup,
-  external: Object.keys(pkg.dependencies)
-    .concat(Object.keys(pkg.devDependencies))
-    .concat(require('module').builtinModules || Object.keys(process.binding('natives'))),
+  external: [/\bnode_modules\b/],
 })
 
 export default [
