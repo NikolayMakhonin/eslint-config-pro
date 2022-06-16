@@ -7,6 +7,7 @@ import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import path from 'path'
+import pkg from './package.json'
 
 const dev = !!process.env.ROLLUP_WATCH
 
@@ -82,7 +83,7 @@ const nodeConfig = ({input, outputDir, relative}) => ({
   external: Object.keys(pkg.dependencies)
     .concat(Object.keys(pkg.devDependencies))
     .concat(require('module').builtinModules || Object.keys(process.binding('natives'))),
-}
+})
 
 export default [
   nodeConfig({

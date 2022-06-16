@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-    "pnpm": "^7.1.6"
+    "pnpm": "^7.1.6",
+    "node": ">=9.3.0"
   },
   "repository": {
     "type": "git",
