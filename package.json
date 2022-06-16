@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
-    "pnpm": "^7.1.6",
-    "node": ">=9.3.0"
+    "node": ">=9.3.0",
+    "pnpm": "^7.1.6"
   },
   "repository": {
     "type": "git",
@@ -75,7 +75,7 @@
     "cpy-cli": "^3.1.1",
     "eslint": "^8.17.0",
     "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-svelte3": "^4.0.0",
+    "eslint-plugin-svelte3": ">=4.0.0",
     "fs-extra": "^10.1.0",
     "globby": "^11.1.0",
     "json5": "^2.2.1",

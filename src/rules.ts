@@ -995,12 +995,13 @@ const rulesTypeScript: Rules = {
       },
     },
   ],
-  '@typescript-eslint/typedef'            : 'off',
-  '@typescript-eslint/unified-signatures' : 'warn',
-  'node/no-unsupported-features/es-syntax': 'off',
-  'node/no-missing-import'                : 'off',
-  'node/no-unpublished-import'            : 'off',
-  '@typescript-eslint/no-redeclare'       : ['error', { ignoreDeclarationMerge: true }],
+  '@typescript-eslint/typedef'                        : 'off',
+  '@typescript-eslint/unified-signatures'             : 'warn',
+  'node/no-unsupported-features/es-syntax'            : 'off',
+  'node/no-missing-import'                            : 'off',
+  'node/no-unpublished-import'                        : 'off',
+  '@typescript-eslint/no-redeclare'                   : ['error', { ignoreDeclarationMerge: true }],
+  '@typescript-eslint/consistent-generic-constructors': 'off',
 }
 // endregion
 

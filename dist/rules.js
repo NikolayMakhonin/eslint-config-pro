@@ -943,6 +943,7 @@ const rulesTypeScript = {
     'node/no-missing-import': 'off',
     'node/no-unpublished-import': 'off',
     '@typescript-eslint/no-redeclare': ['error', { ignoreDeclarationMerge: true }],
+    '@typescript-eslint/consistent-generic-constructors': 'off',
 };
 // endregion
 // region rulesTestsAndEnv
