@@ -51,13 +51,11 @@ const aliasOptions = {
   ],
 }
 
-const nodeConfig = {
-  cache: true,
-  input: [
-    'src/**/*.ts',
-  ],
+const nodeConfig = ({input, outputDir, relative}) => ({
+  cache : true,
+  input,
   output: {
-    dir           : 'dist',
+    dir           : outputDir,
     format        : 'cjs',
     exports       : 'named',
     entryFileNames: `[name].js`,
@@ -65,8 +63,8 @@ const nodeConfig = {
     sourcemap     : dev,
   },
   plugins: [
-    del({ targets: 'dist/*' }),
-    multiInput(),
+    del({ targets: outputDir }),
+    multiInput({relative}),
     alias(aliasOptions),
     json(),
     replace({
@@ -81,9 +79,15 @@ const nodeConfig = {
     }),
   ],
   onwarn  : onwarnRollup,
-  external: [/node_modules/],
+  external: Object.keys(pkg.dependencies)
+    .concat(Object.keys(pkg.devDependencies))
+    .concat(require('module').builtinModules || Object.keys(process.binding('natives'))),
 }
 
 export default [
-  nodeConfig,
+  nodeConfig({
+    input    : ['src/**/*.ts'],
+    outputDir: 'dist',
+    relative : 'src',
+  }),
 ]

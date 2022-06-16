@@ -1,5 +1,7 @@
 'use strict'
 
 module.exports = {
-  'extends': ['./dist/index.js'],
+  'extends': [
+    './dist/index.js',
+  ],
 }
