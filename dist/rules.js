@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var rules = require('./rules2.cjs');
-require('./tsRuleNames2.cjs');
+var rules = require('./rules2.js');
+require('./tsRuleNames2.js');
 
 
 

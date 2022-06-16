@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var features = require('./features2.cjs');
-require('./helpers2.cjs');
+var features = require('./features2.js');
+require('./helpers2.js');
 
 
 

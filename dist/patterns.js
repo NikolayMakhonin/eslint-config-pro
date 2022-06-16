@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var patterns = require('./patterns2.cjs');
-require('./features2.cjs');
-require('./helpers2.cjs');
+var patterns = require('./patterns2.js');
+require('./features2.js');
+require('./helpers2.js');
 
 
 

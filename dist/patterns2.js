@@ -1,6 +1,6 @@
 'use strict';
 
-var features = require('./features2.cjs');
+var features = require('./features2.js');
 
 const js = ['**/*.js'];
 const jsx = ['**/*.jsx'];

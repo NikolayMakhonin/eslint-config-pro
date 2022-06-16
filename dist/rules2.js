@@ -1,6 +1,6 @@
 'use strict';
 
-var tsRuleNames = require('./tsRuleNames2.cjs');
+var tsRuleNames = require('./tsRuleNames2.js');
 
 /* eslint-disable quote-props */
 // region rulesJavaScript

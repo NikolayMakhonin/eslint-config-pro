@@ -7,7 +7,7 @@ import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import path from 'path'
-import pkg from './package.json'
+// import pkg from './package.json'
 
 const dev = !!process.env.ROLLUP_WATCH
 

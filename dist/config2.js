@@ -1,8 +1,8 @@
 'use strict';
 
-var features = require('./features2.cjs');
-var patterns = require('./patterns2.cjs');
-var rules = require('./rules2.cjs');
+var features = require('./features2.js');
+var patterns = require('./patterns2.js');
+var rules = require('./rules2.js');
 
 /* eslint-disable dot-notation, quote-props */
 const config = {
