@@ -102,7 +102,7 @@ const config = {
             ],
             parserOptions: {
                 tsconfigRootDir: process.cwd(),
-                project: './tsconfig.json',
+                project: './tsconfig.eslint.json',
                 extraFileExtensions: [
                     features.svelte && '.svelte',
                 ].filter(o => o),
