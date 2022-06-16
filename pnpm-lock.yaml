@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@flemist/test-variants': ^0.0.1
+  '@flemist/test-variants': ^0.0.2
   '@rollup/plugin-alias': ^3.1.9
   '@rollup/plugin-commonjs': ^22.0.0
   '@rollup/plugin-json': ^4.1.0
@@ -21,7 +21,7 @@ specifiers:
   eslint-plugin-html: ^6.2.0
   eslint-plugin-import: ^2.26.0
   eslint-plugin-node: ^11.1.0
-  eslint-plugin-svelte3: '>=4.0.0'
+  eslint-plugin-svelte3: ^4.0.0
   fs-extra: ^10.1.0
   globby: ^11.1.0
   json5: ^2.2.1
@@ -47,7 +47,7 @@ dependencies:
   tslib: 2.4.0
 
 devDependencies:
-  '@flemist/test-variants': 0.0.1
+  '@flemist/test-variants': 0.0.2
   '@rollup/plugin-alias': 3.1.9_rollup@2.75.6
   '@rollup/plugin-commonjs': 22.0.0_rollup@2.75.6
   '@rollup/plugin-json': 4.1.0_rollup@2.75.6
@@ -126,8 +126,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@flemist/test-variants/0.0.1:
-    resolution: {integrity: sha512-CpUc3Rj7xZe2cG7cxl8vOVpk4M0MX5CaywHG126uuRsfwdwni8Yih1tsiA0BwzLnyG8KLoh5Uw4PaUbUUKXs9g==}
+  /@flemist/test-variants/0.0.2:
+    resolution: {integrity: sha512-N8oLERSbqgKmPSWaz8A3We7OG3S4XMrHBfP/O+gzMcqRgH7zj0dQo6LU7U5pCUX3naM7phJqA9n+mUA5oBrMlg==}
     engines: {node: '>=9.3.0', pnpm: ^7.1.6}
     dependencies:
       tslib: 2.4.0
