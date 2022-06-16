@@ -9,13 +9,12 @@
     "tools/**/*"
   ],
   "exclude": [
-    "node_modules/*",
-    "dist/*"
+    "node_modules/**/*",
+    "dist/**/*",
   ],
   "compilerOptions": {
     "target": "es6",
     "module": "es6",
-    "allowJs": true,
     "isolatedModules": false,
     "declaration": false,
     "emitDeclarationOnly": true,
