@@ -966,7 +966,7 @@ const rulesTypeScript: Rules = {
   '@typescript-eslint/prefer-for-of'                       : 'off',
   '@typescript-eslint/prefer-function-type'                : 'warn',
   '@typescript-eslint/prefer-includes'                     : 'warn',
-  '@typescript-eslint/prefer-literal-enum-member'          : 'error',
+  '@typescript-eslint/prefer-literal-enum-member'          : ['off', { allowBitwiseExpressions: false }],
   '@typescript-eslint/prefer-namespace-keyword'            : 'off',
   '@typescript-eslint/prefer-nullish-coalescing'           : 'off',
   '@typescript-eslint/prefer-optional-chain'               : 'off',
