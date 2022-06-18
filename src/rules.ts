@@ -852,6 +852,7 @@ const rulesTypeScript: Rules = {
       types: {
         object: false,
         '{}'  : false,
+        BigInt: false,
       },
     },
   ],
