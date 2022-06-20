@@ -49,22 +49,27 @@ const aliasOptions = {
       find       : 'src',
       replacement: path.resolve(__dirname, 'src'),
     },
+    {
+      find       : '~',
+      replacement: path.resolve(__dirname),
+    },
   ],
 }
 
-const nodeConfig = ({input, outputDir, relative}) => ({
+const nodeConfig = ({
+  input, outputDir, relative, format, extension,
+}) => ({
   cache : true,
   input,
   output: {
     dir           : outputDir,
-    format        : 'cjs',
+    format        : format,
     exports       : 'named',
-    entryFileNames: `[name].js`,
-    chunkFileNames: '[name].js',
+    entryFileNames: '[name].' + extension,
+    chunkFileNames: '[name].' + extension,
     sourcemap     : dev,
   },
   plugins: [
-    del({ targets: outputDir }),
     multiInput({relative}),
     alias(aliasOptions),
     json(),
@@ -88,5 +93,7 @@ export default [
     input    : ['src/**/*.ts'],
     outputDir: 'dist',
     relative : 'src',
+    format   : 'cjs',
+    extension: 'js',
   }),
 ]
