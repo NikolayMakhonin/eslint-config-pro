@@ -59,7 +59,7 @@
     "analysis": "ts-node tools/analysis.ts"
   },
   "devDependencies": {
-    "@flemist/test-utils": "0.0.3",
+    "@flemist/test-utils": "0.0.5",
     "@flemist/test-variants": "0.0.3",
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-commonjs": "22.0.0",

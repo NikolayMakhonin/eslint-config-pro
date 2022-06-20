@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@flemist/test-utils': 0.0.3
+  '@flemist/test-utils': 0.0.5
   '@flemist/test-variants': 0.0.3
   '@rollup/plugin-alias': 3.1.9
   '@rollup/plugin-commonjs': 22.0.0
@@ -48,7 +48,7 @@ dependencies:
   tslib: 2.4.0
 
 devDependencies:
-  '@flemist/test-utils': 0.0.3
+  '@flemist/test-utils': 0.0.5
   '@flemist/test-variants': 0.0.3
   '@rollup/plugin-alias': 3.1.9_rollup@2.75.6
   '@rollup/plugin-commonjs': 22.0.0_rollup@2.75.6
@@ -128,8 +128,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@flemist/test-utils/0.0.3:
-    resolution: {integrity: sha512-CY1wPVeFfL4NUHm0S1v9yjzAxj+mnydsT07C7JMdeXA5CtLZs9ZHoyRegYQBmRsq9WnkCzKaZoGSy6NSkcAPug==}
+  /@flemist/test-utils/0.0.5:
+    resolution: {integrity: sha512-bc/7O57jhG1Br8c+Q+4PX7uamOMxRu4IPJJ3NoZYIrI6gDugYmuK9VRJiknvySxPmdFeYU3V+13sLFsFAmHFCA==}
     engines: {node: '>=10.4.0', pnpm: ^7.1.6}
     dependencies:
       tslib: 2.4.0
