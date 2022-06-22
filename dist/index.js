@@ -1,11 +1,11 @@
 'use strict';
 
-var config = require('./config2.js');
-require('./features2.js');
-require('./helpers2.js');
-require('./patterns2.js');
-require('./rules2.js');
-require('./tsRuleNames2.js');
+var config = require('./config.js');
+require('./features.js');
+require('./helpers.js');
+require('./patterns.js');
+require('./rules.js');
+require('./tsRuleNames.js');
 
 /* eslint-disable import/no-import-module-exports */
 module.exports = config.config;

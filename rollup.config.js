@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import multiInput from 'rollup-plugin-multi-input'
-import del from 'rollup-plugin-delete'
+// import del from 'rollup-plugin-delete'
 import typescript from '@rollup/plugin-typescript'
 import alias from '@rollup/plugin-alias'
 import replace from '@rollup/plugin-replace'

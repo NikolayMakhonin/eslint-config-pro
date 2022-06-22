@@ -2,8 +2,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var helpers = require('./helpers2.js');
+function moduleExists(name) {
+    try {
+        require.resolve(name);
+        return true;
+    }
+    catch (_a) {
+        return false;
+    }
+}
 
-
-
-exports.moduleExists = helpers.moduleExists;
+exports.moduleExists = moduleExists;

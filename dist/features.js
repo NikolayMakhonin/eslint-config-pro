@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var features = require('./features2.js');
-require('./helpers2.js');
+var helpers = require('./helpers.js');
 
+const svelte = helpers.moduleExists('eslint-plugin-svelte3');
+const html = helpers.moduleExists('eslint-plugin-html');
 
-
-exports.html = features.html;
-exports.svelte = features.svelte;
+exports.html = html;
+exports.svelte = svelte;
