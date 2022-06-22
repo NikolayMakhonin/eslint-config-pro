@@ -361,7 +361,7 @@ describe('validate-config', function () {
         }
         return files
       },
-    })
+    })()
   })
 
   it('load config in eslint to validate all rule syntax is correct', async function () {
