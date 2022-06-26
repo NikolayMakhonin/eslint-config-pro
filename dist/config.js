@@ -37,7 +37,7 @@ const config = {
     'settings': {
         'node': {
             'allowModules': ['electron', 'svelte'],
-            'tryExtensions': ['.js', '.ts', '.node'],
+            'tryExtensions': ['.js', '.ts'],
         },
     },
     overrides: [
