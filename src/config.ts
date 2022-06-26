@@ -34,7 +34,7 @@ export const config: Linter.Config = {
   'settings': {
     'node': {
       'allowModules' : ['electron', 'svelte'],
-      'tryExtensions': ['.js', '.ts', '.node'],
+      'tryExtensions': ['.js', '.ts'],
     },
   },
   overrides: [

@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@flemist/test-utils': 0.0.5
-  '@flemist/test-variants': 0.0.9
+  '@flemist/test-utils': 0.0.7
+  '@flemist/test-variants': 0.0.14
   '@rollup/plugin-alias': 3.1.9
   '@rollup/plugin-commonjs': '=21.1.0'
   '@rollup/plugin-json': 4.1.0
@@ -17,7 +17,8 @@ specifiers:
   '@types/node': 18.0.0
   '@typescript-eslint/eslint-plugin': ^5.29.0
   '@typescript-eslint/parser': ^5.29.0
-  cpy-cli: 3.1.1
+  '@zerollup/ts-transform-paths': 1.7.18
+  cpy-cli: '=3.1.1'
   eslint: 8.18.0
   eslint-plugin-html: 6.2.0
   eslint-plugin-import: ^2.26.0
@@ -48,8 +49,8 @@ dependencies:
   tslib: 2.4.0
 
 devDependencies:
-  '@flemist/test-utils': 0.0.5
-  '@flemist/test-variants': 0.0.9
+  '@flemist/test-utils': 0.0.7
+  '@flemist/test-variants': 0.0.14
   '@rollup/plugin-alias': 3.1.9_rollup@2.75.7
   '@rollup/plugin-commonjs': 21.1.0_rollup@2.75.7
   '@rollup/plugin-json': 4.1.0_rollup@2.75.7
@@ -62,6 +63,7 @@ devDependencies:
   '@types/lodash': 4.14.182
   '@types/mocha': 9.1.1
   '@types/node': 18.0.0
+  '@zerollup/ts-transform-paths': 1.7.18_typescript@4.7.4
   cpy-cli: 3.1.1
   eslint: 8.18.0
   eslint-plugin-html: 6.2.0
@@ -128,15 +130,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@flemist/test-utils/0.0.5:
-    resolution: {integrity: sha512-bc/7O57jhG1Br8c+Q+4PX7uamOMxRu4IPJJ3NoZYIrI6gDugYmuK9VRJiknvySxPmdFeYU3V+13sLFsFAmHFCA==}
+  /@flemist/test-utils/0.0.7:
+    resolution: {integrity: sha512-HJxyDzk0JzTmroizBpnyUfFxTS+Zklwta2jyVbSljiykH8xgNF/M6Y8WXLUrF8c6bw2dhvD0ZzGdivR3yU2Ihg==}
     engines: {node: '>=10.4.0', pnpm: ^7.1.6}
     dependencies:
       tslib: 2.4.0
     dev: true
 
-  /@flemist/test-variants/0.0.9:
-    resolution: {integrity: sha512-dWuLp35BVostWcjdsnKkf2HGixWTHrGFOj/Oyws9JdSVJxuKY9Ga/Lr4kGTuQiUk0HimDumINcqSBQA6yqUJ1w==}
+  /@flemist/test-variants/0.0.14:
+    resolution: {integrity: sha512-s2CHX4D2wyeSNTi1wTkpB4HqAuNSlXxiwJwvbQwZCGUclfalOKJxnG5t20S9lMx0y4cGNe8MAptXboD6jYzDDg==}
     engines: {node: '>=10.4.0', pnpm: ^7.1.6}
     dependencies:
       tslib: 2.4.0
@@ -529,6 +531,24 @@ packages:
 
   /@ungap/promise-all-settled/1.1.2:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
+    dev: true
+
+  /@zerollup/ts-helpers/1.7.18_typescript@4.7.4:
+    resolution: {integrity: sha512-S9zN+y+i5yN/evfWquzSO3lubqPXIsPQf6p9OiPMpRxDx/0totPLF39XoRw48Dav5dSvbIE8D2eAPpXXJxvKwg==}
+    peerDependencies:
+      typescript: '>=3.7.2'
+    dependencies:
+      resolve: 1.22.0
+      typescript: 4.7.4
+    dev: true
+
+  /@zerollup/ts-transform-paths/1.7.18_typescript@4.7.4:
+    resolution: {integrity: sha512-YPVUxvWQVzRx1OBN0Pmkd58+R9FcfUJuwTaPUSoi5rKxuXMtxevTXdfi0w5mEaIH8b0DfL+wg0wFDHiJE+S2zA==}
+    peerDependencies:
+      typescript: '>=3.7.2'
+    dependencies:
+      '@zerollup/ts-helpers': 1.7.18_typescript@4.7.4
+      typescript: 4.7.4
     dev: true
 
   /abbrev/1.1.1:

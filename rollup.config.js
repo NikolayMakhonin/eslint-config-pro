@@ -6,8 +6,10 @@ import alias from '@rollup/plugin-alias'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import tsTransformPaths from '@zerollup/ts-transform-paths'
 import path from 'path'
-// import pkg from './package.json'
+import pkg from './package.json'
+import { createFilter } from '@rollup/pluginutils'
 
 const dev = !!process.env.ROLLUP_WATCH
 
@@ -81,11 +83,37 @@ const nodeConfig = ({
       transformMixedEsModules: true,
     }),
     typescript({
-      sourceMap: dev,
+      sourceMap     : dev,
+      declarationDir: outputDir,
+      declaration   : true,
+      transformers  : {
+        before: [
+          {
+            type   : 'program',
+            factory: (program) => {
+              return tsTransformPaths(program).before
+            },
+          },
+        ],
+        afterDeclarations: [
+          {
+            type   : 'program',
+            factory: (program) => {
+              return tsTransformPaths(program).afterDeclarations
+            },
+          },
+        ],
+      },
     }),
   ],
   onwarn  : onwarnRollup,
-  external: [/\bnode_modules\b/],
+  external: createFilter([
+     /\bnode_modules\b/,
+    'src/**/*.{js,cjs,mjs}',
+    ...Object.keys(pkg.dependencies),
+    ...Object.keys(pkg.devDependencies),
+    ...require('module').builtinModules || Object.keys(process.binding('natives')),
+  ]),
 })
 
 export default [
