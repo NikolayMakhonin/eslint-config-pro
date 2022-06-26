@@ -108,7 +108,7 @@ const nodeConfig = ({
   ],
   onwarn  : onwarnRollup,
   external: createFilter([
-     /\bnode_modules\b/,
+    /\bnode_modules\b/,
     'src/**/*.{js,cjs,mjs}',
     ...Object.keys(pkg.dependencies),
     ...Object.keys(pkg.devDependencies),
