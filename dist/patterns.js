@@ -17,6 +17,7 @@ const svelte = ['**/*.svelte'];
 const tests = [
     '**/*.test.*',
     '**/*.perf.*',
+    '**/*.stress.*',
     '**/*.e2e.*',
     '**/test/**',
     '**/tests/**',
