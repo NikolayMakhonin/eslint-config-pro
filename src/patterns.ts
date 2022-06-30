@@ -12,6 +12,7 @@ export const svelte = ['**/*.svelte']
 export const tests = [
   '**/*.test.*',
   '**/*.perf.*',
+  '**/*.stress.*',
   '**/*.e2e.*',
   '**/test/**',
   '**/tests/**',
