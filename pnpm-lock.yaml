@@ -2,14 +2,14 @@ lockfileVersion: 5.4
 
 specifiers:
   '@flemist/test-utils': 0.0.7
-  '@flemist/test-variants': 0.0.14
+  '@flemist/test-variants': 0.0.16
   '@rollup/plugin-alias': 3.1.9
   '@rollup/plugin-commonjs': '=21.1.0'
   '@rollup/plugin-json': 4.1.0
   '@rollup/plugin-node-resolve': 13.3.0
   '@rollup/plugin-replace': 4.0.0
   '@rollup/plugin-typescript': 8.3.3
-  '@rollup/pluginutils': ^4.2.1
+  '@rollup/pluginutils': 4.2.1
   '@types/assert': 1.5.6
   '@types/eslint': 8.4.3
   '@types/fs-extra': 9.0.13
@@ -51,7 +51,7 @@ dependencies:
 
 devDependencies:
   '@flemist/test-utils': 0.0.7
-  '@flemist/test-variants': 0.0.14
+  '@flemist/test-variants': 0.0.16
   '@rollup/plugin-alias': 3.1.9_rollup@2.75.7
   '@rollup/plugin-commonjs': 21.1.0_rollup@2.75.7
   '@rollup/plugin-json': 4.1.0_rollup@2.75.7
@@ -132,6 +132,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@flemist/abort-controller-fast/0.0.5:
+    resolution: {integrity: sha512-ewpqfmNx+V5dqTzVBxi7syhhsFRk5ktNOd0d85tKyGkqwzoMyJSYGBPmycYhlUDSsIN/3Nb2EaE0tPOtfw6PNQ==}
+    dependencies:
+      tslib: 2.4.0
+    dev: true
+
   /@flemist/test-utils/0.0.7:
     resolution: {integrity: sha512-HJxyDzk0JzTmroizBpnyUfFxTS+Zklwta2jyVbSljiykH8xgNF/M6Y8WXLUrF8c6bw2dhvD0ZzGdivR3yU2Ihg==}
     engines: {node: '>=10.4.0', pnpm: ^7.1.6}
@@ -139,10 +145,11 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@flemist/test-variants/0.0.14:
-    resolution: {integrity: sha512-s2CHX4D2wyeSNTi1wTkpB4HqAuNSlXxiwJwvbQwZCGUclfalOKJxnG5t20S9lMx0y4cGNe8MAptXboD6jYzDDg==}
+  /@flemist/test-variants/0.0.16:
+    resolution: {integrity: sha512-piqTjaT/w5aTAGZyk9zued4nqvd8EsOLsfORMABy+vIpWgx1hWt0D5Anugum5oTPrZ7zUOi8g7aubH2wDiHQpw==}
     engines: {node: '>=10.4.0', pnpm: ^7.1.6}
     dependencies:
+      '@flemist/abort-controller-fast': 0.0.5
       tslib: 2.4.0
     dev: true
 
