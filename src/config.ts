@@ -124,6 +124,8 @@ export const config: Linter.Config = {
       globals: {
         assert: true,
         expect: true,
+        beforeAll: true,
+        afterAll: true,
       },
       rules: {
         ...rules.tests.js,
