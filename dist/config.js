@@ -123,6 +123,8 @@ const config = {
             globals: {
                 assert: true,
                 expect: true,
+                beforeAll: true,
+                afterAll: true,
             },
             rules: Object.assign({}, rules.rules.tests.js),
             overrides: [{
