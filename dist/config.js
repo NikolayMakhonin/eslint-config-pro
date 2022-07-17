@@ -168,7 +168,7 @@ const config = {
                 'prefer-rest-params': 'off',
                 'no-var': 'off',
                 'vars-on-top': 'off',
-                'strict': ['error', 'global'],
+                'strict': ['error', 'function'],
                 'comma-dangle': 'off',
             },
             env: {
