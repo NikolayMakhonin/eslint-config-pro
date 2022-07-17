@@ -122,10 +122,10 @@ export const config: Linter.Config = {
         mocha: true,
       },
       globals: {
-        assert: true,
-        expect: true,
+        assert   : true,
+        expect   : true,
         beforeAll: true,
-        afterAll: true,
+        afterAll : true,
       },
       rules: {
         ...rules.tests.js,
